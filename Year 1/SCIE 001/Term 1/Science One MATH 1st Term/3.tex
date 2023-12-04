@@ -1,0 +1,102 @@
+\section{Properties of Functions, 函数的性质}
+
+\subsection{Limits at Infinity and Horizontal Asymptotes, 在无限处的极限与水平渐近线}
+We discuss a function's long-run behaviour by using limits "at" (approaches) infinity. \\
+Case 1:
+\begin{quote}
+    $$\lim_{x \to +\infty} c = c$$
+    $$\lim_{x \to \pm \infty} \frac{1}{x} = 0$$
+    If $n > 0$,
+    $$\lim_{x \to +\infty} \frac{1}{x^n} = 0$$
+    If $n = \frac{k}{r}$, where $r > 0$ and $r$ is not even,
+    $$\lim_{x \to -\infty} \frac{1}{x^n} = 0$$
+\end{quote}
+In this case,
+\begin{definition}
+    The line $y=L$ is a \textbf{horizontal asymptote} if: \\
+    $$\lim_{x \to \infty} f(x) = L$$
+    or
+    $$\lim_{x \to -\infty} f(x) = L$$
+\end{definition}
+Case 2: A function has an infinite limit as $x$ approaches infinity. For example,
+$$\lim_{x \to +\infty} e^x = \infty$$
+$$\lim_{x \to +\infty} \ln{x} = \infty$$
+However, what if limit laws do not apply? For example,
+$$\lim_{x \to +\infty} xe^x = ?$$
+$$\lim_{x \to +\infty} x\ln{x} = ?$$
+
+\subsection{Indeterminate Forms and L'Hôpital's Rule, 不定式与洛必达法则}
+Indeterminate forms are forms that if we directly plug in $\infty$ for our limit, we have the form
+$$\frac{0}{0}, \frac{\infty}{\infty}, 0 \times \infty, \infty - \infty, 0^0, 1^\infty, \infty^0$$
+But $\infty \times \infty$ is not an indeterminate form, as this limit will always diverge to $\infty$. \\
+For $\frac{0}{0}$ we usually do some algebraic manipulations, for example, multiplying the numerator and the denominator with the denominator's conjugate; for $\frac{\infty}{\infty}$ and $\infty - \infty$, we then need to compare infinities. \\
+A side note is that a polynomial function always has its highest-degree term that dominates the growth of the function.
+\begin{theorem}
+    The L'Hôpital's Rule states that: \\
+    Let $f$ and $g$ be differentiable near $x=a$, with $g'(x) \ne 0$ (except possibly at $x=a$). If
+    $$\lima f(x) = \lima g(x) = 0$$
+    or
+    $$\lima f(x) = \lima g(x) = \infty$$
+    then
+    $$\lima \frac{f(x)}{g(x)} = \lima \frac{f'(x)}{g'(x)}$$
+\end{theorem}
+For indeterminate powers,
+$$f(x)^{g(x)} = e^{g(x) \ln{f(x)}}$$
+we then evaluate the limit only for the part $g(x) \ln{f(x)}$.\\
+When encountering $0 \times \infty$, we can divide the reciprocal of one term to convert to $\frac{0}{0}$ or $\frac{\infty}{\infty}$ forms.
+
+\subsection{Local Extrema, 极值点}
+Critical points are where $f$ may attain a local extremum.
+\begin{theorem}
+    Fermat's Theorem states that: \\
+    If $f$ has a $\max$ or $\min$ at $x=c$ and $f'(c)$ exists, then $f'(c) = 0$, we call $(c, f(c))$ a critical point. \\
+    More generally, for $f'(c)$ DNE, we call it a critical/singular point.
+\end{theorem}
+To determine whether $f(c)$ is a local extremum or not, we may use the first derivative test:
+\begin{quote}
+    1. If $f'(c) > 0$ for $x < c$ and $f'(c) < 0$ for $x > c$, the $(c, f(c))$ is a local maximum; \\
+    2. If $f'(c) < 0$ for $x < c$ and $f'(c) > 0$ for $x > c$, the $(c, f(c))$ is a local minimum.
+\end{quote}
+
+\subsection{Shape of a graph, 函数的形状}
+To determine the shape of a graph, we follow the following steps:
+\begin{quote}
+    1. Find the domain and range of the function. \\
+    2. How the function behaves around discontinuities (e.g. vertical asymptotes) \\
+    3. How the function behaves in the long run (e.g. $\infty$ and $-\infty$) \\
+    4. How the function behaves around an oblique asymptote
+    5. Function's increasing and decreasing behaviours from the $1^{st}$ derivative. \\
+    6. Function's concavity from the $2^{nd}$ derivative. \\
+    7. Function symmetry (even or odd functions)
+\end{quote}
+
+\subsection{Global extrema, 最值点}
+\begin{definition}
+    Define $f(x)$ on $[a, b]$. Consider $c \in [a, b]$, we say $f(x)$ has: \\
+    1. A local maximum at $x=c$ if $f(x) \le f(c)$, $\forall x \in (a, b)$ \\
+    2. A local minimum at $x=c$ if $f(x) \ge f(c)$, $\forall x \in (a, b)$ \\
+    3. A global maximum at $x=c$ if $f(x) \le f(c)$, $\forall x \in [a, b]$ \\
+    4. A global minimum at $x=c$ if $f(x) \ge f(c)$, $\forall x \in [a, b]$
+\end{definition}
+Thus, to determine a function's global extrema, we follow these steps:
+\begin{quote}
+    1. Find the domain of the function \\
+    2. Find the critical points in the domain \\
+    3. Compare the $y$-values at the critical points and the endpoints \\
+    4. If the domain is unbounded, compare with limits as $x$ approaches $\infty$
+\end{quote}
+
+\subsection{Optimization, 最优化}
+Optimization is to apply the previous process of finding extrema by setting up proper equations and evaluating accordingly.
+\begin{theorem}
+    The Extreme Value Theorem states that: \\
+    If $f(x)$ is defined and continuous on $[a, b]$, then $f$ attains a maximum and a minimum at least once. \\
+    Therefore, if $f(x)$ has a global maximum or minimum at $x = c \in [a, b]$, then we have four possible situations
+    $$f'(c) = 0$$
+    $$f'(c) = DNE$$
+    $$c = a$$
+    $$c = b$$
+\end{theorem}
+
+
+\newpage

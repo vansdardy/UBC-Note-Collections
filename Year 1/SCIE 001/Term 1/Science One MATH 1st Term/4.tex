@@ -1,0 +1,44 @@
+\section{Taylor Polynomials, 泰勒展开与泰勒多项式}
+
+\subsection{Taylor Polynomials and Maclaurin Polynomials, 泰勒多项式与麦克劳林多项式}
+The idea here is to approximate the function around a point using polynomials. \\
+The polynomial will have a better and better approximation of the function as we introduce higher and higher degrees of terms. \\
+A constant approximation approximates based on the same $y$-value
+A linear approximation approximates based on the same slope. \\
+A quadratic approximation approximates based on the same concavity. \\
+Thus, if we start with an arbitrary polynomial around $x=a$,
+$$P(x) = C_0 + C_1(x-a) + C_2(x-a)^2 + \dots$$
+Then we need the following rules
+\begin{align*}
+    P(a) &= f(a) \\
+    P'(a) &= f'(a) \\
+    P''(a) &= f''(a) \\
+    \vdots
+\end{align*}
+Therefore, we need
+\begin{align*}
+    C_0 &= f(a) \\
+    C_1 &= f'(a) \\
+    2C_2 &= f''(a) \\
+    \vdots
+\end{align*}
+Then, we will get a general case where
+$$C_n = \frac{f^{(n)}(a)}{n!}$$
+This will give us an $n$-th degree Taylor polynomial around $x=a$:
+$$T_n(x) = \sum_{k = 1}^n \frac{f^{(k)}(a)}{k!}(x-a)^k$$
+We call $a$ to be the \textbf{center of approximation} and $n$ to be the \textbf{order of approximation}. \\
+When $a=0$, a Taylor polynomial is also called a Maclaurin polynomial.
+\newpage
+
+\subsection{Error Determination, 误差}
+An approximation will always have a certain error, for an $n$-th degree Taylor polynomial, we define its approximation error to be
+$$R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$$
+This is the \textbf{Lagrange Remainder Formula}, for some $c \in [a, x]$. \\
+Since $c$ is an arbitrary number in that given interval when we determine the error of an $n$-th degree Taylor polynomial, instead of finding an exact value for such an error, we usually find an upper bound for the error.
+
+\subsection{Taylor Polynomial Applications, 泰勒多项式的应用}
+With Taylor polynomials, we can use it to find limits of certain functions that are hard to evaluate on the spot. As we transform some part of the function into a Taylor polynomial (technically a Taylor series), we eventually will be working with polynomials. \\
+On the other hand, it is also critical to find a proper $n$ for the degree of the Taylor polynomial so that the error of approximation is below a certain value. \\
+By this, if we are given an upper bound of error, $\epsilon$, we need to find the proper $n$, such that
+$$R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1} < \epsilon$$
+In other subjects, we may also use Taylor's polynomial to confirm Newton's Laws under the scope of special relativity. That is, when an object's velocity is significantly smaller than the speed of light.

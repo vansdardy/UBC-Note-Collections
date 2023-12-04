@@ -1,0 +1,168 @@
+\section{Ordinary Differential Equations, 常微分方程}
+
+\subsection{Related Rates and Implicit Differentiation, 相关的变化率与隐函数求导}
+\subsubsection{Related Rates}
+Related rates is a type of problem where we are given $y = y(x)$, $z = z(x)$, some relationship of $f(y) = g(z)$, and $\dv{z}{x}$, so that we can find $\dv{y}{x}$ by differentiating with respect to $x$ on both sides of the relationship.
+\begin{align*}
+    f(y) &= g(z) \\
+    \dv{f(y)}{x} &= \dv{g(z)}{x} \\
+    \dv{f}{y} \cdot \dv{y}{x} &= \dv{g}{z} \cdot \dv{z}{x}
+\end{align*}
+\subsubsection{Implicit Differentiation}
+Implicit differentiation is used to determine $\dv{y}{x}$ when we know that $y = y(x)$ (that is, $y$ is a dependent variable with respect to x) but we are only given a relationship with both $x$ and $y$ in it altogether. \\
+Consider the following example
+\begin{align*}
+    e^y\sin{x} &= x^2 + \ln{y} \\
+    \dv{(e^y\sin{x})}{x} &= \dv{(x^2 + \ln{y})}{x} \\
+    e^y \cdot \dv{y}{x} \cdot \sin{x} + e^y \cdot \cos{x} &= 2x + \frac{1}{y} \cdot \dv{y}{x}
+\end{align*}
+We can then find $\dv{y}{x}$ by moving terms around, and express the derivative in terms of both $x$ and $y$.
+
+\subsection{Antiderivatives and ODE, 不定积分与常微分方程}
+\begin{definition}
+    An \textbf{anti-derivative}（不定积分）of a function $f(x)$, \\
+    is a function $F(x)$ such that
+    $$F'(x) = \dv{F}{x} = f(x)$$
+\end{definition}
+Antiderivatives of some common functions can be summarized as the following
+\begin{center}
+    \begin{tabular}{||c|c|c|c||}
+        \hline
+        $f(x)$ & $F(x)$ & $f(x)$ & $F(x)$ \\
+        \hline
+        $x^n$ & $\frac{x^{n+1}}{n+1}$ & $\frac{1}{x}$ & $\ln{|x|}$ \\
+        \hline
+        $e^x$ & $e^x$ & $\cos{x}$ & $\sin{x}$ \\
+        \hline
+        $e^{\sin{x}}\cos{x}$ & $e^{\sin{x}}$ & $\ln{x}$ & $x \ln{x} - x$ \\
+        \hline
+    \end{tabular}
+\end{center}
+Since the antiderivative of a function is not unique, therefore
+\begin{theorem}
+    Any $2$ anti-derivatives of the same function differ by a constant, \\
+    that is, if $F_1^{'}(x) = F_2^{'}(x) = f(x)$, then
+    $$F_1^{'}(x) - F_2^{'}(x) = C$$
+\end{theorem}
+With the basic concepts of anti-derivatives, we can now investigate $1^{st}$-order ordinary differential equations.
+\begin{definition}
+    A $1^{st}$-order ordinary differential equation is that, \\
+    given we know $y=y(x)$, we have a relationship in the form of
+    $$y' = f(y, x)$$
+    $$y'(x) = f(y(x), x)$$
+    such that the highest order derivative is a $1^{st}$-order derivative, and this form is an ODE.
+\end{definition}
+Some practical and common $1^{st}$-order ODEs include
+\begin{quote}
+    1. Radioactive decay
+    $$y'(t) = -ky(t), k > 0 \to y = Ce^{-kt}$$
+    2. Population growth
+    $$y'(t) = ky(t), k>0$$
+    3. Population growth with scarce resources
+    $$y'(t) = ay(t)(1-\frac{y(t)}{b}), a,b>0$$
+    4. Falling object with air resistance (define downwards to be positive)
+    $$v'(t) = g - \frac{\alpha}{m}v(t), v(t) > 0$$
+    5. Simplified Model of Climate Change
+    $$\dv{C}{t} = E - Q - \gamma PC$$
+\end{quote}
+\begin{definition}
+    An ODE is \textbf{\textit{autonomous}} if we have a relationship of
+    $$\dv{y}{t} = f(y)$$
+    such that there is no explicit $t$ term.
+\end{definition}
+In this case, an Initial Value Problem (IVP)（初值问题） is a type of problem where we are given an ODE, and some initial condition, such that we can find a unique solution to the ODE. \\
+\begin{theorem}
+    The \textbf{Existence/Uniqueness Theorem} of ODE (in Brian's words) states: \\
+    If $f(y, t)$ is "really, really, really" nice, then the initial value problem has a unique solution
+\end{theorem}
+Notation-wise, we use
+$$\int f(x) \dd x$$
+to denote a general anti-derivative or an indefinite integral of $f(x)$.
+
+\subsection{Variable Separable, 分离变量法}
+A variable separable ODE is in the form of
+$$\dv{y}{t} = f(y)g(t)$$
+if we implicit define $y=y(t)$. \\
+In general, we can solve this type of ODE with the following process
+\begin{align*}
+    \dv{y}{t} &= f(y)g(t) \\
+    \int \frac{\dd y}{f(y)} &= \int g(t) \dd t \\
+    F(y) &= G(t) + C
+\end{align*}
+\begin{theorem}
+    The graph of $2$ different solutions to an ODE, \\
+    $y_1(t)$ and $y_2(t)$ cannot intersect, \\
+    that is,
+    $$\forall t \in \mathscr{D}_y, y_1(t) \ne y_2(t)$$
+    if $y_1(t)$ and $y_2(t)$ are two different solutions to an ODE.
+\end{theorem}
+\newpage
+\subsection{Euler's Method, 欧拉法}
+Euler's method is used to numerically approximate the solution of an ODE using small steps with an initial value. It is mostly used for ODEs that do not have a direct and easy to solve. \\
+Consider the following process: \\
+Let $\dv{y}{t} = f(y, t)$ be an ODE of interest, with an initial value $(t_0, y_0)$. Let a step size to be $\Delta t$. Then we can have the following approximation process:
+\begin{align*}
+    y_1 &= y_0^{'} \Delta t + y_0 = f(y_0, t_0) \Delta t + y_0 \\
+    y_2 &= y_1^{'} \Delta t + y_1 = f(y_1, t_1) \Delta t + y_1 \\
+    \vdots \\
+    t_i &= t_0 + i \Delta t
+\end{align*}
+\subsubsection{Error Analysis, 误差分析}
+Since in general, Euler's method has
+$$y(t_{i+1}) = y(t_i + \Delta t) \approx y(t_i) + y'(t_i)\Delta t$$
+Then, the error of this approximation is
+$$\epsilon = \frac{1}{2}y''(t_i)\Delta t^2$$
+For each step, the error is of order $2$, however, if we consider all the steps taken to approximate to a certain point would be of order $1$, as
+$$\epsilon \cdot \frac{t-t_0}{\Delta t} \approx \Delta t$$
+
+\subsection{Concavity, 函数的凹凸性}
+We have previously discussed differentiability and what it means to a function. Here, we continue to investigate about twice differentiability. \\
+Let $f$ be a twice differentiable function, we then have the $4$ following interpretations:
+\begin{quote}
+    1. $f''(x)$ is the instantaneous rate of change of $f'(x)$ \\
+    2. $f''(x)$ is the rate of change of the slope of the tangent line to the graph of $f$ at $(x, f(x))$ \\
+    3. If $f'' > 0$ on $(a, b)$, then $f'(x)$ is strictly increasing on $(a, b)$ \\
+    4. If $f'' < 0$ on $(a, b)$, then $f'(x)$ is strictly decreasing on $(a, b)$
+\end{quote}
+\begin{theorem}
+    Let $f(x)$ be twice differentiable on $(a, b)$, \\
+    if $f'(x)$ is strictly increasing on $(a, b)$, then the graph $y=f(x)$ lies above its tangent lines; \\
+    the inverse also holds.
+\end{theorem}
+\begin{definition}
+    A twice differentiable function $f$ is: \\
+    \textbf{concave up}（向上凹、凸函数） on an interval if $f'$ is strictly increasing on that interval; \\
+    \textbf{concave down}（向下凹，凹函数） on an interval if $f'$ is strictly decreasing on that interval.
+\end{definition}
+\begin{theorem}
+    The concavity of a function has the following properties: \\
+    $f''(x)>0 \implies$ concave up $\implies$ graph of $f$ lies above its tangent lines; \\
+    $f''(x)<0 \implies$ concave down $\implies$ graph of $f$ lies below its tangent lines.
+\end{theorem}
+\begin{definition}
+    A point $(c, f(c))$ is an \textbf{inflection point}（拐点） if: \\
+    The concavity of the function $f$ changes before and after $x=c$.
+\end{definition}
+\begin{proposition}
+    If $(c, f(c))$ is an inflection point, then $f''(c) = 0$ or $f''(c)$ DNE
+\end{proposition}
+
+\subsection{Qualitative Properties of ODEs, 常微分方程定性性质}
+\begin{definition}
+    The \textbf{slope field}（斜率场）of a $1^{st}$ order ODE $y'=f(y, t)$ is, \\
+    a diagram in $t-y$ plane, at the point $(t, y)$, draw line segment of slope $f(y, t)$. \\
+    A solution to the ODE is a curve tangent to the slope field.
+\end{definition}
+\begin{definition}
+    An \textbf{equilibrium solution}（平衡解）to an autonomous $1^{st}$ order ODE ($y'=f(y)$) is a constant solution ($y(t) = c$)
+\end{definition}
+\begin{definition}
+    An equilibrium solution is: \\
+    \textbf{stable}, if $\forall y_0$ sufficiently close to $c$, the solution $y(t)$ with $y(t_0) = y_0$ satisfies
+    $$\lim_{t \to +\infty} y(t) = c$$
+    \textbf{non-stable}, if $\forall y_0$ sufficiently close to $c$, the solution $y(t)$ with $y(t_0) = y_0$ has either
+    $$\lim_{t \to +\infty} y(t) \ne c$$
+    or
+    $$\lim_{t \to +\infty} y(t) = DNE$$
+\end{definition}
+\newpage

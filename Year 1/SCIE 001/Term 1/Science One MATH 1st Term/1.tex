@@ -1,0 +1,178 @@
+\section{Limits and Derivatives, 极限与导数}
+\subsection{Limits and One-sided limits, 极限与单向极限}
+\begin{definition}
+    We denote the "limit of $f(x)$ as $x$ approaches $a$" to be
+    $$\lima f(x) = L$$
+\end{definition}
+Note that if $\mathscr{D}_f = \{x \in \R: x \ne a\}$, the limit of $f(x)$ as $x$ approaches $a$ can still exist. In this case, we take the limit from both sides where $x \to a^-$ and $x \to a^+$. \\
+$f(a)$ is irrelevant to $\displaystyle \lima f(x)$. \\
+If we cannot assign a value to such a limit, we say this limit \textbf{\textit{does not exist}}, denoted as
+$$\lima f(x) = DNE$$
+Fundamentally, 
+$$f(x) = c \implies \lima f(x) = c$$
+$$f(x) = x \implies \lima f(x) = a$$
+To compute basic limits, we have the following laws:
+\begin{quote}
+    If $\displaystyle \lima f(x)$ and $\displaystyle \lima g(x)$ exist, then
+    $$\lima (f(x) \pm g(x)) = \lima f(x) \pm \lima g(x)$$
+    $$\lima (f(x)g(x)) = \lima f(x) \lima g(x)$$
+    additionally, if $\displaystyle \lima g(x) \ne 0$, then 
+    $$\lima \frac{f(x)}{g(x)} = \frac{\displaystyle \lima f(x)}{\displaystyle \lima g(x)}$$
+\end{quote}
+When encountering the form of $\frac{0}{0}$ after directly plugging in the value, we can try the following strategies
+\begin{quote}
+    1. Factor and cancel \\
+    2. Multiply by the conjugate when encountering radicals \\
+    3. Expand the brackets and simplify \\
+    4. Manipulate to reduce to well-known limits
+\end{quote}
+Note that a limit of the form $\frac{0}{0}$ can still $DNE$. However, if the form takes $\frac{a}{0}$, where $a \ne 0$, it is concrete that such a limit will not exist. The limit diverges to $\pm \infty$. \\
+So what does it mean for a limit to $DNE$?
+\begin{quote}
+    1. $\displaystyle \lim_{x \to a^-} f(x) \ne \lim_{x \to a^+} f(x)$, that is the limit approaches different values from two sides of the point of interest. \\
+    2. $f(x)$ keeps increasing as $x \to a$, for example, a vertical asymptote. \\
+    3. $f(x)$ oscillates as $x \to a$, for example, $f(x) = \sin{\frac{1}{x}}$ oscillates as $x \to 0$.
+\end{quote}
+Consequently, 
+\begin{theorem}
+    \textbf{The limit theorem} states that \\
+    $\dps \lima f(x)$ exists \textbf{if and only if}
+    $$\dps \lim_{x \to a^-} f(x) = \lim_{x \to a^+}f(x) = L$$
+    then
+    $$\lima f(x) = L$$
+\end{theorem}
+
+\subsection{Infinite limit and Squeeze Theorem, 无限极限值与夹逼定理}
+We then discuss the $2^{nd}$ case as indicated in the previous section about limit $DNE$: $f(x)$ keeps increasing/decreasing as $x \to a$. \\
+We say the function has an infinite limit as $x \to a$, for example, in general
+$$\lim_{x \to 0} \frac{1}{x^n} = \infty$$
+if $n$ is an even number. \\
+Note that $\infty$ is \textbf{NOT} a number, therefore, if a limit diverges to infinity, the limit still does not exist. We just use the notation
+$$\lima f(x) = \pm \infty$$
+as it is more precise to describe the function's behaviour. \\
+\\
+Now we discuss the $3^{rd}$ case, where the function oscillates. Consider the following limit
+$$\lim_{x \to 0} \sin{\frac{1}{x^2}}$$
+This limit does not exist, because no matter how close $x$ approaches $0$, the function $f(x) = \sin{\frac{1}{x^2}}$ will oscillate. \\
+However, similar limits will exist, for example,
+$$\lim_{x \to 0} x\sin{\frac{1}{x^2}} = 0$$
+$$\lim_{x \to 0} x^2\sin{\frac{1}{x^2}} = 0$$
+Why?
+\begin{theorem}
+    \textbf{The Squeeze Theorem} states that \\
+    if we have $f(x) \le g(x) \le h(x)$ for $x \to a$ on some $\mathscr{D}$, and $\dps \lima f(x) = \lima h(x) = L$, then
+    $$\lima g(x) = L$$
+\end{theorem}
+
+
+\subsection{Continuity, 函数连续性}
+A function is continuous at $x=a$ if and only if:
+\begin{quote}
+    1. $f(a)$ exists; \\
+    2. $\dps \lima f(x)$ exists; \\
+    3. $f(a) = \dps \lima f(x)$
+\end{quote}
+All elementary functions are continuous, for example, polynomials, rational functions, exponentials, logarithms, trigonometric functions, and radical functions on their $\mathscr{D}$. \\
+Examples of discontinuities include:
+\begin{quote}
+    1. Removable discontinuity (hole); \\
+    2. A jump; \\
+    3. Vertical asymptote
+\end{quote}
+We also consider how open and close intervals affect a function's continuity.
+\begin{quote}
+    $f(x)$ is continuous on $(a, b)$ if it is continuous on all interior points; \\
+    $f(x)$ is continuous on $[a, b]$ if it also has the properties:
+    $$\lim_{x \to a^+} f(x) = f(a)$$
+    $$\lim_{x \to b^-} f(x) = f(b)$$
+\end{quote}
+
+\subsection{Intermediate Value Theorem, 介值定理}
+\begin{theorem}
+    \textbf{Intermediate Value Theorem} (IVT) states that \\
+    if $f$ is continuous on the \textbf{closed interval} $[a, b]$, and $N$ is value between $f(a)$ and $f(b)$, then
+    $$\exists c \in [a, b], f(c) = N$$
+\end{theorem}
+Application-wise, we can use the IVT to determine whether or not an equation has a root within a certain interval.
+
+\subsection{Derivatives, 导数与导函数}
+\begin{definition}
+    A function $f(x)$ is \textbf{differentiable}（可微） at $x = a$ if
+    $$f'(a) := \lima \frac{f(x) - f(a)}{x - a}$$
+    $$f'(a) := \lim_{h \to 0} \frac{f(a + h) - f(a)}{h}$$
+    the limit exists and is finite.
+\end{definition}
+We have assumed that $f(x)$ is defined on $(x_1, x_2)$, such that $a \in (x_1, x_2)$. \\
+We have $3$ different interpretations of \textbf{differentiability}:
+\begin{quote}
+    1. $f$ has an instantaneous rate of change at $x = a$ \\
+    2. Slope of the chord (secant) from $(x, f(x))$ to $(a, f(a))$ converges to the slope of the tangent line at $(a, f(a))$ \\
+    3. We have a "good" linear approximation $L(x)$ "near" $x=a$, that is
+    $$\lima \frac{f(x) - L(x)}{x - a} = 0$$
+    where $L(x) = f(a) + f'(a)(x-a)$
+\end{quote}
+There are $3$ general ways for a function to be non-differentiable. \\
+Since a function is differentiable at $x = a$ if
+$$\lim_{h \to 0^-} \frac{f(a + h)-f(a)}{h} = \lim_{h \to 0^+} \frac{f(a + h)-f(a)}{h}$$
+Therefore, we can have these to be non-differentiable:
+\begin{quote}
+    1. Corner/Not smooth: e.g. $f(x)=|x|$ at $x=0$ \\
+    2. Vertical tangent line: e.g. $f(x) = \sqrt[3]{x}$ at $x=0$ \\
+    3. Discontinuity: e.g. $f(x) = \sin{\frac{1}{x^2}}$ at $x=0$
+\end{quote}
+\begin{theorem}
+    Differentiability and Continuity: \\
+    If a function is differentiable at $x=a$, then the function is continuous at $x=a$. \\
+    If a function is discontinuous at $x=a$, then the function is non-differentiable at $x=a$.
+\end{theorem}
+
+\subsection{Rules of Derivatives, 导数运算规则}
+We first consider a function $y = f(x)$, then its derivative function can be expressed in various notations:
+$$y' = f'(x) = \dv{y}{x} = \dv{f(x)}{x} = \dv{x} f(x) = D_xf(x)$$
+Let $f$ and $g$ be differentiable at $x$, then we have the following rules when computing derivatives:
+$$[f(x) \pm g(x)]' = f'(x) \pm g'(x)$$
+$$[f(x)g(x)]' = f'(x)g(x) + f(x)g'(x)$$
+$$[\frac{f(x)}{g(x)}]' = \frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^2}$$
+$$\dv{x}x^n = nx^{n-1}$$
+$$[(f \circ g)(x)]' = (f(g(x)))' = f'(g(x))g'(x)$$
+\begin{definition}
+    For a function $f$, \\
+    if $\exists I = [a, b], \forall x \in I, f$ is differentiable at $x$, we define
+    $$f'(a) := \lim_{x \to a^+} \frac{f(x)-f(a)}{x-a}$$
+    $$f'(b) := \lim_{x \to b^-} \frac{f(x)-f(b)}{x-b}$$
+\end{definition}
+Notation-wise,
+$$f'(a) = \dv{x}|_{x=a} f(x)$$
+For higher-order derivatives, like an $n$-order derivative, we have the notation
+$$f^{(n)}(x) = \dv[n]{x}f(x) = \dv[n]{y}{x}$$
+By the power rule, if a polynomial has an order of $n$, then
+$$\forall m > n, f^{(m)}(x) = 0$$
+
+\subsection{Linear Approximation and Mean Value Theorem, 线性近似与中值定理}
+Consider a function $f$, for $x$ near $a$, we have a linear approximation of
+$$f(x) \approx f(a) + f'(a)(x-a)$$
+\begin{theorem}
+    3 versions of the \textbf{Mean Value Theorem} (MVT): \\
+    \textbf{Rolle's Theorem} states that: Let $f(x)$ be a function continuous on $[a, b]$ and differentiable on $(a, b)$, if $f(a) = f(b)$, then there exists $c \in (a, b)$ such that $f'(c) = 0$ \\
+    \\
+    \textbf{Lagrange's Theorem} states that: Let $f(x)$ be a function continuous on $[a, b]$ and differentiable on $(a, b)$, there exists $c \in (a, b)$ such that
+    $$f'(c) = \frac{f(b)-f(a)}{b-a}$$
+    \textbf{Cauchy's Theorem} states that: Let $f(x)$ and $g(x)$ be functions continuous on $[a, b]$ and differentiable on $(a, b)$, there exists $c \in (a, b)$ such that
+    $$\frac{f'(c)}{g'(c)}=\frac{f(b)-f(a)}{g(b)-g(a)}$$
+\end{theorem}
+Rolle's Theorem is a special case of MVT, and MVT is a general case of Rolle's Theorem.
+
+\subsection{Increase and Decrease of Functions, 函数的增减性}
+\begin{definition}
+    For a function $f$ to \textbf{strictly increase}（单调递增）or \textbf{strictly decrease}（单调递减）on an interval $I$: \\
+    If $\forall x_1, x_2 \in I, x_1 < x_2 \implies f(x_1) < f(x_2)$, then $f$ is strictly increasing on the interval $I$. \\
+    If $\forall x_1, x_2 \in I, x_1 < x_2 \implies f(x_1) > f(x_2)$, then $f$ is strictly decreasing on the interval $I$.
+\end{definition}
+Then with the use of MVT, we can show the following theorem:
+\begin{theorem}
+    The \textbf{Increasing/Decreasing Function Theorem} states that: \\
+    Given $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then \\
+    if $\forall x \in (a, b), f'(x) > 0$, then $f$ is strictly increasing on $(a, b)$ \\
+    if $\forall x \in (a, b), f'(x) < 0$, then $f$ is strictly decreasing on $(a, b)$
+\end{theorem}
+\newpage
