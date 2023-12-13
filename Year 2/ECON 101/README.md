@@ -1,1 +1,1 @@
-This may be updated later.
+No Midterm 2 Notes.
