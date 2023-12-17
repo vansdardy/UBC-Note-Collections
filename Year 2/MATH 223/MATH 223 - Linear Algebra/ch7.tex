@@ -1,0 +1,180 @@
+\section{Determinants, 行列式}
+\subsection{Definition of determinants, 行列式的定义}
+\begin{definition}
+    There exists a unique map:
+    $$\det : M_{n \times n}(\F) \to \F$$
+    such that it satisfies:
+    \begin{quote}
+        1. $\det$ is linear in each row, that is preserved under $R_i + \lambda R_j$ \\
+        2. If $A \in M_{n \times n}(\F)$, and $\rk A < n$, then $\det A = 0$. \\
+        3. $\det \id = 1$
+    \end{quote}
+\end{definition}
+Consider a general matrix $A = (a_{ij})$,
+\begin{definition}
+    Let $A_{ij}$ denote the matrix where in $A$, the $i^{th}$ row and $j^{th}$ column is eliminated.
+\end{definition}
+Therefore, we can write out a recursive formula for determining $\det A$, this process is called \textbf{\textit{cofactor expansion}} with respect to the $i^{th}$ row (cofactor expansion with respect to a column is also fine):
+$$\det A = \sum_{j=1}^n (-1)^{i + j} a_{ij} \det A_{ij}$$
+Specifically, for a $2 \times 2$ matrix,
+$$\begin{vmatrix}
+    a & b \\
+    c & d
+\end{vmatrix} = ad - bc$$
+Regarding to row operations, 
+\begin{quote}
+    1. If a multiply a row of $A$ by $\lambda$, $\det A' = \lambda \det A$ \\
+    2. If two rows are interchanged in $A$, $\det A' = - \det A$ \\
+    3. If a row adds $\lambda$ of another row in $A$, then $\det A' = \det A$
+\end{quote}
+Consider a $3 \times 3$ \textbf{\textit{Vandermonde Matrix}}（范德蒙矩阵）,
+\begin{align*}
+    \begin{vmatrix}
+        1 & a & a^2 \\
+        1 & b & b^2 \\
+        1 & c & c^2
+    \end{vmatrix} &= \begin{vmatrix}
+        1 & a & a^2 \\
+        0 & b-a & b^2-a^2 \\
+        0 & c-a & c^2-a^2
+    \end{vmatrix} \\
+    &= 1 \cdot \begin{vmatrix}
+        b-a & b^2-a^2 \\
+        c-a & c^2-a^2
+    \end{vmatrix} \\
+    &= (b-a)(c-a) \begin{vmatrix}
+        1 & b+a \\
+        1 & c+a
+    \end{vmatrix} \\
+    &= (b-a)(c-a)(c-b)
+\end{align*}
+Determinant is a useful theoretical tool to give us information about "volumes" in $\R^n$.
+\begin{quote}
+    1. $\begin{vmatrix}
+        a
+    \end{vmatrix}$ gives the length of real number $a$ (absolute value) \\
+    2. $\begin{vmatrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{vmatrix}$ gives the area of a parallelogram in $\R^2$ \\
+    3.  $\begin{vmatrix}
+        a_{11} & a_{12} & a_{13}\\
+        a_{21} & a_{22} & a_{23} \\
+        a_{31} & a_{32} & a_{33}
+    \end{vmatrix}$ gives the volume of parallelopiped in $\R^3$
+\end{quote}
+In multivariable calculus, the \textbf{\textit{Jacobian determinant}}（雅可比行列式）gives us the change of variable formula:
+$$\begin{vmatrix}
+    \pdv{f_1}{x_1} & \dots & \pdv{f_1}{x_n} \\
+    \vdots & & \vdots \\
+    \pdv{f_n}{x_1} & \dots & \pdv{f_n}{x_n}
+\end{vmatrix}$$
+Some common matrices have easy ways to compute determinants,
+\begin{quote}
+    1. Upper triangular
+    $$\begin{vmatrix}
+        a_{11} & * & \dots & * \\
+        0 & a_{22} & \dots & * \\
+        \vdots & \vdots & & \vdots \\
+        0 & 0 & \dots & a_{nn}
+    \end{vmatrix} = a_{11}a_{22}\dots a_{nn}$$
+    2. Lower triangular
+    $$\begin{vmatrix}
+        a_{11} & 0 & \dots & 0 \\
+        * & a_{22} & \dots & 0 \\
+        \vdots & \vdots & & \vdots \\
+        * & * & \dots & a_{nn}
+    \end{vmatrix} = a_{11}a_{22}\dots a_{nn}$$
+    3. Block upper triangular
+    $$\begin{vmatrix}
+        A & * & * \\
+        0 & B & * \\
+        0 & 0 & C
+    \end{vmatrix} = \det A \det B \det C$$
+    4. Block lower triangular (ditto) \\
+    5. Block diagonal (ditto)
+\end{quote}
+
+\subsection{Properties of Determinants, 行列式的性质}
+\begin{definition}
+    Consider a general $n \times n$ matrix $A = (a_{ij})$, then then transpose of $A$ is defined to be:
+    $$A^t = \begin{pmatrix}
+        a_{11} & a_{21} & \dots & a_{n1} \\
+        a_{12} & a_{22} & \dots & a_{n2} \\
+        \vdots & \vdots & & \vdots \\
+        a_{1n} & a_{2n} & \dots & a_{nn}
+    \end{pmatrix}$$
+    Then, $\det A^t = \det A$
+\end{definition}
+\begin{proposition}
+    $\det (AB) = \det A \det B$
+\end{proposition}
+
+\subsection{Cramer's Rule, 克莱默法则}
+Consider a general linear system
+$$Ax = b$$
+where $A = (a_{ij}) \in M_{n \times n}(\F)$, and $b = \begin{pmatrix}
+    b_1 \\
+    \vdots \\
+    b_n
+\end{pmatrix}$ \\
+Then consider a matrix $B_i$:
+$$B_i = \begin{pmatrix}
+    a_{11} & \dots & a_{1i-1} & b_1 & a_{1i+1} & \dots & a_{1n} \\
+    \vdots & & \vdots & \vdots & \vdots & & \vdots \\
+    a_{n1} & \dots & a_{ni-1} & b_n & a_{ni+1} & \dots & a_{nn}
+\end{pmatrix}$$
+which is formed by replacing $i^{th}$ column of $A$ with $b$. \\
+Then, assume $\det A \ne 0$, and if $Ax = b$, has a unique solution
+$$\begin{pmatrix}
+    x_{1}^{\circ} \\
+    \vdots \\
+    x_{n}^{\circ}
+\end{pmatrix}$$
+then
+$$x_i^{\circ} = \frac{\det B_i}{\det A}$$
+\textbf{\textit{Proof for Cramer's Rule is omitted at this section}}, but a useful matrix associated with such proof is $M_i$:
+$$M_i = \begin{pmatrix}
+    a_{11} & \dots & a_{1i-1} & x_i^{\circ}a_{1i} - b_1 & a_{1i+1} & \dots & a_{1n} \\
+    \vdots & & \vdots & \vdots & \vdots & & \vdots \\
+    a_{n1} & \dots & a_{ni-1} & x_i^{\circ}a_{ni} - b_n & a_{ni+1} & \dots & a_{nn}
+\end{pmatrix}$$
+And $\det M_i = 0 = x_i^{\circ} \det A - \det B_i$
+\\
+Suppose now we want to find a formula for $A^{-1}$, since $AA^{-1} = \id$, then, the $k^{th}$ column of $A^{-1}$ is the solution to the equation
+$$Ax_k = e_k$$
+Assume $x_k = \begin{pmatrix}
+    x_{k1}^{\circ} \\
+    \vdots \\
+    x_{kn}^{\circ}
+\end{pmatrix}$, let $A^{-1} = (c_{ij})$, then $c_{ij}$ is the $j^{th}$ component of $x_j$, so by Cramer's Rule, we replace the $i^{th}$ column with $e_j$:
+$$c_{ij} = \frac{1}{\det A} \times \begin{vmatrix}
+    a_{11} & \dots & a_{1i-1} & 0 & a_{1i+1} & \dots & a_{1n} \\
+    \vdots & & \vdots & \vdots & \vdots & & \vdots \\
+    a_{j1} & \dots & a_{ji-1} & 1 & a_{ji+1} & \dots & a_{jn} \\
+    \vdots & & \vdots & \vdots & \vdots & & \vdots \\
+    a_{n1} & \dots & a_{ni-1} & 0 & a_{ni+1} & \dots & a_{nn}
+\end{vmatrix}$$
+If we then apply cofactor expansion with respect to the $i^{th}$ column, then
+$$c_{ij} = \frac{1}{\det A} \times (-1)^{i+j} \times \begin{vmatrix}
+    a_{11} & \dots & a_{1i-1} & a_{1i+1} & \dots & a_{1n} \\
+    \vdots &       & \vdots   & \vdots   &       & \vdots \\
+    a_{j-11} & \dots & a_{j-1i-1} & a_{j-1i+1} & \dots & a_{j-1n} \\
+    a_{j+11} & \dots & a_{j+1i-1} & a_{j+1i+1} & \dots & a_{j+1n} \\
+    \vdots &       & \vdots   & \vdots   &       & \vdots \\
+    a_{n1} & \dots & a_{ni-1} & a_{ni+1} & \dots & a_{nn}
+\end{vmatrix} =  (-1)^{i+j} \times \frac{\det(A_{ji})}{\det A}$$
+To highlight, we can have
+\begin{proposition}
+    Let $A^{-1} = (c_{ij})$, then given $A = (a_{ij})$, we have
+    $$c_{ij} = (-1)^{i+j} \times \frac{\det A_{ji}}{\det A}$$
+\end{proposition}
+A short example is a $2 \times 2$ matrix
+$$\begin{pmatrix}
+    a & b \\
+    c & d
+\end{pmatrix}^{-1} = \frac{1}{ad-bc} \times \begin{pmatrix}
+    d & -b \\
+    -c & a
+\end{pmatrix}$$
+\newpage

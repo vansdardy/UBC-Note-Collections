@@ -1,0 +1,44 @@
+\section{Matrix Calculus, 矩阵运算}
+
+\subsection{Matrix Multiplication, 矩阵乘法}
+First, we define matrix addition and scalar multiplication:
+\begin{definition}
+    Let $(a_{ij}), (b_{ij}) \in M_{m \times n}(\F)$ and $\lambda \in \F$, then
+    $$(a_{ij}) + (b_{ij}) := (a_{ij} + b_{ij}) \in M_{m \times n}(\F)$$
+    $$\lambda(a_{ij}) := (\lambda a_{ij}) \in M_{m \times n}(\F)$$
+\end{definition}
+Now, consider a diagram
+$$\begin{tikzcd}
+    V \arrow[r, "B"]
+        & W \arrow[r, "A"]
+        & U
+\end{tikzcd}$$
+Then, $AB: V \to U$, that is $AB := A \circ B$
+\begin{definition}
+    Let $\dim V = n, \dim W = m, \dim U = r$, if $A = (a_{ik}) \in M_{r \times m}(\F)$ and $B = (b_{kj}) \in M_{m \times n}(\F)$, the \textbf{\textit{product}} $AB \in M_{r \times n}(\F)$ is defined by
+    $$AB := (\sum_{k=1}^m a_{ik}b_{kj})_{(i = 1, \dots, r), (j = 1, \dots, n)}$$
+\end{definition}
+Matrix multiplication is associative $A(BC) = (AB)C$, and distributive with respect to addition $A(B+C) = AB + AC$ and $(A+B)C = AC + BC$, but they are NOT commutative.
+\begin{definition}
+    A matrix $A$ is \textbf{\textit{invertible}}（可逆的）if the associated linear map is an isomorphism; the matrix of the inverse map is then called the matrix \textbf{\textit{inverse}}（逆矩阵）to $A$ and is denoted by $A^{-1}$.
+\end{definition}
+There are several useful remarks regarding matrix inversion:
+\begin{quote}
+    1. Each invertible matrix $A$ is square. \\
+    2. If $A$ is invertible, then $A^{-1}$ is invertible. \\
+    3. If $A, B$ are invertible, then $AB$ is invertible and $(AB)^{-1}=B^{-1}A^{-1}$ \\
+    4. If $A, B$ are square matrices, then
+    $$AB = \id \iff BA = \id \iff B = A^{-1}$$
+\end{quote}
+
+\subsection{Elementary Transformations}
+There are three elementary ROW transformations:
+\begin{definition}
+    For a matrix $A \in M_{m \times n}(\F)$, we have: \\
+    (R1): Interchanging two rows. \\
+    (R2): Multiplication of a row by a scalar $\lambda \ne 0, \lambda \in \F$. \\
+    (R3): Addition of an arbitrary multiple of one row to another row.
+\end{definition}
+Elementary transformations do not alter the rank of the matrix. \\
+Thus, if after an arbitrary number of transformations, if the first $r$ entries on the diagonal of the operated matrix are distinct from $0$, and the rest $m-r$ rows and all the entries below the diagonal are $0$, then $\rk A = r$.
+\newpage

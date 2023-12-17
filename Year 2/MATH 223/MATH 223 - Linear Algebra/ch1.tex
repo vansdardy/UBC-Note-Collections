@@ -1,0 +1,142 @@
+\section{Sets and Maps, 集合与映射}
+
+\subsection{Sets, 集合}
+A \textbf{\textit{set}} is a collection of objects that are \textbf{definite, and distinct}; these objects are \textbf{elements}（元素） of this set. \\
+We use $\varnothing$ to denote an \textbf{\textit{empty set}}（空集）, in which there is no element. \\
+\\
+To denote a set:
+\begin{quote}
+    1. List all elements of the set, or \\
+    2. Write down the condition for which the elements of the set should satisfy. Such a set should be a \textbf{subset} of a \textbf{\textit{universal set}} \\
+    e.g. $A = \{x \in \R: x \ge 4\}$ means a set $A$ that has all real numbers that are greater than or equal to 4
+\end{quote}
+When listing elements, there are \textbf{no repetitions} and \textbf{no ordered sequence}. Thus, forms of $\{1, 1, 2, 3\}$ is unacceptable, and $\{1, 2, 3\}$ and $\{2, 1, 3\}$ are the same set. \\
+\\
+Some relevant notations include quantifiers:
+\begin{quote}
+    1. Universal quantifier - $\forall$: means "for every", "for each", or "for all" \\
+    2. Existential quantifier - $\exists$: means "there exists", "there are some"
+\end{quote}
+
+\subsubsection{Relationships, 集合关系}
+\begin{definition}
+    $A$ is a \textbf{subset}（子集） of $B$ if \\
+    $\forall x \in A, x \in B$
+\end{definition}
+
+\subsubsection{Operations, 集合运算}
+We define four operations, these operations mostly involve 2 sets (except for the case where it is finding a complement of a given set).
+\begin{definition}
+    The four operations on sets are defined as follows: \\
+    $A \cup B$ - $A$ union $B$（并集）, is a set that satisfies
+    $$\forall x \in A \cup B, x \in A \lor x \in B$$
+
+    $A \cap B$ - $A$ intersect $B$（交集）, is a set that satisfies
+    $$\forall x \in A \cap B, x \in A \land x \in B$$
+
+    $\bar{A}$ - $A$'s complement（补集）, is a set that satisfies
+    $$\forall x \in \bar{A}, x \in \U \land x \notin A$$
+
+    $A - B$ or $A \backslash B$ - $A$ minus $B$, is a set that satisfies
+    $$\forall x \in A - B, x \in A \land x \notin B$$
+\end{definition}
+We further define the following
+$$A \times B := \{(a, b): a \in A, b \in B\}$$
+$A \times B$ is called the \textbf{\textit{Cartesian product}} of sets $A$ and $B$, where its elements are element pairs in the form shown above. \\
+By extending this definition, we further have $\R^n := \R \times \dots \times \R$, and the element of such a set is in the form $(a_1, \dots, a_n), a_1, \dots, a_n \in \R$, which is called an \textbf{\textit{n-tuple}}. \\
+If we denote $\# A$ as the \textbf{\textit{cardinality}}（势） of the set $A$, which is the number of elements in $A$, then we have a trivial conclusion, where
+$$\# (A \times B) = \# A \times \# B$$.
+
+\subsubsection{Logic Statements, 逻辑语句}
+These logic statements significantly reduce the number of words needed to express certain mathematical conditions and provide structures for mathematical proofs.
+\begin{quote}
+    1. $P$ implies $Q$（命题）: $P \implies Q$. This statement is true when $P$ is True and $Q$ is True, or $P$ is False. $P$ is the sufficient condition（充分条件） for $Q$, $Q$ is the necessary condition（必要条件） for $P$. \\
+    2. Negating an implication: $\lnot (P \implies Q) \equiv P \land \lnot Q$ \\
+    3. Biconditional (if and only if)（当且仅当）: $P \Longleftrightarrow Q \equiv (P \implies Q) \land (Q \implies P)$. $P$ and $Q$ are each other's sufficient and necessary conditions（充要条件）. \\
+    4. Converse（逆命题）: $Q \implies P$ \\
+    5. Inverse（否命题）: $\lnot P \implies \lnot Q$ \\
+    6. Contrapositive（逆否命题）: $\lnot Q \implies \lnot P$, an argument's contrapositive is equivalent to the argument.
+\end{quote}
+
+\newpage
+\subsection{Maps, 映射}
+Functions, as discussed in usual calculus classes, commonly operate with real numbers. $f(x) = x + 3$ is such an example. However, maps, in contrast with functions, provide correspondence rules between more general sets than $\R$. Thus, functions are special forms of maps. \\
+To define a map, one needs $2$ sets and $1$ rule
+\begin{definition}
+    Let $X$ and $Y$ be two general sets, \\
+    we can define a map $f$ in the form
+    $$f: X \to Y, x \mapsto f(x)$$
+    such that $\forall x \in X, f(x) \in Y$. $X$ is the domain（定义域） of such a map, and $Y$ is the codomain（到达域）.
+\end{definition}
+Formally, a map $f: A \to B$ is a \textbf{subset} of $A \times B$ such that $\forall x \in A$ appears \textbf{exactly once} as the $1^{st}$ coordinate of an element of this subset.
+
+\subsubsection{Properties of Maps, 映射的性质}
+Among all maps, there are some maps that are of particular interest to us because they have special properties.
+\begin{definition}
+    There are generally three types of maps, consider $f: A \to B$ \\
+    $f$ is \textbf{\textit{injective}}（单射）, if
+    $$\forall a_1, a_2 \in A, a_1 \ne a_2 \implies f(a_1) \ne f(a_2)$$
+    $$\forall a_1, a_2 \in A, f(a_1) = f(a_2) \implies a_1 = a_2$$
+
+    $f$ is \textbf{\textit{surjective}}（满射）, if
+    $$\forall b \in B, \exists a \in A, f(a) = b$$
+
+    $f$ is \textbf{\textit{bijective}}（双射）, if $f$ is both injective and surjective
+\end{definition}
+By such definitions, for example, $f: \R \to \R, x \mapsto x^2$ is neither injective nor surjective.
+
+\subsubsection{Mapping sets, 对集合进行映射}
+Consider a map $f: X \to Y$, where $A \subset X$ and $B \subset Y$, we define two sets
+$$f(A) := \{f(x) \in Y: x \in A\}$$
+$$f^{-1}(B) := \{x \in X: f(x) \in B\}$$
+We call $f(A)$ the \textbf{\textit{image set}}（像集） of A, and we call $f^{-1}(B)$ the \textbf{\textit{pre-image set}}（原像集） of B. \\
+Specifically, consider $B = \{y\}$, then $f$ is
+\begin{quote}
+    surjective, if $\forall y \in Y, f^{-1}(B) \ne \varnothing$ \\
+    injective, if $\forall y \in Y, \# f^{-1}(B) \le 1$
+\end{quote}
+
+\subsubsection{Special maps, 特殊的映射}
+We first discuss the composite of maps（复合函数）. Consider two maps, $f: A \to B$ and $g: B \to C$, then we denote $gf$ or $g \circ f$ to specify a map whose domain is $A$, whose codomain is $C$, where
+$$\forall a \in A, (g \circ f)(a) = g(f(a)) \in C$$
+Naturally, with the same $A$ and $B$ as given above, we have two maps
+$$P_1: A \times B \to A, (a, b) \mapsto a$$
+$$P_2: A \times B \to B, (a, b) \mapsto b$$
+called \textbf{\textit{projections}}（射影、投影）, where $P_1$ is the projection on the $1^{st}$ factor, and $P_2$ is the projection on the $2^{nd}$ factor. \\
+It is then obvious to notice that if $A, B \ne \varnothing$, $P_1$ and $P_2$ are both surjective, but $P_1$ is only injective if $\# B = 1$, and $P_2$ is only injective if $\# A = 1$. \\
+Conveniently, we further define the map
+$$\text{Id}_A: A \to A, a \mapsto a$$
+as the \textbf{\textbf{identity map}}（恒等映射）, if $A \ne \varnothing$. \\
+Finally, we discuss a map whose condition of application is fairly restricted, yet very important.
+\begin{definition}
+    We define an \textbf{\textit{inverse map}}（反映射）, $f^{-1}: B \to A$ , for a given map $f: A \to B$, if we have \\
+    $f$ is bijective, and \\
+    $f \circ f^{-1} = \text{Id}_B$ and $f^{-1} \circ f = \text{Id}_A$
+\end{definition}
+For example, $f: \R \to \R, x \mapsto x^2$ does not have an inverse map $f^{-1}$. However, by slight adjusting $f$'s domain and codomain, $f: \R^+ \to \R^+, x \mapsto x^2$ does have an inverse map $f^{-1}: \R^+ \to \R^+, y \mapsto \sqrt{y}$. \\
+Notation wise, we have the following distinction:
+\begin{quote}
+    Let $f: A \to B$, $y \in B$, \\
+    $f^{-1}(y)$ is the image of $y$ under the inverse map, it does not need to exist, but if it does, it is a \textbf{single} element in $A$; \\
+    $f^{-1}(\{y\})$ always exists, it can be $\varnothing$; \\
+    if $f^{-1}$ exists, then $f^{-1}(\{y\}) = \{f^{-1}(y)\}$
+\end{quote}
+To indicate a bijective map, we use the \textbf{\textit{isomorphism}}（同构） sign $\cong$,
+$$f: A \xrightarrow{\cong} B$$
+
+\subsubsection{Additional notes on maps, 有关映射的附言}
+Consider the following diagram \\
+$$\begin{tikzcd}
+    X \arrow[r, "f"] \arrow[d, "h"]
+        & Y \arrow[d, "g"] \\
+    A \arrow [r, "i"]
+        & B
+\end{tikzcd}$$
+If in a diagram, all maps between any two sets (including compositions and possibly multiple compositions) agree, then one calls the diagram \textbf{\textit{commutative}}（交换图表）. \\
+In this case, if $g \circ f = i \circ h$, the diagram is commutative. \\
+Another note on maps is that, if $f: X \to Y$ and $A \subset X$, then
+\begin{definition}
+    We call the map the \textbf{\textit{restriction}} of $f$ to $A$, read as "$f$ restricted to $A$", to be
+    $$f|A: A \to Y, a \mapsto f(a)$$
+\end{definition}
+\newpage

@@ -1,0 +1,95 @@
+\section{Dimension, 维度}
+\subsection{Linear independence, 线性独立}
+\subsubsection{Linear combination, 线性组合}
+\begin{definition}
+    Consider a set of vectors $\{v_1, \dots, v_n\} \subset V$ and $\lambda_1, \dots, \lambda_n \in \F$, then
+    $$\lambda_1 v_1 + \dots + \lambda_n v_n$$
+    is a \textbf{\textit{linear combination}} of $\{v_1, \dots, v_n\}$. \\
+    Then, we can define a \textbf{\textit{linear span/hull}}（线性生成空间）to be
+    $$L(v_1, \dots, v_n) := \{\lambda_1 v_1 + \dots + \lambda_n v_n: \lambda_i \in \F \}$$
+    In this case, $L(v_1, \dots, v_n)$ is a subspace of $V$. \\
+    We define $L(\varnothing) := \{0\}$
+\end{definition}
+\begin{definition}
+    A set of vectors $\{v_1, \dots, v_n\}$ is \textbf{\textit{linearly independent}} if none of these vectors is a linear combination of the rest; \\
+    that is, if $\lambda_1, \dots, \lambda_n \in \F$
+    $$\lambda_1 v_1 + \dots + \lambda_n v_n = 0 \implies \lambda_1 = \dots = \lambda_n = 0$$
+\end{definition}
+
+\subsubsection{Basis, 基}
+\begin{definition}
+    A set of vectors $\{v_1, \dots, v_n\}$ is a basis of $V$ if the set is linearly independent and it spans $V$, that is
+    $$\lambda_1 v_1 + \dots + \lambda_n v_n = 0 \implies \lambda_1 = \dots = \lambda_n = 0$$
+    $$L(v_1, \dots, v_n) = V$$
+    More exactly, $\forall v \in V$, there is exactly one $(\lambda_1, \dots, \lambda_n) \in \F^n$ such that $v = \lambda_1 v_1 + \dots + \lambda_n v_n$
+\end{definition}
+\begin{theorem}
+    If $V$ is a vector space over $\F$, and $V$ has a basis of $n$ elements, then every basis of $V$ has $n$ elements.
+\end{theorem}
+In general, consider a vector space over $\F$ that has a basis of $n$ elements, then the simplest basis we can form is the \textbf{\textit{canonical/standard basis}}（标准基） $(e_1, \dots, e_n)$ of $\F^n$, where
+\begin{align*}
+    e_1 & := (1, \dots, 0) \\
+    \vdots \\
+    e_n & := (0, \dots, 1)
+\end{align*}
+When demonstrating a set of vectors to be a basis for a vector space, one needs to show its linear independence, and it spanning the vector space. Usually, we use the definition to show such things. \\
+More specifically, if we are to demonstrate linear independence for a set of vectors that spans a function vector space, for example, trigonometric functions $\sin{x}$ and $\cos{x}$, then we can plug in different $x$ values for the equation
+$$\lambda_1 \sin{x} + \lambda_2 \cos{x} = 0$$
+to find each $\lambda$ respectively.
+\begin{definition}
+    A set of linearly independent vectors $\{v_1, \dots, v_n\}$ is \textbf{\textit{maximal}} if we cannot add more vectors while maintaining linear independence.
+\end{definition}
+To extend from this definition, we have a useful lemma
+\begin{lemma}
+    A maximal linearly independent set of vectors is a basis of $V$.
+\end{lemma}
+This then brings one theorem and one more lemma,
+\begin{theorem}
+    The Basis Extension Theorem（基底延拓定理）states that: \\
+    Suppose $V$ is a vector space over $\F$, we have a set of linearly independent vectors $$\{v_1, \dots, v_r\} \subset V$$ and some other set of vectors $\{w_1, \dots, w_s\} \subset V$ such that
+    $$L(v_1, \dots, v_n, w_1, \dots, w_s) = V$$
+    then, there exists a subset of $\{w_1, \dots, w_s\}$ such that together with $\{v_1, \dots, v_r\}$ forms a basis of $V$.
+\end{theorem}
+\begin{lemma}
+    The Basis Exchange Lemma（基底交换引理）states that: \\
+    If $\{v_1, \dots, v_r\}$ and $\{w_1, \dots, w_s\}$ are bases of $V$, then $\forall v_i, \exists w_j$ such that replacing $v_i$ by $w_j$ in $\{v_1, \dots, v_r\}$ we still have a basis. \\
+    That being said, we then also have $r=s$.
+\end{lemma}
+With "BET" and "BEL", we have one more useful theorem to easily determine linear dependence given a certain condition,
+\begin{theorem}
+    If a vector space $V$ has a basis of $n$ elements, then any collection of more than $n$ vectors must be linearly dependent.
+\end{theorem}
+\newpage
+
+\subsection{Dimension, 维度}
+Since every basis of a given vector space $V$ has the same number of vectors, then
+\begin{definition}
+    If the vector space $V$ over $\F$ has a basis $\{\v_1, \dots, v_n\}$, then $n$ is called the \textbf{\textit{dimension}} of $V$, abbreviated as $\dim V$.
+\end{definition}
+\subsubsection{Infinite dimensions, 无限维度}
+Given the above definition for the dimension of a vector space, then
+\begin{definition}
+    The vector space $V$ is \textbf{\textit{infinite-dimensional}} if $V$ does not possess a finite basis $\{\v_1, \dots, v_n\}$, where $0\le n < \infty$. We then write $\dim V = \infty$.
+\end{definition}
+In order to show some vector space to be infinite-dimensional, since we cannot provide a finite basis, we can find a set $W \subset V$, where for any $w_1, \dots, w_n \in W$, we can demonstrate the linear independence for such a collection of vectors. This demonstrates this collection of vectors cannot be maximal, as any more vectors added to this collection still ensure linear independence. Since we can always find one more vector to satisfy such linear independence, and $W$ is only a subset of $V$, then $V$ must be infinite-dimensional. This is most useful when demonstrating function vector spaces to be infinite-dimensional. \\
+This brings a useful remark:
+\begin{quote}
+    If $V$ is finite-dimensional, $U$ is a subspace of $V$, then $U$ is finite-dimensional; \\
+    If $U$ is infinite-dimensional, $U$ is a subspace of $V$, then $V$ is infinite-dimensional. \\
+    If $U$ is a subspace of $V$, then $\dim U < \dim V$ if and only if $U \ne V$.
+\end{quote}
+
+\subsubsection{Direct sums, 直接和}
+\begin{definition}
+    If $U_1, U_2$ are subspaces of $V$, then
+    $$U_1 + U_2 := \{x+y: x \in U_1, y \in U_2\}$$
+    If we further know $U_1 \cap U_2 = \{0\}$, then $U_1$ and $U_2$ are complementary sets, where
+    $$U_1 \oplus U_2 = V$$
+\end{definition}
+A useful conclusion we can reach from any direct sum is
+\begin{theorem}
+    The Dimension Formula for Subspaces states that: \\
+    If $U_1$ and $U_2$ are finite-dimensional subspaces of $V$, then
+    $$\dim (U_1 + U_2) + \dim (U_1 \cap U_2) = \dim U_1 + \dim U_2$$
+\end{theorem}
+\newpage

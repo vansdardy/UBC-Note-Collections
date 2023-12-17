@@ -1,0 +1,100 @@
+\section{Vector Spaces, 向量空间}
+
+\subsection{Vector Space, 向量空间}
+A vector space, in short, is a set $V$ whose addition and multiplication are defined to follow several axioms.
+\begin{definition}
+    A triple $(V, +, \cdot)$ consisting of a set $V$, an addition map (called vector addition（向量加法）),
+    \begin{align*}
+        +: V \times V & \to V \\
+        (v_1, v_2) & \mapsto v_1+v_2
+    \end{align*}
+    and a multiplication map (called scalar multiplication（标量乘法）),
+    \begin{align*}
+        \cdot: \F \times V & \to V \\
+        (\lambda, v) & \mapsto V
+    \end{align*}
+    is called a \textbf{\textit{vector space}} if the following $8$ axioms hold for maps $+$ and $\cdot$:
+    \begin{align*}
+        & 1. \forall x, y, z \in V, (x+y)+z = x+(y+z) \\
+        & 2. \forall x, y \in V, x + y = y + x \\
+        & 3. \exists 0 \in V, \forall v \in V, v + 0 = v \\
+        & 4. \forall v \in V, \exists -v \in V, v + (-v) = 0 \\
+        & 5. \forall \lambda, \mu \in \F, v \in V, \lambda(\mu x) = (\lambda \mu) x \\
+        & 6. \forall v \in V, 1v = v \\
+        & 7. \forall \lambda \in \F, x, y \in V, \lambda(x+y) = \lambda x + \lambda y \\
+        & 8. \forall \lambda, \mu \in \F, v \in V, (\lambda + \mu)v = \lambda v + \mu v
+    \end{align*}
+\end{definition}
+Following this definition, we have some useful remarks that we can use directly:
+\begin{quote}
+    1. There only exists one zero vector in any vector space. \\
+    2. For every $v \in V$, there only exists one $-v$. \\
+    3. We may write $x+(-y)$ as $x-y$.
+\end{quote}
+\subsubsection{Vector Subspaces, 向量子空间}
+\begin{definition}
+    $U$ is a \textbf{\textit{vector subspace}} of $V$, if:
+    \begin{align*}
+        & 1. U \subset V \\
+        & 2. U \ne \varnothing \\
+        & 3. \forall x, y \in U, x + y \in U \\
+        & 4. \forall \lambda \in \F, u \in U, \lambda u \in U
+    \end{align*}
+\end{definition}
+This means the zero vector, $0$, must be in every vector subspace of a given vector space.
+\newpage
+
+\subsection{Field, 域}
+The definition of a field is very similar to a vector space, in fact, a field is a vector space over itself automatically given the following definition.
+\begin{definition}
+    A \textbf{\textit{field}} is a triple $(\F, +, \cdot)$ consisting of a set $\F$, and two rules of composition:
+    \begin{align*}
+        +: \F \times \F & \to \F \\
+        (\lambda, \mu) & \mapsto \lambda + \mu
+    \end{align*}
+    and
+    \begin{align*}
+        \cdot: \F \times \F & \to \F \\
+        (\lambda, \mu) &\mapsto \lambda \mu
+    \end{align*}
+    which satisfy the following $9$ axioms:
+    \begin{align*}
+        & 1. \forall \lambda, \mu, \nu \in \F, (\lambda+\mu)+\nu = \lambda+(\mu+\nu) \\
+        & 2. \forall \lambda, \mu \in \F, \lambda + \mu = \mu + \lambda \\
+        & 3. \exists 0 \in \F, \forall \lambda \in \F, \lambda + 0 = \lambda \\
+        & 4. \forall \lambda \in \F, \exists -\lambda \in \F, \lambda + (-\lambda) = 0 \\
+        & 5. \forall \lambda, \mu, \nu \in \F, \lambda(\mu \nu) = (\lambda \mu) \nu \\
+        & 6. \forall \lambda, \mu \in \F, \lambda \mu = \mu \lambda \\
+        & 7. \exists 1 \in \F, \forall \lambda \in \F, (1 \ne 0) \implies 1 \lambda = \lambda \\
+        & 8. \forall \lambda, \mu, \nu \in \F, \lambda(\mu + \nu) = \lambda \mu + \lambda \nu \\
+        & 9. \forall \lambda \in \F, (\lambda \ne 0) \implies (\exists \lambda^{-1} \in \F, \lambda^{-1} \lambda = 1)
+    \end{align*}
+\end{definition}
+Following this definition, we have $0$ and $1$ to be uniquely determined. \\
+To show a set to be a field, one needs to show the set contains $0$ and $1$, and contains unique $-x$ and $x^{-1}$.
+
+\subsubsection{Finite fields, 有限域}
+Let $\F$ be a field and $1$ to be its unit of addition, if $n1 := 1 + \dots + 1 \ne 0$, for $n \in \N^{+}$, then we say $\F$ is a \textbf{\textit{field of characteristic zero}}（特征为0的域）. Otherwise, the \textbf{\textit{characteristic}}（特征） of $\F$ is the smallest positive number $p$ such that $p1 = 0$. \\
+A remark that comes from such a definition is that if the characteristic of $\F$, $p$, is not $0$, then $p$ is a prime number. \\
+From this, we can define a finite field:
+\begin{quote}
+    Consider a field $\F_p$, where $p$ is a prime number, then $\F_p$ can be a field of $\{0, 1, \dots, p-1\}$ by defining the sum and the product to be the remainders of the usual sum and product modulo $p$.
+\end{quote}
+In this case, $\F_p^n$ is naturally a vector space over $\F_p$ and it can be made into a field by defining $\cdot$. \\
+If \textit{magically}, we have a way to define multiplication for $\F_p^n$, and we call such a field to be $\F_{p^n}$, then a vector space $V$ that is over $\F_p$ now can become a vector space over $\F_{p^n}$. \\
+One example of such manipulation is to first consider a vector over $\R$, then consider the same vector space over $\C$, since $\C$ is technically defined from $\R^2$.
+
+\subsection{Complex numbers, 复数}
+Complex numbers are investigated because we do not have a solution for the equation $x^2+1 = 0$ in $\R$. We define $i$ to be a solution to this equation, and $-i$ to be the other. \\
+Now, we want to make a number system with $i$ and well-defined $+$ and $\times$.
+\begin{definition}
+    The \textbf{\textit{field of complex numbers}} is defined to be a triple $(\C, +, \cdot)$, with $\C := \R^2$, where
+    $$(x, y) + (a, b) = (x+a, y+b)$$
+    $$(x, y) \cdot (a, b) = (xa-yb, xb+ya)$$
+\end{definition}
+Consider a complex number $z = a + bi$, it is convenient to define its \textbf{\textit{complex conjugate}}（共轭复数）$\bar{z} := a - bi$. It is also convenient to know $z^{-1} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i$. Similarly, if the absolute value of a real number on a real number line indicates the distance between this number and the origin, then the absolute value of a complex number on a complex plane can also be interpreted as such, where $|z| = \sqrt{a^2 + b^2}$.
+
+\subsection{Abelian group, 阿贝尔群}
+An additive abelian group is a set with a defined set $S$ and a map $+$, where the addition map allows the existence of a "neutral element" $0$, and each $x \in S$ has its negative $-x$. \\
+Similarly, a multiplicative abelian group a set with a defined set $S$ and a map $\times$, where the addition map allows the existence of a "neutral element" $1$ different from $0$, and each $x \in S$ has its negative $x^{-1}$.
+\newpage

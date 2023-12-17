@@ -1,0 +1,156 @@
+\section{Spectral Theorem, 谱定理}
+\subsection{Eigenvalues and Eigenvectors, 特征值与特征向量}
+\begin{definition}
+    Let $A$ be a matrix with $a_{ij} \in \F$ and $A: \F^n \to \F^n$, then $\lambda \in \F$ is an eigenvalue of $A$ if
+    $$\exists v \ne 0, v \in \F^n, Av = \lambda v$$
+    $v$ is the eigenvector corresponding to the eigenvalue $\lambda$
+\end{definition}
+To find eigenvalues of a matrix $A$, we find the \textbf{\textit{characteristic polynomial}}（特征多项式）:
+$$\det (A - \lambda \id) = 0$$
+Then, to find the eigenvectors corresponding to eigenvalue $\lambda$, we just have to find a basis for $\Ker (A - \lambda \id)$.
+\subsubsection{Basis of Eigenvectors, 特征向量的基}
+In order for a basis of eigenvectors to exist, we need $A$ to at least be an endomorphism $A: V \to V$, then $V$ \textbf{might} have a basis of eigenvectors of $A$. \\
+The matrix $A$ with respect to the eigenvector basis is \textbf{\textit{diagonal}}（对角的）. \\
+We need eigenvalues to determine whether or not a basis of eigenvectors exists. Therefore, consider the characteristic polynomial
+$$\begin{vmatrix}
+    a_{11} - \lambda & a_{12} & \dots & a_{1n} \\
+    a_{21} & a_{22} - \lambda & \dots & a_{2n} \\
+    \vdots & \vdots & & \vdots \\
+    a_{n1} & a_{n2} & \dots & a_{nn} - \lambda
+\end{vmatrix}$$
+which must have the leading term to be some $(-1)^n \lambda^n$. \\
+By \textbf{Fundamental Theorem of Algebra}（代数基本定理）, an $n$-degree polynomial must have $n$ roots in $\C$, counting with \textbf{\textit{algebraic multiplicity}}（代数重复度）. \\
+Over $\C$, any polynomial can be factored completely; but over $\R$, the complex roots will come in pairs $\{z, \overline{z}\}$, that is, odd-degree polynomials must have odd number of real roots. \\
+In the complex plane, multiplying by $\lambda = \alpha \pm \beta i = |\lambda|e^{i\phi}$, means rotating $\phi$, scaling by $|\lambda| = \sqrt{a^2 + b^2}$, where $\sin{\phi} = \frac{a}{|\lambda|}, \cos{\phi} = \frac{b}{|\lambda|}$.
+\subsubsection{Linear Independence of Eigenvectors, 特征向量的线性独立性}
+Suppose $\{v_i\}$ is a set of eigenvectors corresponding to distinct eigenvalues $\lambda_i$, then,
+\begin{quote}
+    Base: $i = 1$, $\{v_1\}$ is linearly independent, \\
+    Inductive Hypothesis: Assume for $i = k$ \\
+    Inductive Step: we show for $i = k + 1$, \\
+    suppose $\alpha_1 v_1 + \dots + \alpha_{k+1} v_{k+1} = 0$ \\
+    Then 
+    $$A(\alpha_1 v_1 + \dots + \alpha_{k+1} v_{k+1}) = \lambda_1 \alpha_1 v_1 + \dots + \lambda_{k+1} \alpha_{k+1} v_{k+1}$$
+    Use this minus $\lambda_{k+1}$ of supposition, we have
+    $$\alpha_1(\lambda_1 - \lambda_{k+1})v_1 + \dots + \alpha_k(\lambda_k - \lambda_{k+1})v_k = 0$$
+    Since $\lambda_1 \ne \dots \ne \lambda_{k+1}$, then $\alpha_1 = \dots = \alpha_k = 0$, which further indicates $\alpha_{k+1} = 0$ \\
+    $\{v_{k+1}\}$ is thus linearly independent.
+\end{quote}
+
+\subsection{Matrix Diagonalization, 矩阵对角化}
+Over $\C$, consider a linear operator in $\C^n$ with distinct eigenvalues $\lambda_1, \dots, \lambda_n$, then the matrix of $A$ in this corresponding basis of eigenvectors is \textbf{diagonal}. \\
+\subsubsection{Change-of-basis Matrix, 基变更矩阵}
+Consider in $\R^2$, there is a basis $\{v_1, v_2\}$ and the standard basis $\{e_1, e_2\}$. \\
+Let $v_1 = c_{11} e_1 + c_{21} e_2$, and $v_2 = c_{12} e_1 + c_{22} e_2$, then a change-of-basis matrix $C$, is thus
+$$C = \begin{pmatrix}
+    c_{11} & c_{12} \\
+    c_{21} & c_{22}
+\end{pmatrix}$$
+Then, consider a general vector $x \in V$. We then have
+$$x_{e_1, e_2} = C x_{v_1, v_2}$$
+$$x_{v_1, v_2} = C^{-1} x_{e_1, e_2}$$
+If we have a linear operator $A$ with respect to the basis $\{e_1, e_2\}$, and a linear operator $A'$ with respect to the basis $\{v_1, v_2\}$, then we should have
+$$(A x_{e_1, e_2})_{v_1, v_2} = A'x_{v_1, v_2}$$
+Therefore,
+\begin{align*}
+    (A x_{e_1, e_2})_{v_1, v_2} &= A'x_{v_1, v_2} \\
+    C^{-1}A x_{e_1, e_2} &= A'C^{-1} x_{e_1, e_2} \\
+    C^{-1}A &= A'C^{-1} \\
+    C^{-1}AC &= A'
+\end{align*}
+\subsubsection{Complex Eigenvectors, 复特征向量}
+If $A$ have complex eigenvectors, then over $\R$, we can bring $A$ to the form:
+$$A = \begin{pmatrix}
+    X & 0 & 0 \\
+    0 & Y & 0 \\
+    0 & 0 & Z
+\end{pmatrix}$$
+where each $X, Y, Z$ is a $2 \times 2$ matrix, with the form
+$$\begin{pmatrix}
+    |\lambda|\cos{\phi} & -|\lambda|\sin{\phi} \\
+    |\lambda|\sin{\phi} & |\lambda|\cos{\phi}
+\end{pmatrix}$$
+Recall: $|\lambda|e^{i \phi} = |\lambda|\cos{\phi} + |\lambda|i\sin{\phi}$
+\subsubsection{Non-distinct Eigenvalues, 非独特特征值}
+Since we know $\det A' = \det (C^{-1}AC) = \lambda_{1}\dots \lambda_{n}$, thus:
+\begin{quote}
+    $\det A' \iff \exists i, \lambda_i = 0$ \\
+    This means, with $0$ to be an eigenvalue, we have $\exists v \ne 0, Av = 0$, that is $\Ker A \ne \{0\}$. Then, $A$ is neither injective, surjective, nor invertible.
+\end{quote}
+\begin{definition}
+    Define \textbf{\textit{geometric multiplicity}}（几何重复度） of eigenvalue $\lambda$ to be
+    $$\dim (\Ker (A - \lambda \id))$$
+    which is less than or equal to its algebraic multiplicity.
+\end{definition}
+When the geometric multiplicity of $\lambda$ is less than its algebraic multiplicity, then $A$ cannot be diagonalized. \\
+The best we can do is to find $C$, such that $C^{-1}AC$ is of Jordan normal form.
+\begin{definition}
+    An $n \times n$ Jordan block is of the form
+    $$J_\lambda = \begin{pmatrix}
+        \lambda & 1 & 0 & \dots & 0 \\
+        0 & \lambda & 1 & \dots & 0 \\
+        \vdots & \vdots & \vdots & & \vdots \\
+        0 & 0 & 0 & \dots & \lambda
+    \end{pmatrix}$$
+    One Jordan block represents the existence of $1$ eigenvector. \\
+    Let
+    $$J_0 = \begin{pmatrix}
+        0 & 1 & 0 & \dots & 0 & 0 \\
+        0 & 0 & 1 & \dots & 0 & 0 \\
+        \vdots & \vdots & \vdots & & \vdots & \vdots \\
+        0 & 0 & 0 & \dots & 0 & 1 \\
+        0 & 0 & 0 & \dots & 0 & 0 \\
+    \end{pmatrix}$$
+    Then, every $J_\lambda = \lambda \id + J_0$. \\
+    With $J_0^n = 0$, it is a nilpotent matrix.
+\end{definition}
+\begin{lemma}
+    The binomial formula states that
+    $$(J_\lambda)^n = (\lambda \id + J_0)^n$$
+\end{lemma}
+For each eigenvalue $\lambda$, we can write a Jordan form with Jordan blocks on the diagonal. The number of Jordan blocks (geometric multiplicity) is the number of eigenvectors associated with this eigenvalue. \\
+Why do we care about diagonalization?
+\begin{quote}
+    We can find powers of $A$, with $D$ being $A$'s diagonalized matrix. \\
+    $$A^m = CD^mC^{-1} = C \begin{pmatrix}
+        \lambda_1^m & 0 & \dots & 0 \\
+        0 & \lambda_2^m & \dots & 0 \\
+        \vdots & \vdots & & \vdots \\
+        0 & 0 & \dots & \lambda_n^m
+    \end{pmatrix} C^{-1}$$
+\end{quote}
+
+\subsection{Self-adjoint Matrix, 自伴随矩阵}
+\begin{definition}
+    Let $A: V \to V$ be an endomorphism, where $V$ is a Euclidean vector space, \\
+    $A$ is \textbf{\textit{self-adjoint}}（自伴随） if
+    $$(Av, w) = (v, Aw)$$
+\end{definition}
+Therefore, when considering with respect to an orthonormal basis, the matrix $A$ is symmetric, where
+$$A = A^t, a_{ij} = a_{ji}$$
+This is true because $(Ae_i, e_j)$ represents $j^{th}$ component of $A$'s $i^{th}$ column ($a_{ji}$), and $(e_i, Ae_j)$ represents $i^{th}$ component of $A$'s $j^{th}$ column ($a_{ij}$).
+\subsubsection{Spectral Theorem, 谱定理}
+\begin{theorem}
+    A self-adjoint linear operator has a basis of eigenvectors, and we can choose an \textbf{orthonormal basis} of eigenvectors. \\
+    The process of finding the change-of-basis for self-adjoint linear operators is called the \textbf{\textit{Principal Axes Transformation}}.
+\end{theorem}
+This is:
+\begin{quote}
+    1. Eigenvectors corresponding to different eigenvalues are orthogonal. \\
+    2. If there are "repeated eigenvalues", then part of the matrix corresponding to $\lambda$ must be $\lambda \id$.
+\end{quote}
+For a self-adjoint matrix, its eigenvalues must have the same geometric and algebraic multiplicity. \\
+Thus, to find an orthonormal basis of eigenvectors (Principal Axes Transformation), we:
+\begin{quote}
+    1. Find the eigenvalue of $A$. \\
+    2. For each $\lambda$, find its eigenvector(s). \\
+    3. Within each $\lambda$, orthonormalize (Gram-Schimdt) the found eigenvectors. \\
+    4. Write the orthonormalized eigenvectors in columns, which form the change-of-basis matrix $C$. \\
+    5. By applying $C^tAC$, we can diagonalize $A$ where on the diagonal is $A$'s eigenvalues. \\
+    5. Or, by applying $CDC^t$, we can find the linear transformation $A$ with respect to the standard basis.
+\end{quote}
+\begin{theorem}
+    Spectral decomposition of self-adjoint operators: \\
+    If $f: V \to V$ is self-adjoint of a finite-dimensional Euclidean vector space, and $\lambda_1, \dots, \lambda_r$ its distinct eigenvalues, and $P_k: V \to V$ the orthogonal projection onto the eigenspace $E_{\lambda_k}$, then
+    $$f = \sum_{k=1}^r \lambda_k P_k$$
+\end{theorem}
