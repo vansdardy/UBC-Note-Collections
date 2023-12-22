@@ -1,0 +1,108 @@
+\section{Topics in Differentiation, 微分}
+\subsection{Linear Approximation and Differentiability, 线性逼近与可微}
+For $f(x, y)$, if we approximate the surface near $(a, b)$ with a linear function $L(x, y)$, then this linear function has the form
+$$z = L(x, y) = f(a, b) + f_1(x, y)(x-a) + f_2(x, y)(y-b)$$
+Then, $f$ is differentiable at $(a, b)$ if
+$$f(a, b) - L(a, b) = o(\sqrt{(x-a)^2 + (y-b)^2})$$
+which is equivalent to
+$$\lim_{(x, y) \to (a, b)}\frac{|f(x, y) - L(x, y)|}{\sqrt{(x-a)^2 + (y-b)^2}} = 0$$
+Furthermore, if $f(x, y)$ is differentiable at $(a, b)$, then $f(x, y)$ is continuous at $(a, b)$, and $f_1, f_2$ exists at $(a, b)$. \\
+If $f(x, y)$ is $C^1$ on a neighbourhood of $(a, b)$, then it is differentiable at $(a, b)$. \\
+The linear approximation can be interpreted as \textbf{differentials}（微分）where if $z = f(x, y)$ then
+$$\dd z = \dd f = \pdv{f}{x} \dd x + \pdv{f}{y} \dd y$$
+We then can prove whether or not a function is differentiable at a point from the definition.
+
+\subsection{Gradients and Directional Derivatives, 梯度与方向导数}
+Given a function $f(x_1, \dots, x_n)$, then the \textbf{\textit{gradient}} of the function is a vector where
+$$\nabla f = \langle f_1, \dots, f_n \rangle$$
+In general, $\nabla f$ is always perpendicular/normal to the level curve/surface of $f$, that is $\nabla f \cdot \Vec{T} = 0$
+To find the direction derivative of $f$, we first normalize the direction vector to $\Vec{u} = \langle u_1, u_2 \rangle$, where $|\Vec{u}| = 1$, then if $f$ is differentiable at $(a, b)$, we have
+$$D_{\Vec{u}}f(x, y)|_{(x, y) = (a, b)} = \nabla f(a, b) \cdot \Vec{u}$$
+In general, we define such a derivative with a limit definition where,
+$$D_{\Vec{u}}f(x, y)|_{(x, y) = (a, b)} := \lim_{h \to 0} \frac{1}{h} (f(a+hu_1, b+hu_2) - f(a, b))$$
+To find those directions with the steepest ascent/descent, we want to maximize/minimize $|D_{\Vec{u}}f(x, y)|_{(x, y) = (a, b)}|$, since it is equal to $\nabla f \cdot \Vec{u} = |\nabla f||\Vec{u}|\cos{\theta}$, 
+\begin{quote}
+    1. To maximize, we choose $\theta = 0$, where $\Vec{u} = \frac{\nabla f}{|\nabla f|}$ \\
+    2. To minimize, we choose $\theta = \pi$, where $\Vec{u} = -\frac{\nabla f}{|\nabla f|}$
+\end{quote}
+
+\subsection{Implicit Differentiation, 隐函数求导}
+Given equation $F(x, y) = c$, if we define $y$ as a function of $x$, find $\dv{y}{x}$:
+$$\dv{x} c = \dv{F}{x} = F_1(x, y(x)) + F_2(x, y(x))\dv{y}{x}$$
+Then 
+$$\dv{y}{x} = -\frac{F_1}{F_2}$$
+If $F_2 = 0$, then either $\nabla F_1(P) = F_1(P)i$, or the tangent line is vertical. \\
+Given equation $F(x, y, z) = c$, if we define $z$ as a function of $x, y$, find $\pdv{z}{x}, \pdv{z}{y}$:
+$$\pdv{x} c = \pdv{F}{x} = F_1(x, y, z) + F_3(x, y, z)\pdv{z}{x}$$
+$$\pdv{y} c = \pdv{F}{y} = F_1(x, y, z) + F_3(x, y, z)\pdv{z}{y}$$
+Then 
+$$\pdv{z}{x} = -\frac{F_1}{F_3}$$
+$$\pdv{z}{y} = -\frac{F_2}{F_3}$$
+If $F_3 = 0$, then there is a vertical plane, and the result is inconclusive. \\
+\\
+Given a system of equations
+\begin{align*}
+    u &= f(x, y) \\
+    v &= g(x, y)
+\end{align*}
+Find $\pdv{x}{u}, \pdv{x}{v}, \pdv{y}{u}, \pdv{y}{v}$. \\
+Assume $x = x(u, v), y = y(u, v)$, then
+\begin{align*}
+    \pderivative{u} u &= \pderivative{u} f(x, y) \\
+    \pderivative{v} u &= \pderivative{v} f(x, y)
+\end{align*}
+This gives us
+\begin{align*}
+    1 &= f_1 \pdv{x}{u} + f_2 \pdv{y}{u} \\
+    0 &= g_1 \pdv{x}{u} + g_2 \pdv{y}{u}
+\end{align*}
+Then by either solving directly or using Cramer's Rule, we can find $\pdv{x}{u}, \pdv{y}{u}$, with Cramer's Rule, we have
+$$\pdv{x}{u} = \frac{\begin{vmatrix}
+    1 & f_2 \\
+    0 & g_2
+\end{vmatrix}}{\begin{vmatrix}
+    f_1 & f_2 \\
+    g_1 & g_2
+\end{vmatrix}}, \pdv{y}{u} = \frac{\begin{vmatrix}
+    f_1 & 1 \\
+    g_1 & 0
+\end{vmatrix}}{\begin{vmatrix}
+    f_1 & f_2 \\
+    g_1 & g_2
+\end{vmatrix}}$$
+Then, a $2 \times 2$ Jacobian is written as
+$$\pdv{(u, v)}{(x, y)} = \begin{vmatrix}
+    f_1 & f_2 \\
+    g_1 & g_2
+\end{vmatrix}$$
+
+\subsection{Taylor Polynomial, 泰勒多项式}
+The first-order Taylor approximation is the linear approximation mentioned previously, thus, we focus on the second-order Taylor approximation, where we approximate surfaces using quadric surfaces.
+\begin{align*}
+    p_2(x, y) &= f(a, b) \\
+    &+ (f_1(a, b)(x-a) + f_2(a, b)(y-b)) \\
+    &+ \frac{1}{2}(f_{11}(a, b)(x-a)^2 + f_{12}(a, b)(x-a)(y-b) + f_{21}(a, b)(x-a)(y-b) + f_{22}(a, b)(y-b)^2)
+\end{align*}
+Then with the \textit{Hessian matrix}:
+$$\mathscr{H} f(a, b) = \begin{pmatrix}
+    f_{11} & f_{12} \\
+    f_{21} & f_{22}
+\end{pmatrix}$$
+The second-order Taylor polynomial becomes
+$$p_2(x, y) = f(a, b) + \nabla f(a, b) \cdot \langle x-a, y-b \rangle + \frac{1}{2} \begin{pmatrix}
+    x-a & y-b
+\end{pmatrix} \mathscr{H} f(a, b) \begin{pmatrix}
+    x-a \\
+    y-b
+\end{pmatrix}$$
+For error estimation of a second-order Taylor polynomial, we would have
+$$\lim_{(x, y) \to (a, b)} \frac{f(x, y) - p_2(x, y)}{(\sqrt{(x-a)^2 + (y-b)^2})^2} = 0$$
+For higher dimensions, suppose $f = f(x_1, \dots, x_n)$ in a neighbourhood of $\textbf{a} = (a_1, \dots, a_n)$, then we have the Taylor polynomial to be
+$$f(\textbf{x}) \approx p_2(\textbf{x}) := f(\textbf{a}) + \nabla f(\textbf{a}) \cdot (\textbf{x} - \textbf{a}) + \frac{1}{2}(\textbf{x} - \textbf{a}) \mathscr{H}f(\textbf{a}) (\textbf{x} - \textbf{a})^T$$
+where
+$$\mathscr{H}f(\textbf{a}) = \begin{pmatrix}
+    f_{11} & \dots & f_{1n} \\
+    \vdots & \ddots & \vdots \\
+    f_{n1} & \dots & f_{nn}
+\end{pmatrix}$$
+\newpage

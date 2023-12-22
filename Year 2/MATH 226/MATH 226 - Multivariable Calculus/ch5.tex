@@ -1,0 +1,111 @@
+\section{Integration in Several Variables, 多元积分}
+\subsection{Double Integrals, 双重积分}
+Let $f(x, y)$ defined on some $\mathscr{D}$, consider a partition $\mathscr{P}$ over $\mathscr{D}$, that is a collection of rectangles $\{R_{ij}\}$ with the choice of points $P_{ij}^{*}$, then the \textbf{\textit{Riemann sum}} associated with $f$ and the partition $\mathscr{P}$ is
+$$\mathscr{R}(f, \mathscr{P}) = \sum_{i=0}^m \sum_{j=0}^n f(P_{ij}^{*}) \Delta A_{ij}$$
+where $\Delta A_{ij} = \Delta x_i \Delta y_j$. \\
+$f$ is then \textbf{integrable} on $\mathscr{D}$ if
+$$\lim_{\text{diam}(\mathscr{P}) \to 0} \mathscr{R}(f, \mathscr{P}) = L$$
+where
+$$\text{diam}(\mathscr{P}) = \max{\sqrt{\Delta x_i^2 + \Delta y_j^2}}$$
+We then write the double integral as
+$$\iint_\mathscr{D} f(x, y) \dd A$$
+The integral exists when:
+\begin{quote}
+    1. $f$ is continuous on $\mathscr{D}$. \\
+    2. $f$ is continuous except for a finite number of curves of finite length. \\
+    3. $f$ is bounded on $\mathscr{D}$ and its set of discontinuities has \textbf{Jordan area} of $0$. This is saying the upper bound and the lower bound converge to the same area. \\
+\end{quote}
+For more general domains, assume $f$ is defined on $X \subset D$, where $X$ is bounded and closed, then if $D$ is a rectangle, we can extend $f$ to $\Tilde{f}$ on $D$, where
+$$\Tilde{f}(x, y) = \begin{cases}
+    f(x, y) & (x, y) \in X \\
+    0 & (x, y) \in D - X
+\end{cases}$$
+Then 
+$$\iint f(x, y) \dd A = \iint \Tilde{f}(x, y) \dd A$$
+\\
+For iterated integrals, let $f(x, y)$ be bounded on a closed and bounded rectangle, if $f$ is integrable on this rectangle, then
+$$\iint_D f(x, y) \dd A = \int_a^b \int_c^d f(x, y) \dd y \dd x = \int_c^d \int_a^b f(x, y) \dd x \dd y$$
+If one variable can be written as a function in another variable, then we could have
+$$\int_a^b \int_{c(x)}^{d(x)} f(x, y) \dd y \dd x$$
+$$\int_c^d \int_{a(y)}^{b(y)} f(x, y) \dd x \dd y$$
+To interpret double integrals, it is the volume under the graph of $z = f(x, y)$ above $D$. \\
+Therefore, the average of $f$ on $D$ can be computed to be
+$$A = \frac{\iint_D f(x, y) \dd A}{\iint_D 1 \dd A}$$
+We can also find the centroid of the region $D$:
+$$\Bar{x} = \frac{\iint_D x \dd A}{\iint_D 1 \dd A}$$
+$$\Bar{y} = \frac{\iint_D y \dd A}{\iint_D 1 \dd A}$$
+
+\subsection{Improper Integrals, 反常积分}
+Improper integrals are when either $\mathscr{D}$ or $f$ is not bounded. If $f \ge 0$, and it is continuous except possibly at the boundary, then 
+$$\iint_D f(x, y) \dd A = \begin{cases}
+    L & \text{convergent} \\
+    \pm \infty & \text{divergent}
+\end{cases}$$
+We can determine the convergence or divergence of improper integrals by comparisons without evaluation. \\
+Consider a general integral $\iint_D f(x, y) \dd A$, and another integral $\iint_D g(x, y) \dd A$, if $f, g \ge 0$, then
+\begin{quote}
+    1. If $f \le g$, and $\iint g \dd A$ is convergent, then $\iint f \dd A$ is convergent. \\
+    2. If $f \ge g$, and $\iint g \dd A$ is divergent, then $\iint f \dd A$ is divergent.
+\end{quote}
+
+\subsection{Polar Coordinates, 极坐标}
+In $\R^2$, we can use another coordinate system to the Cartesian system. Given a point $(x, y)$ in the Cartesian plane, we can denote this point as $(r, \theta)$ given that
+\begin{align*}
+    x &= r \cos{\theta} \\
+    y &= r \sin{\theta}
+\end{align*}
+$r$ is the distance between the point and the origin and $\theta$ is the degree in radians rotated counterclockwise from the positive $x$-axis. \\
+Thus, $\theta \in [0, 2 \pi]$, or $\theta \in [-\pi, \pi]$, depending on whichever is more convenient. \\
+In the partition with respect to $r, \theta$, we have $\Delta A_{ij} = r_j \Delta \theta_j \Delta r_j$, thus, the Riemann sum of polar coordinates is in the form:
+$$\sum_{ij} f(P_{ij}^{*}) r_j \Delta \theta_j \Delta r_j$$
+Thus, the integral in polar coordinates will be of the form
+$$\iint_D f(r, \theta)r \dd \theta \dd r$$
+\\
+For a more general change of variables, consider we want to change the coordinate system from $x, y$ to $u, v$, where we know $x = x(u, v)$, $y = y(u, v)$, then
+$$\dd A = \dd x \dd y = |\pdv{(x, y)}{(u, v)}|\dd u \dd v$$
+where $\pdv{(x, y)}{(u, v)}$ represents the \textit{Jacobian}: 
+$$\begin{vmatrix}
+    \pdv{x}{u} & \pdv{x}{v} \\
+    \pdv{y}{u} & \pdv{y}{v}
+\end{vmatrix}$$
+However, it is possible that we know $u = u(x, y)$ and $v = v(x, y)$ but still want to convert the system from $x, y$ to $u, v$, then we consider the formula
+$$\pdv{(x, y)}{(u, v)} = \frac{1}{\pdv{(u, v)}{(x, y)}} = \frac{1}{\begin{vmatrix}
+    u_x & u_y \\
+    v_x & v_y
+\end{vmatrix}}$$
+
+\subsection{Triple Integrals, 三重积分}
+A triple integral is of the form
+$$\iiint_D f(x, y, z) \dd V, D \subset \R^3$$
+The Riemann sum would be the corresponding form
+$$\sum_{i, j, k}f(x_{ijk}^{*}, y_{ijk}^{*}, z_{ijk}^{*})\Delta x_i \Delta y_j \Delta z_k$$
+An example of an iterated integral in 3D is
+$$\int_a^b \int_{c(x)}^{d(x)} \int_{e(x, y)}^{f(x, y)} g(x, y, z) \dd z \dd y \dd x$$
+Similar to double integral definitions, the volume of $D$ is evaluated to be
+$$\iiint_D 1 \dd V$$
+The centroids are also defined similarly. \\
+In certain situations, the use of other coordinate systems is more convenient, considering the cylindrical coordinates, where
+\begin{align*}
+    x &= r \cos{\theta} \\
+    y &= r \sin{\theta} \\
+    z &= z
+\end{align*}
+The Jacobian would then be $\dd V = \dd x \dd y \dd z = r \dd r \dd \theta \dd z$.
+
+\subsection{Spherical Coordinates, 球坐标}
+In $\R^3$, another set of coordinates can be used if the volume we are integrating has certain symmetry, then
+\begin{align*}
+    x &= R\sin{\phi}\cos{\theta} \\
+    y &= R\sin{\phi}\sin{\theta} \\
+    z &= R\cos{\phi}
+\end{align*}
+where $R$ is the distance between the point and the origin, $\phi$ is the angle rotated from positive $z$-axis to negative $z$-axis ($\phi \in [0, \pi]$), $\theta$ is the angle rotated counterclockwise from positive $x$-axis ($\theta \in [0, 2\pi]$). \\
+The Jacobian for spherical coordinates is thus
+$$\dd V = \dd x \dd y \dd z = R^2\sin{\phi} \dd R \dd \phi \dd \theta$$
+\\
+Given a volume $D$, if we denote the center of mass to be $(x_{CM}, y_{CM}, z_{CM})$, with the density of $D$ satisfy a function $\rho  = \rho(x, y, z)$, then
+\begin{align*}
+    x_{CM} := \frac{\iiint_D x \rho(x, y, z) \dd V}{\iiint_D \rho(x, y, z) \dd V} \\
+    y_{CM} := \frac{\iiint_D y \rho(x, y, z) \dd V}{\iiint_D \rho(x, y, z) \dd V} \\
+    z_{CM} := \frac{\iiint_D z \rho(x, y, z) \dd V}{\iiint_D \rho(x, y, z) \dd V} \\
+\end{align*}

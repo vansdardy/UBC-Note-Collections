@@ -1,0 +1,86 @@
+\section{Critical Points and Extreme Values, 关键点与极值}
+\subsection{Critical Points and Local Extrema, 关键点与极值}
+Let $f : D \to \R$, where $D \subset \R^n$,
+\begin{quote}
+    1. A local minimum at $\textbf{a}$ indicates:
+    $$\forall \textbf{x} \in B_r(\textbf{a}), f(\textbf{x}) \ge f(\textbf{a})$$
+    2. A local maximum at $\textbf{a}$ indicates:
+    $$\forall \textbf{x} \in B_r(\textbf{a}), f(\textbf{x}) \le f(\textbf{a})$$
+    If it is global extrema, we replace the neighbourhood of $\textbf{a}$ to be the given domain $\mathscr{D}$
+\end{quote}
+The necessary conditions for local minimum and maximum:
+\begin{quote}
+    At least one of the following happens: \\
+    1. $\nabla f(\textbf{a}) = \textbf{0}$, "critical point"\\
+    2. $\nabla f(\textbf{a})$ DNE, "critical/singular point" \\
+    3. $\textbf{a}$ is a boundary point of the domain
+\end{quote}
+There are $3$ types of critical points:
+\begin{quote}
+    1. Local minimums \\
+    2. Local maximums \\
+    3. Neither, a saddle point
+\end{quote}
+Now consider the second-order Taylor polynomial for $f$, denote 
+$$Q(\textbf{x}) = \frac{1}{2}(\textbf{x} - \textbf{a}) \mathscr{H}f(\textbf{a}) (\textbf{x} - \textbf{a})^T$$
+Thus, 
+\begin{quote}
+    1. If $Q(x) > 0$ for all $\textbf{x} \ne \textbf{a}$, then $f(\textbf{a})$ is a local minimum: positive definite \\
+    2. If $Q(x) < 0$ for all $\textbf{x} \ne \textbf{a}$, then $f(\textbf{a})$ is a local maximum: negative definite \\
+    3. If $Q(x) > 0$ and $Q(x) < 0$ both occur, then given $\det(\mathscr{H}f) \ne 0$, then it is indefinite, there is a saddle point. \\
+    4. If $\det(\mathscr{H}f) = 0$, then this test is inconclusive.
+\end{quote}
+Consider the Hessian matrix,
+$$\mathscr{H}f(\textbf{a}) = \begin{pmatrix}
+    f_{11} & \dots & f_{1n} \\
+    \vdots & \ddots & \vdots \\
+    f_{n1} & \dots & f_{nn}
+\end{pmatrix}$$
+Let
+\begin{align*}
+    D_1 &= \begin{vmatrix}
+        f_{11}
+    \end{vmatrix} \\
+    D_2 &= \begin{vmatrix}
+        f_{11} & f_{12} \\
+        f_{21} & f_{22}
+    \end{vmatrix} \\
+    \vdots \\
+    D_n &= \det (\mathscr{H}f(\textbf{a}))
+\end{align*}
+Then,
+\begin{quote}
+    1. If $D_1 > 0, D_2 > 0, \dots, D_n > 0$, then it is positive definite, giving us a local minimum; \\
+    2. If $D_1 < 0, D_2 > 0, D_3 < 0, \dots$, then it is negative definite, giving us a local maximum; \\
+    3. If $D_n \ne 0$ and any other pattern then it is indefinite, giving us a saddle point; \\
+    4. If $D_n = 0$, the test is inconclusive.
+\end{quote}
+
+\subsection{Global Extrema on Restricted Domains, 限定定义域上的最值}
+Given a domain $X \subset \R^n$, it is \textbf{\textit{compact}} if $X$ is \textbf{bounded} and \textbf{closed}. \\
+If $f$ is continuous on $X$, and $X$ is compact, then $f$ attains a minimum or maximum on $X$. \\
+The procedure to find the minimum and maximum on these compact domains:
+\begin{quote}
+    1. Find all critical and singular points, and evaluate the function at those points. \\
+    2. Find the minimum and maximum on the boundary \\
+    3. Choose the largest/smallest value \\
+    There is no need to classify.
+\end{quote}
+If the region is not compact, then, an additional step is needed to justify global extremes, that is finding
+$$\lim_{(x, y) \to (\pm \infty, \pm \infty)} f(x, y)$$
+Depending on the limit, there may or may not be global extrema.
+
+\subsection{Lagrange Multiplier, 拉格朗日乘数}
+We use Lagrange multipliers when we need to maximize or minimize $f(\textbf{x})$ subject to a constraint $g(\textbf{x}) = c$. \\
+Assume $f, g$ are both $C^1$ on some open set containing $P$, and $\nabla g (P) \ne 0$. Let $\mathscr{C} = \{(x, y): g(x, y) = c\}$, if $f$ restricted to $\mathscr{C}$ has a local minimum/maximum at $P$, then 
+$$\nabla f(P) = \lambda \nabla g(P)$$
+Thus, the procedure to minimize or maximize $f$ on $\mathscr{C}$:
+\begin{quote}
+    1. Find $\nabla f = \lambda \nabla g$ \\
+    2. Find $\nabla g = 0$ \\
+    3. Find $\nabla f$ or $\nabla g$ DNE. \\
+    4. Evaluate at these points and end points of $\mathscr{C}$ \\
+    5. Choose the largest/smallest value accordingly
+\end{quote}
+
+\newpage

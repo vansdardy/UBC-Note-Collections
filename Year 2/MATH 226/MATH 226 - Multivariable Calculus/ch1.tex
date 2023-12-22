@@ -1,0 +1,140 @@
+\section{Vectors and Coordinate Geometry, 向量与坐标系几何}
+\subsection{Coordinates and Sets, 坐标与集合}
+\subsubsection{Cartesian Coordinates, 笛卡尔坐标系}
+In $\R^2$, we denote points as $(x, y)$; in $\R^3$, we denote points as $(x, y, z)$. \\
+If $P = (x_1, y_1, z_1), Q = (x_2, y_2, z_2)$, then the \textit{Euclidean} distance between $P$ and $Q$ is
+$$|PQ| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$$
+\\
+Typically, $1$ equation in $\R^3$ represents a plane or surface, while $2$ equations in $\R^3$ represent a curve or line. However, this is not always the case as $2$ equations define the intersection of two surfaces, which may not have intersections at all.
+
+\subsubsection{Topology, 拓扑}
+\begin{definition}
+    If $P \in \R^n$, then a \textbf{\textit{neighborhood}}（邻域）of $P$ is a  "ball" denoted as
+    $$B_r(P) := \{Q \in \R^n: |PQ| < r\}$$
+    centered at $P$, with radius $r$, for some $r > 0$. \\
+    This set DOES NOT contain the surface of the "ball".
+\end{definition}
+\begin{definition}
+    A set $S \subset \R^n$ is \textbf{\textit{open}}（开集）if
+    $$\forall P \in S, \exists r > 0, B_r(P) \subset S$$
+    $S$ is \textbf{\textit{closed}}（闭集）if its complement $S^C$ is open.
+\end{definition}
+By this definition, there are sets that are \textit{neither open nor closed}.
+\begin{definition}
+    A point $P$ is on the boundary of a set $S$ if 
+    $$\forall P, \forall r > 0, \exists Q_1 \in S, Q_2 \in S^C, Q_1, Q_2 \in B_r(P)$$
+\end{definition}
+
+\subsection{Vectors and 3D Geometry, 向量与三维几何}
+Consider a general vector 
+$$\Vec{v} = \langle v_1, v_2, v_3 \rangle = \overrightarrow{PQ}$$
+Then with $P = (x_1, y_1, z_1), Q = (x_2, y_2, z_2)$, we have
+$$\langle x_2-x_1, y_2-y_1, z_2-z_1 \rangle = \langle v_1, v_2, v_3 \rangle$$
+We can have vector addition: if we denote $\Vec{w} = \langle w_1, w_2, w_3 \rangle$, then
+$$\Vec{v} + \Vec{w} = \langle v_1 + w_1, v_2 + w_2, v_3 + w_3 \rangle$$
+In $\R^3$, the standard basis consists of $3$ vectors
+\begin{align*}
+    \Vec{i} &= \langle 1, 0, 0 \rangle \\
+    \Vec{j} &= \langle 0, 1, 0 \rangle \\
+    \Vec{k} &= \langle 0, 0, 1 \rangle
+\end{align*}
+Then, we can also write
+$$\Vec{v} = v_1 \Vec{i} + v_2 \Vec{j} + v_3 \Vec{k}$$
+The length of a vector is defined to be
+$$|\Vec{v}| := \sqrt{v_1^2 + v_2^2 + v_3^2}$$
+and if $\Vec{v} \ne \textbf{0}$, then the unit vector of $\Vec{v}$ is
+$$\Vec{u} := \frac{\Vec{v}}{|\Vec{v}|}$$
+\\
+Given two vectors $\Vec{v} = \langle v_1, v_2, v_3 \rangle, \Vec{w} = \langle w_1, w_2, w_3 \rangle$, the dot product is defined to be
+$$\Vec{v} \cdot \Vec{w} := v_1w_1 + v_2w_2 + v_3w_3$$
+If we further have the angle between these two vectors to be $\theta$, then
+$$\cos{\theta} = \frac{\Vec{v} \cdot \Vec{w}}{|\Vec{v}||\Vec{w}|}$$
+The two vectors are \textbf{perpendicular} if their dot product is $0$. $\textbf{0}$ is \textbf{orthogonal}（正交）to every vector. \\
+\\
+Let $\Vec{a}, \Vec{b}$ be two vectors with $\Vec{b} \ne \textbf{0}$, then we can decompose $\Vec{a}$ as follows:
+\begin{quote}
+    1. $\Vec{a} = \Vec{v} + (\Vec{a} - \Vec{v})$ \\
+    2. $\Vec{v} \parallel \Vec{b}$, $\Vec{a} - \Vec{v} \perp \Vec{b}$
+\end{quote}
+Then $\Vec{v}$ is the \textbf{vector projection}（向量投影）of $\Vec{a}$ on $\Vec{b}$, denoted as $\Vec{v} = \Vec{a}_{\Vec{b}}$. The \textbf{scalar projection}（标量投影）is thus $\pm |\Vec{v}|$. \\
+To calculate this vector projection, we have
+$$\Vec{v} = \Vec{a}_{\Vec{b}} = |\Vec{a}|\cos{\theta}\frac{\Vec{b}}{|\Vec{b}|} = \frac{\Vec{a} \cdot \Vec{b}}{|\Vec{b}|^2}\Vec{b}$$
+where the scalar projection is
+$$s = |\Vec{v}| = \frac{\Vec{a}\cdot \Vec{b}}{|\Vec{b}|}$$
+so the vector projection can also be
+$$\Vec{v} = s \frac{\Vec{b}}{|\Vec{b}|}$$
+\\
+Given two vectors $\Vec{u}, \Vec{v}$, the cross product $\Vec{u} \times \Vec{v} = \Vec{w}$ has the properties where
+\begin{quote}
+    1. $\Vec{w} \perp \Vec{u}, \Vec{v}$ \\
+    2. $|\Vec{u} \times \Vec{v}| = |\Vec{u}| |\Vec{v}| \sin{\theta}$ \\
+    3. $\Vec{u}, \Vec{v}, \Vec{u} \times \Vec{v}$ forms a \textbf{right-hand triad}
+\end{quote}
+In terms of coordinates, 
+$$\Vec{u} \times \Vec{v} := \begin{vmatrix}
+    \textbf{i} & \textbf{j} & \textbf{k} \\
+    u_1 & u_2 & u_3 \\
+    v_1 & v_2 & v_3
+\end{vmatrix} = \begin{vmatrix}
+    u_2 & u_3 \\
+    v_2 & v_3
+\end{vmatrix}\textbf{i} - \begin{vmatrix}
+    u_1 & u_3 \\
+    v_1 & v_3
+\end{vmatrix}\textbf{j} + \begin{vmatrix}
+    u_1 & u_2 \\
+    v_1 & v_2
+\end{vmatrix}\textbf{k}$$
+Consider a parallelogram $ABCD$, denote vectors $\overrightarrow{AB}, \overrightarrow{AD}$, then
+$$Area_{ABCD} = |\overrightarrow{AB} \times \overrightarrow{AD}|$$
+Then the triangle $\triangle ABC$ will have area
+$$A_{\triangle ABC} = \frac{1}{2}|\overrightarrow{AB} \times \overrightarrow{AC}|$$
+Furthermore, if we have a parallelepiped $ABCD-EFGH$, with three vectors $\overrightarrow{FG}, \overrightarrow{FE}, \overrightarrow{FB}$, we have the volume to be
+$$V_{ABCD-EFGH} = |(\overrightarrow{FG} \times \overrightarrow{FE}) \cdot \overrightarrow{FB}|$$
+
+\subsection{Lines and Planes, 线与面}
+Planes can be defined in various ways, however, the most convenient way in $\R^3$ is to have a point $(x_0, y_0, z_0)$ on the plane and a vector $\langle A, B, C \rangle$ perpendicular to this plane that gives us the equation of the plane
+$$A(x-x_0) + B(y-y_0) + C(z-z_0) = 0$$
+A line, on the other hand, requires a point on the plane $(x_0, y_0, z_0)$, and a direction vector $(a, b, c)$, which for every point $(x, y, z)$ on this line, we should have a system of linear equations satisfied
+\begin{align*}
+    x - x_0 &= ta \\
+    y - y_0 &= tb \\
+    z - z_0 &= tc
+\end{align*}
+This equivalent to the \textit{symmetric form},
+$$\frac{x-x_0}{a} = \frac{y-y_0}{b} = \frac{z-z_0}{c} = t$$
+To find the intersection line of two planes, if the two planes are not parallel, then we can \textbf{cross product} their normal vectors to find the direction vector of the line. Then with one point on the line, we can get the parametric equation of the line:
+$$\langle x_0, y_0, z_0 \rangle + t \langle a, b, c \rangle$$
+
+\subsection{Quadric Surfaces, 二次曲面}
+A general sphere（球）centered at $(x_0, y_0, z_0)$, with radius $r$ has the equation
+$$(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2 = r^2$$
+An ellipsoid（椭球）centered at $(x_0, y_0, z_0)$, with semi-axes $a, b, c$, has the equation
+$$\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} + \frac{(z-z_0)^2}{c^2} = 1$$
+A circular cylinder（圆柱） centred about the $z$-axis with radius $r$ can be defined with 
+$$x^2 + y^2 = r^2$$
+An elliptic cylinder（椭圆柱） centred about the $z$-axis with semi-axes $a, b$ can be defined with
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$$
+While a parabolic cylinder can be defined as like
+$$y = ax^2$$
+A circular paraboloid（抛物面）is defined as like
+$$z = x^2 + y^2$$
+An elliptic paraboloid is defined as like
+$$z = \frac{x^2}{a^2} + \frac{y^2}{b^2}$$
+A hyperbolic paraboloid is defined as like
+$$z = -\frac{x^2}{a^2} + \frac{y^2}{b^2}$$
+By setting $x = 0, y = 0, z = 0$, many properties of the hyperbolic paraboloid can be found. However, in general, since $z = (\frac{y}{b} - \frac{x}{a})(\frac{y}{b} + \frac{x}{a})$, then given an arbitrary $z \ne 0$, we can have the linear system
+\begin{align*}
+    \frac{y}{b} - \frac{x}{a} &= \frac{z}{c} \\
+    \frac{y}{b} + \frac{x}{a} &= c \\
+    c \ne 0
+\end{align*}
+This is an example of \textit{doubly ruled surface} where every point on a hyperbolic paraboloid is contained by two distinct lines that are contained in the surface. \\
+There are $3$ types of hyperboloids（双曲面）, the one-sheet, the two-sheet, and the cone. \\
+One-sheet hyperboloid:
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$$
+Two-sheet hyperboloid:
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = -1$$
+Cone:
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 0$$
+\newpage

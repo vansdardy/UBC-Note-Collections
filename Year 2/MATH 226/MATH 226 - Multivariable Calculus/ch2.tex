@@ -1,0 +1,73 @@
+\section{Functions of Several Variables, Limits, Continuity, Partial Derivatives, 多元函数，极限，连续性，偏微分}
+\subsection{Functions and Surfaces, 函数与表面}
+Functions of several variables in $\R^n$ maps
+$$(x_1, \dots, x_n) \mapsto f(x_1, \dots, x_n)$$
+where $(x_1, \dots, x_n) \in \mathscr{D}(f)$. The natural domain of $f$ is the set of $(x_1, \dots, x_n)$ where $f$ is naturally defined. The range of $f$ is then set of all values of $f$, where $f(x_1, \dots, x_n) \in \R$. \\
+The corresponding graph has the set
+$$\{(x_1, \dots, x_n, f(x_1, \dots, x_n))\}$$
+which is a subset of $\R^{n+1}$. \\
+We can visualize high-dimension graphs using level curves. For a function of $2$ variables, level curves on the $x-y$ plane is formed by having $f(x, y)=c$, similarly, for a function of $3$ variables, level curves in the $xyz$ space is formed by having $f(x, y, z) = c$.
+
+\subsection{Limits and Continuity, 极限与连续性}
+For functions of $2$ variables, 
+$$\lim_{(x, y) \to (a, b)} f(x, y) = L$$
+if:
+\begin{quote}
+    1. Every neighbourhood of $(a, b)$ contains points of $\mathscr{D}(f)$ other than $(a, b)$ \\
+    2. $\forall \epsilon  > 0, \exists \delta > 0, (x, y) \in \mathscr{D}(f) \land 0 < \sqrt{(x-a)^2 + (y-b)^2} < \delta \implies |f(x, y) - L| < \epsilon$
+\end{quote}
+The rules for limits from single-variable calculus still apply.
+\begin{definition}
+    $f(x, y)$ is continuous at $(a, b)$ if: \\
+    1. $(a, b) \in \mathscr{D}(f)$, \\
+    2. $$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b)$$
+\end{definition}
+\begin{theorem}
+    The Squeeze Theorem for multivariable calculus states that: \\
+    If $f, g, h$ are defined on some $B_r(a, b)$, except at $(a, b)$ and
+    $$\lim_{(x, y) \to (a, b)} f(x, y) = \lim_{(x, y) \to (a, b)} h(x, y) = L$$
+    if $g$ lies between $f, h$ on that neighbourhood, then
+    $$\lim_{(x, y) \to (a, b)} g(x, y) = L$$
+\end{theorem}
+For a multivariable function to have a limit at a certain point, then whichever path we choose to approach this point, the limit should all be the same; thus, if for two paths we choose to approach this point, we evaluated to have different limits, the limit at this point does not exist. \\
+For functions that do have a limit at a point, we usually use rules of limits and the Squeeze Theorem to evaluate such a limit, $\epsilon-\delta$ proof is usually not required. \\
+Note the useful inequality
+$$|a+b| \le |a| + |b|$$
+
+\subsection{Partial Derivatives, 偏微分}
+\begin{definition}
+    $f_i(x_1, \dots, x_n)$ is the partial derivative with respect to $x_i$ with $x_1, \dots, x_{i-1}, x_{i+1}, \dots, x_n$ fixed, where
+    $$f_i(x_1, \dots, x_n) = \lim_{h \to 0} \frac{1}{h} (f(x_1, \dots, x_i + h, \dots, x_n) - f(x_1, \dots, x_n))$$
+\end{definition}
+Notation-wise, we have
+$$f_1(x, y) = f_x(x, y) = \pdv{f(x, y)}{x} = D_1(x, y) = D_x(x, y)$$
+Different from single-variable calculus, if $f_1, f_2$ exists, this does not imply that $f$ is continuous at $(x, y)$. \\
+A function being differentiable at a point implies that we can approximate $f(x, y)$ by a linear function. \\
+Given Cantor lines, we can also estimate partial derivatives.
+
+\subsection{Tangent Planes, 切面}
+Given a function $f$, if $f_x(P), f_y(P)$ exist and $f$ is continuous on a neighbourhood of $P$, then a plane tangent to $f$ at $P$ exists. \\
+For two variables, where $z = f(x, y)$, a tangent plane at $(a, b)$ can be calculated to be
+$$z = f(a, b) + f_1(x, y)(x-a) + f_2(x, y)(y - b)$$
+The line through $P$ that is perpendicular to the surface has the direction vector
+$$\Vec{n} = \langle -f_1(x, y), -f_2(x, y), 1 \rangle$$
+
+\subsection{Higher Order Derivatives, 高阶导数}
+Notation-wise, consider the following equality
+$$\pderivative{x}(\pdv{z}{y}) = \pdv{z}{x}{y} = f_{21}(x, y) = f_{yx}(x, y)$$
+If we assume $\pdv{f}{x}{y}$ and $\pdv{f}{y}{x}$ are continuous at $P = (a, b)$, and $f, \pdv{f}{x}, \pdv{f}{y}$ are continuous on neighbourhoods of $P$, then
+$$\pdv{f}{x}{y} = \pdv{f}{y}{x}$$
+A \textit{partial differential equation} is an equation involving the partial derivatives of some function. At this current stage, we can verify some function to be the solution to a PDE.
+
+\subsection{Chain Rule, 链式法则}
+If $f(x_1, \dots, x_n)$ is $C^k$, then $f$ and its partial derivatives up to order $k$ are continuous on $\mathscr{D}(f)$. \\
+Recall the single-variable chain rule, consider a function $f(x, y)$, where $x = x(t)$, and $y = y(t)$, then
+$$\dv{t}f(x(t), y(t)) = \pdv{f}{x} \cdot \dv{x}{t} + \pdv{f}{y} \cdot \dv{y}{t}$$
+For variables, that is, if $x = x(u, v), y = y(u, v)$, then
+$$\pdv{u}f(x, y) = \pdv{f}{x} \pdv{x}{u} + \pdv{f}{y} \pdv{y}{u}$$
+$$\pdv{v}f(x, y) = \pdv{f}{x} \pdv{x}{v} + \pdv{f}{y} \pdv{y}{v}$$
+Moreover, if we are differentiating with respect to a variable where $x = x(t), y = y(t), f(x, y, t)$, then
+$$\dv{t}f(x, y, t) = \pdv{f}{x} \cdot \dv{x}{t} + \pdv{f}{y} \cdot \dv{y}{t} + \pdv{f}{t} $$
+For higher-order partials, we iterate the chain rule. \\
+
+\newpage
