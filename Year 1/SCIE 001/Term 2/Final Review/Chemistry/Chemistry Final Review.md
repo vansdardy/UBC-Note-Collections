@@ -14,19 +14,19 @@ $$
 Concentration: Experimentally measured
 
 - Pressure for a gas: $P_A = \frac{n_A}{V}RT$
-- Absorbance of a solution: $Absorbance = \epsilon l c$
+- Absorbance of a solution: $\text{Absorbance} = \epsilon l c$
 
 ### Reaction Rate
 
 The **rate** or velocity $v$ of reaction is defined as a ***positive*** quantity
 
 - $A + 2B \to C$
-- $v = -\frac{d[A]}{dt} = -\frac{1}{2}\frac{d[B]}{dt} = \frac{d[C]}{dt}$, **stoichiometry** is important
+- $v = -\dv{[A]}{t} = -\frac{1}{2}\dv{[B]}{t} = \dv{[C]}{t}$, **stoichiometry** is important
 - Rates of chemical reactions must be determined **experimentally**
 
 For a general reaction:
 $$
-v = \frac{1}{n_1}\frac{d[P_1]}{dt} = \frac{1}{n_2}\frac{d[P_2]}{dt} = ... = -\frac{1}{m_1}\frac{d[R_1]}{dt} = -\frac{1}{m_2}\frac{d[R_2]}{dt}
+v = \frac{1}{n_1}\dv{P_1}{t} = \frac{1}{n_2}\dv{P_2}{t} = ... = -\frac{1}{m_1}\dv{[R_1]}{t} = -\frac{1}{m_2}\dv{[R_2]}{t}
 $$
 
 - $P$: products
@@ -35,7 +35,7 @@ $$
 Reaction rate is **the slope of a tangent** drawn to the graph of **concentration as a function of time** divided by the **relevant stoichiometric coefficient**
 
 - Average rate: $v_{mean} = \frac{c_2 - c_1}{t_2 - t_1}$
-- Instantaneous rate: $v = \frac{dc}{dt}$
+- Instantaneous rate: $v = \dv{c}{t}$
 
 Factors affecting reaction rate
 
@@ -50,7 +50,7 @@ Fine the rate: $v = f(concentration, temperature)$
 
 Rate laws can be written as a simple power law
 $$
-v = -\frac{d[A]}{dt}=k[A]^a[B]^b[C]^c
+v = -\dv{[A]}{t}=k[A]^a[B]^b[C]^c
 $$
 
 - $k$: rate constant
@@ -95,24 +95,24 @@ Integrated Rate Laws
 
 - 1st Order IRL ($aA \to B$)
   $$
-  v=-\frac{1}{a}\frac{d[A]}{dt}=k[A] \to \frac{d[A]}{[A]}=-ak\cdot dt
+  v=-\frac{1}{a}\dv{[A]}{t}=k[A] \to \frac{\dd {[A]}}{[A]}=-ak\cdot \dd t
   $$
 
   $$
-  \int_{[A]_0}^{[A]} \frac{d[A]}{[A]} = -ak \int_0^t dt
+  \int_{[A]_0}^{[A]} \frac{\dd {[A]}}{[A]} = -ak \int_0^t \dd t
   $$
 
   $$
-  \int_{[A]_0}^{[A]} \frac{d[A]}{[A]} = ln[A]-ln[A]_0 = ln(\frac{[A]}{[A]_0})=-akt
+  \int_{[A]_0}^{[A]} \frac{\dd{[A]}}{[A]} = \ln{[A]}-\ln{[A]}_0 = \ln(\frac{[A]}{[A]_0})=-akt
   $$
 
   $$
-  ln[A] = ln[A]_0 - akt \to [A] = [A]_0e^{-akt}
+  \ln{[A]} = \ln{[A]}_0 - akt \to [A] = [A]_0e^{-akt}
   $$
 
 - 0th Order IRL
   $$
-  v=-\frac{1}{a}\frac{d[A]}{dt}=k \to \int_{[A]_0}^{[A]} d[A] = -ak \int_0^t dt
+  v=-\frac{1}{a}\dv{[A]}{t}=k \to \int_{[A]_0}^{[A]} \dd {[A]} = -ak \int_0^t \dd t
   $$
 
   $$
@@ -121,13 +121,13 @@ Integrated Rate Laws
 
 - 2nd Order IRL
   $$
-  -\frac{d[A]}{dt}=ak[A]^2 \to \frac{1}{[A]} = \frac{1}{[A]_0} - akt
+  -\dv{[A]}{t}=ak[A]^2 \to \frac{1}{[A]} = \frac{1}{[A]_0} - akt
   $$
 
 Half-life of a reactant
 
 - 0th Order: $t_{\frac{1}{2}} = \frac{[A]_0}{2ak}$
-- 1st Order: $t_{\frac{1}{2}} = \frac{ln2}{ak}$
+- 1st Order: $t_{\frac{1}{2}} = \frac{\ln2}{ak}$
   - Forms the basis for radiocarbon dating
   - $^{14}_6C \to ^{14}_7N + \beta^- + \nu$
 - 2nd Order: $t_{\frac{1}{2}} = \frac{1}{ak[A]_0}$
@@ -135,14 +135,14 @@ Half-life of a reactant
 Consecutive Reactions
 
 - $A \xrightarrow{k_1} B \xrightarrow{k_2} C$
-- $-\frac{d[A]}{dt} = k_1[A], \frac{d[B]}{dt}=k_1[A] - k_2[B], \frac{d[C]}{dt} = k_2[B]$
+- $-\dv{[A]}{t} = k_1[A], \dv{[B]}{t}=k_1[A] - k_2[B], \dv{[C]}{t} = k_2[B]$
 - If $k_1 << k_2$, $[B]$ never gets a chance to build up, then we can treat the system as $A \xrightarrow{k_1} C$
-- Steady State: $\frac{d[X]}{dt} = 0$
+- Steady State: $\dv{[X]}{t} = 0$
 
 Parallel Reactions
 
 - $A + B \xrightarrow{k} C + D, A + B \xrightarrow{k^*} E + F$
-- $v = -\frac{d[A]}{dt} = k[A][B] + k^*[A][B] = (k+k^*)[A][B] = k_{sum}[A][B]$
+- $v = -\dv{[A]}{t} = k[A][B] + k^*[A][B] = (k+k^*)[A][B] = k_{sum}[A][B]$
 - The most rapid path determines the predominate path
 
 Equilibrium
@@ -162,13 +162,13 @@ Temperature Dependence of Reaction Rates
 - Arrhenius Equation: The rate constant is a function of temperature
 
 $$
-lnk = lnA - \frac{E_a}{RT} \leftrightarrow k = Ae^{-\frac{E_a}{RT}}
+\ln k = \ln A - \frac{E_a}{RT} \leftrightarrow k = Ae^{-\frac{E_a}{RT}}
 $$
 
 - $A$: pre-exponential factor (same unit as $k$), $E_a$: activation energy
 
 $$
-ln(\frac{k_1}{k_2}) = -\frac{E_a}{R}(\frac{1}{T_1}-\frac{1}{T_2})
+\ln(\frac{k_1}{k_2}) = -\frac{E_a}{R}(\frac{1}{T_1}-\frac{1}{T_2})
 $$
 
 Interpretation of Arrhenius Law
@@ -323,21 +323,21 @@ Elementary Reactions
 
   - Normalized wavefunction
     $$
-    \int_0^l \psi_n(x)\psi_n^*(x)dx = 1
+    \int_0^l \psi_n(x)\psi_n^*(x)\dd x = 1
     $$
 
   - Possible values of $\lambda = \frac{2l}{n}$
 
   $$
-  -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + U(x)\psi = E\psi
+  -\frac{\hbar^2}{2m}\dv[2]{\psi}{x} + U(x)\psi = E\psi
   $$
 
   $$
-  \hat{H} = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}
+  \hat{H} = -\frac{\hbar^2}{2m}\dv[2]{x}
   $$
 
   $$
-  \psi = \sqrt{\frac{l}{2}}sin(\frac{n\pi x}{l})
+  \psi = \sqrt{\frac{l}{2}}\sin(\frac{n\pi x}{l})
   $$
 
   - Energy of a Particle in a Box
@@ -434,7 +434,7 @@ Elementary Reactions
 
     - Set and change parameters until a minimum energy is reached
       $$
-      E_0 \le \frac{\int \psi \hat{H} \psi d\tau}{\int \psi^2 d\tau}
+      E_0 \le \frac{\int \psi \hat{H} \psi \dd \tau}{\int \psi^2 \dd \tau}
       $$
 
 - 

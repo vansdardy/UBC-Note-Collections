@@ -475,7 +475,7 @@ Refer to Study Guides
       - Voltage gradient is $167kV/cm$
       - Concentration difference in ions
       - Electrical charge difference
-      - $\Delta G = RTln(\frac{[in]}{[out]})+ZF\Delta P$
+      - $\Delta G = RT \ln(\frac{[in]}{[out]})+ZF\Delta P$
     - Indirect active transport
       - Transport protein uses the ion electrochemical gradient from above active transport to move a different molecule across the membrane against its gradient
       - $|\Delta G_{ion}| > |\Delta G_{molecule}|$
