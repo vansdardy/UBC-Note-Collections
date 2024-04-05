@@ -3,16 +3,16 @@
 ## Definite Integral
 
 $$
-\int_a^b f(x)dx
+\int_a^b f(x) \dd x
 $$
 
 $$
-\int_a^b -f(x)dx=-\int_a^b f(x)dx
+\int_a^b -f(x) \dd x=-\int_a^b f(x) \dd x
 $$
 
 Given $f(x)$ defined on $[a,b]$ and $\exists s \in [a,b]$,
 $$
-\int_a^b f(x)dx = \int_a^s f(x)dx + \int_s^b f(x)dx
+\int_a^b f(x) \dd x = \int_a^s f(x) \dd x + \int_s^b f(x) \dd x
 $$
 
 ### 	Riemann Sum/Integral
@@ -67,12 +67,12 @@ $$
 ### 	Definition of Definite Integral
 
 $$
-\lim_{n \to \infty} \sum_{k=1}^n f(x_k^*) \Delta x=\int_a^b f(x)dx
+\lim_{n \to \infty} \sum_{k=1}^n f(x_k^*) \Delta x=\int_a^b f(x) \dd x
 $$
 
 - If the limit exists, the limit takes the same value $\forall x_k^* \in [x_{k-1},x_k]$
 
-### 	When does $lim_{n \to \infty} S_n$ exist?
+### 	When does $\displaystyle \lim_{n \to \infty} S_n$ exist?
 
 - $f(x)$ is defined on $[a,b]$
   - continuous on $[a,b]$, or,
@@ -82,27 +82,27 @@ $$
 ### 	Properties of the Definite Integral
 
 $$
-\int_a^b [f(x) \pm g(x)]dx=\int_a^b f(x)dx \pm \int_a^b g(x)dx
+\int_a^b [f(x) \pm g(x)] \dd x=\int_a^b f(x) \dd x \pm \int_a^b g(x) \dd x
 $$
 
 $$
-\int_a^b kdx=k(b-a)
+\int_a^b k \dd x=k(b-a)
 $$
 
 $$
-\int_a^b [Af(x) \pm Bg(x)]dx=A\int_a^b f(x)dx \pm B\int_a^b g(x)dx
+\int_a^b [Af(x) \pm Bg(x)] \dd x=A\int_a^b f(x) \dd x \pm B\int_a^b g(x) \dd x
 $$
 
 $$
-\int_a^b -f(x)dx=-\int_a^b f(x)dx
+\int_a^b -f(x) \dd x=-\int_a^b f(x) \dd x
 $$
 
 $$
-\int_a^a f(x)dx=0
+\int_a^a f(x) \dd x=0
 $$
 
 $$
-\int_a^b f(x)dx=\int_a^c f(x)dx + \int_c^b f(x)dx
+\int_a^b f(x) \dd x=\int_a^c f(x) \dd x + \int_c^b f(x) \dd x
 $$
 
 ### 	Properties of Summation
@@ -123,11 +123,11 @@ $$
 \sum_{i=1}^n = \frac{n(n+1)}{2}
 $$
 
-	### 	Reverse Engineering
+### 	Reverse Engineering
 
 - Find $\Delta x$
 
-- $order(i)=order(n)$
+- $\deg(i)=\deg(n)$
 
 - Guess $a$ and $b$
 
@@ -143,11 +143,11 @@ $$
 
 ​		Given **continuous** function $f$ on $[a,b]$, $\forall x \in [a,b]$, let
 $$
-F(x)=\int_a^x f(t)dt
+F(x)=\int_a^x f(t) \dd t
 $$
 ​		Function composition
 $$
-F(g(x))=\int_a^{g(x)} f(t)dt
+F(g(x))=\int_a^{g(x)} f(t) \dd t
 $$
 ​		Derivatives
 $$
@@ -169,17 +169,17 @@ $$
 
 If $f(x)$ and $g(x)$ are continuous, and $f(x) \ge g(x)$ on $[a,b]$, then the area between curve is
 $$
-Area=\int_a^b [f(x)-g(x)]dx
+Area=\int_a^b [f(x)-g(x)] \dd x
 $$
-Depending on the situation, it could be easier to do $\int [f(y)-g(y)]dy$
+Depending on the situation, it could be easier to do $\int [f(y)-g(y)] \dd y$
 
 Also make sure the different intervals of different inequality relationships
 
 ## Modelling with ODEs
 
-- $\frac{dy}{dt}=ay+b$
+- $\dv{y}{t} = ay+b$
 - separable if $y'=g(y)f(t)$
-- if separable, $\int \frac{1}{g(y)}dy=\int f(t)dt$
+- if separable, $\int \frac{1}{g(y)} \dd y=\int f(t) \dd t$
 - IVP: ODE with initial conditions
 - Solving an ODE is to find the functions that satisfy the ODE
 
@@ -189,47 +189,47 @@ Also make sure the different intervals of different inequality relationships
 
 ​		Assume: $f(x)$ and $g(x)$ are continuous, $f(g(x))$ is defined. If $u=g(x)$, then
 $$
-\int f'g(x) \cdot g'(x)dx=\int f'(u)dx
+\int f'g(x) \cdot g'(x) \dd x=\int f'(u) \dd x
 $$
 
 $$
-\int_a^b f'g(x) \cdot g'(x)dx=\int_{g(a)}^{g(b)} f'(u)dx
+\int_a^b f'g(x) \cdot g'(x) \dd x=\int_{g(a)}^{g(b)} f'(u) \dd x
 $$
 
 ### 	Integration by Parts - Reversing Product Rule
 
 ​		If $u$ and $v$ are differentiable, 
 $$
-\int udv = uv - \int vdu, \int_a^b udv = uv \Big|_a^b - \int_a^b vdu
+\int u \dd v = uv - \int v \dd u, \int_a^b u \dd v = uv \Big|_a^b - \int_a^b v \dd u
 $$
-​		where $dv=\frac{dv}{dx}dx$, and $du=\frac{du}{dx}dx$.
+​		where $\dd v=\dv{v}{x}\dd x$, and $\dd u=\dv{u}{x}\dd x$.
 
-​		Make sure $\int vdu$ can be computed with existing techniques
+​		Make sure $\int v \dd u$ can be computed with existing techniques
 
 ​		Choosing $u$ and $v$
 
 - easy to either differentiate or integrate
-  - $ln(x)$ is easy to differentiate, not to integrate
-  - $arctan(x)$ is easy to differentiate, not to integrate
+  - $\ln(x)$ is easy to differentiate, not to integrate
+  - $\arctan(x)$ is easy to differentiate, not to integrate
   - $\frac{1}{1+x^2}$ is easy to integrate, not to differentiate
-  - $e^x, sin(x), cos(x),...$
+  - $e^x, \sin(x), \cos(x),...$
 
 ### 	Partial Fraction
 
 $$
-\int \frac{a}{bx+c}=\frac{a}{b}ln|bx+c|+C
+\int \frac{a}{bx+c} \dd x=\frac{a}{b}\ln|bx+c|+C
 $$
 
 $$
-Case 1: \Delta > 0, \int \frac{dx+e}{ax^2 + bx +c}dx=\int (\frac{A}{x-m}+\frac{B}{x-n})dx
+Case 1: \Delta > 0, \int \frac{dx+e}{ax^2 + bx +c} \dd x=\int (\frac{A}{x-m}+\frac{B}{x-n}) \dd x
 $$
 
 $$
-Case 2: \Delta = 0, \int \frac{dx+e}{ax^2 + bx +c}dx = \int [\frac{A}{x-m}+\frac{B}{(x-m)^2}]dx
+Case 2: \Delta = 0, \int \frac{dx+e}{ax^2 + bx +c} \dd x = \int [\frac{A}{x-m}+\frac{B}{(x-m)^2}] \dd x
 $$
 
 $$
-Case 3: \Delta < 0, complete \space the \space square \space for \space denominator
+Case 3: \Delta < 0, \text{complete the square for denominator}
 $$
 
 $$
@@ -241,63 +241,63 @@ $$
 $$
 
 $$
-By \space long \space division, \frac{P(x)}{Q(x)}=s(x)+\frac{r(x)}{Q(x)}, if \space deg(P(x))>deg(Q(x))
+\text{By long division}, \frac{P(x)}{Q(x)}=s(x)+\frac{r(x)}{Q(x)}, \text{if} \deg(P(x))>\deg(Q(x))
 $$
 
 ### 	Trig Sub
 
 - Trig Integrals
-  - $\int sin(x)dx = -cos(x) + C$
-  - $\int cos(x)dx = sin(x) + C$
-  - $\int sec^2(x)dx=tan(x)+C$
-  - $\int sec(x)tan(x)dx = sec(x)+C$
-  - $\int tan(x)dx=-ln|cos(x)|+C$
-  - $\int sec(x)dx=ln|sec(x)+tan(x)|+C$
+  - $\int \sin(x) \dd x = -\cos(x) + C$
+  - $\int \cos(x) \dd x = \sin(x) + C$
+  - $\int \sec^2(x) \dd x= \tan(x)+C$
+  - $\int \sec(x)\tan(x) \dd x = \sec(x)+C$
+  - $\int \tan(x) \dd x=-\ln|\cos(x)|+C$
+  - $\int \sec(x) \dd x= \ln|\sec(x)+\tan(x)|+C$
 - Trig Identities
-  - $sin^2(x)=\frac{1}{2}(1-cos(2x))$
-  - $cos^2(x)=\frac{1}{2}(1+cos(2x))$
-  - $sin(2x)=2sin(x)cos(x)$
-  - $cos(2x)=cos^2(x)-sin^2(x)$
-  - $sin^2(x)+cos^2(x)=1$
+  - $\sin^2(x)=\frac{1}{2}(1-\cos(2x))$
+  - $\cos^2(x)=\frac{1}{2}(1+\cos(2x))$
+  - $\sin(2x)=2\sin(x)\cos(x)$
+  - $\cos(2x)=\cos^2(x)-\sin^2(x)$
+  - $\sin^2(x)+\cos^2(x)=1$
   - Prosthaphaeresis
-    - $sin(\alpha)+sin(\beta)=2sin(\frac{\alpha + \beta}{2})cos(\frac{\alpha - \beta}{2})$
-    - $sin(\alpha)cos(\beta)=\frac{1}{2}[sin(\alpha + \beta)sin(\alpha - \beta)]$
-  - $sec^2(x)=1+tan^2(x)$
+    - $\sin(\alpha)+\sin(\beta)=2\sin(\frac{\alpha + \beta}{2})\cos(\frac{\alpha - \beta}{2})$
+    - $\sin(\alpha)\cos(\beta)=\frac{1}{2}[\sin(\alpha + \beta)\sin(\alpha - \beta)]$
+  - $\sec^2(x)=1+\tan^2(x)$
 
-- $\int sin^n(x)cos^m(x)dx$
-  - $n$ odd, $u=cos(x) \rightarrow -\int (1+u^2)^{\frac{n-1}{2}}u^mdu$
-  - $m$ odd, $u=sin(x) \rightarrow \int u^n (1-u^2)^{\frac{m-1}{2}}du$
-  - $m$ and $n$ even, integration of sum of even power of $sin(x)$
-- $\int sec^m(x)tan^n(x)dx$
-  - $\int sec^2(x)dx=tan(x)+C$
-  - $\int sec(x)tan(x)dx = sec(x)+C$
+- $\int \sin^n(x)\cos^m(x) \dd x$
+  - $n$ odd, $u=\cos(x) \rightarrow -\int (1+u^2)^{\frac{n-1}{2}}u^m \dd u$
+  - $m$ odd, $u=\sin(x) \rightarrow \int u^n (1-u^2)^{\frac{m-1}{2}}\dd u$
+  - $m$ and $n$ even, integration of sum of even power of $\sin(x)$
+- $\int \sec^m(x)\tan^n(x) \dd x$
+  - $\int \sec^2(x)dx=\tan(x)+C$
+  - $\int \sec(x)\tan(x)dx = \sec(x)+C$
 
 - Trig sub
-  - $\sqrt{a^2-x^2} \rightarrow x=asin(\theta)$
-  - $\sqrt{a^2+x^2} \rightarrow x=atan(\theta)$
+  - $\sqrt{a^2-x^2} \rightarrow x=a\sin(\theta)$
+  - $\sqrt{a^2+x^2} \rightarrow x=a\tan(\theta)$
 
 ## Solids
 
 $$
-Volume = \lim_{n \to \infty} \sum_{i=1}^n A(x_i^*)\Delta x=\int_a^b A(x)dx
+\text{Volume} = \lim_{n \to \infty} \sum_{i=1}^n A(x_i^*)\Delta x=\int_a^b A(x)\dd x
 $$
 
 ​	Washer: $L \perp$ axis of rotation
 $$
-Area = \pi (y_2^2-y_1^2)
+\text{Area} = \pi (y_2^2-y_1^2)
 $$
 
 $$
-Volume=\int_a^b \pi [(f(x))^2-(g(x))^2]dx
+\text{Volume} =\int_a^b \pi [(f(x))^2-(g(x))^2] \dd x
 $$
 
 ​	Cylinder: $L \parallel$ axis of rotation
 $$
-Area=2\pi x (y_2 - y_1)
+\text{Area} =2\pi x (y_2 - y_1)
 $$
 
 $$
-Volume = \int_a^b 2 \pi x [f(x)-g(x)]dx
+\text{Volume} = \int_a^b 2 \pi x [f(x)-g(x)]dx
 $$
 
 ## Improper Integrals
@@ -306,66 +306,66 @@ $$
 
 ​		Let $f$ be continuous on $[a,\infty)$, or $(-\infty, a]$
 $$
-\int_a^{\infty} f(x)dx=\lim_{R \to \infty} \int_a^R f(x)dx, \int_{-\infty}^a f(x)dx=\lim_{R \to -\infty} \int_R^a f(x)dx
+\int_a^{\infty} f(x) \dd x=\lim_{R \to \infty} \int_a^R f(x)\dd x, \int_{-\infty}^a f(x) \dd x=\lim_{R \to -\infty} \int_R^a f(x) \dd x
 $$
 
 - If the limit exists, the integral is convergent
 - If the limit DNE, the integral is divergent, if $lim = \pm \infty$, it diverges to $\pm \infty$
-- If $f$ is continuous on $[d, \infty)$, s.t. $a \in [d, \infty)$ and $b \in [d, \infty)$, $\int_a^{\infty} f(x)dx$ converges $iff$ $\int_b^{\infty} f(x)dx$ converges, since $\int_a^{\infty} f(x)dx = \int_a^b f(x)dx + \int_a^{\infty} f(x)dx$
+- If $f$ is continuous on $[d, \infty)$, s.t. $a \in [d, \infty)$ and $b \in [d, \infty)$, $\int_a^{\infty} f(x) \dd x$ converges $\iff$ $\int_b^{\infty} f(x) \dd x$ converges, since $\int_a^{\infty} f(x) \dd x = \int_a^b f(x) \dd x + \int_a^{\infty} f(x) \dd x$
 
 ### 	Type II
 
 ​		If $f$ is continuous on $(a, b]$ or $[a, b)$, and $c \in (a, b]$ or $c \in [a, b)$,
 $$
-\int_a^b f(x)dx = \lim_{c \to a^+} \int_c^b f(x)dx, \int_a^b f(x)dx = \lim_{c \to b^-} \int_a^c f(x)dx
+\int_a^b f(x) \dd x = \lim_{c \to a^+} \int_c^b f(x) \dd x, \int_a^b f(x) \dd x = \lim_{c \to b^-} \int_a^c f(x) \dd x
 $$
 
 ### 	Comparison Theorem
 
 ​		$-\infty \le a \le b \le \infty$, assume $f$ and $g$ are continuous on $(a,b)$, and $\forall x \in (a,b)$, $0 \le f(x) \le g(x)$,
 
-- If $\inf_a^b g(x)dx$ is convergent, $\int_a^b f(x)dx$ is convergent
-- If $\int_a^b f(x)dx$ is divergent (to $\infty$), $\int_a^b g(x)dx$ is divergent (to $\infty$)
+- If $\int_a^b g(x) \dd x$ is convergent, $\int_a^b f(x) \dd x$ is convergent
+- If $\int_a^b f(x)\dd x$ is divergent (to $\infty$), $\int_a^b g(x)\dd x$ is divergent (to $\infty$)
 
 ## Continuous Probability
 
-​	Definition: A continuous random variable X is an object that records **outcome** of an experiment as one of a continuous set of values
+​	Definition: A continuous random variable $X$ is an object that records **outcome** of an experiment as one of a continuous set of values
 
-​	$p(x_1 \le X \le x_2)=\int_{x_1}^{x_2} f(x)dx$
+​	$p(x_1 \le X \le x_2)=\int_{x_1}^{x_2} f(x) \dd x$
 
 ​	$f(x)$: Probability Density Function (PDF)
 
 - $f(x) \ge 0$
-- $\int_{-\infty}^{\infty} f(x)dx = 1$
+- $\int_{-\infty}^{\infty} f(x) \dd x = 1$
 
 ​	Statistical Tools:
 
-- Mean: $\mu = \int_{-\infty}^{\infty} xf(x)dx$
-- Variance: $\sigma^2 = \int_{-\infty}^{\infty} (x-\mu)f(x)dx$
+- Mean: $\mu = \int_{-\infty}^{\infty} xf(x)\dd x$
+- Variance: $\sigma^2 = \int_{-\infty}^{\infty} (x-\mu)f(x) \dd x$
 - Standard deviation: $\sigma = \sqrt{\sigma^2}$
-- Expectation: $E(X)=\int_{-\infty}^{\infty} Xf(x)dx$
+- Expectation: $E(X=x)=\int_{-\infty}^{\infty} xf(x) \dd x$
 - $\sigma^2=E(x^2)-\mu^2$
 
 ### 	Distributions
 
 - Uniform
-  - $f(x)=\frac{1}{b-a}, \forall x \in [a,b]$, $f(x)=0, otherwise$
+  - $f(x)=\frac{1}{b-a}, \forall x \in [a,b]$, $f(x)=0$, otherwise
   - $\mu=\frac{a+b}{2}$, $\sigma^2=\frac{a^2+ab+b^2}{3}-(\frac{a+b}{2})^2$
 - Exponential
-  - $f(x)=ke^{-kx}, \forall x \in [0,\infty)$, $f(x)=0, otherwise$
+  - $f(x)=ke^{-kx}, \forall x \in [0,\infty)$, $f(x)=0$, otherwise
   - $\mu=\sigma=\frac{1}{k}$
 - Standard
   - $f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$
   - $\mu=0$, $\sigma=1$
   - $f_{\mu,\sigma}(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
-  - $\int_{-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi}$
+  - $\int_{-\infty}^{\infty}e^{-x^2} \dd x=\sqrt{\pi}$
 
 ### 	Cumulative Density Function
 
 - Given a PDF, define a CDF
 
 $$
-F(t)=\int_{-\infty}^{t}f(x)dx
+F(t)=\int_{-\infty}^{t}f(x) \dd x
 $$
 
 $$
@@ -378,13 +378,13 @@ $$
   - Standard: $0$
 
 $$
-t \space when \space F(t)=\frac{1}{2}
+t \space \text{when} \space F(t)=\frac{1}{2}
 $$
 
 ## Work
 
 $$
-W=\int_a^b F(r)dr
+W=\int_a^b F(r) \dd r
 $$
 
 ​	Can also integrate over time, be flexible regarding which integral to use.
@@ -401,7 +401,7 @@ $$
 - A sequence $a_n$ is said to converge to $L$ ($a_n \to L$) if as $n$ gets larger and larger, $a_n$ gets closer and closer to $L$
 - If $a_n$ does not converge, it diverges; if $a_n \to \pm \infty$, then the sequence diverges to $\pm \infty$
 - Theorem
-  - Suppose $a_n \le c_n \le b_n$, $\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = L$, then $\lim_{n \to \infty} c_n = L$
+  - Suppose $a_n \le c_n \le b_n$, $\displaystyle \lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = L$, then $\displaystyle \lim_{n \to \infty} c_n = L$
 - $n^p \le r^n \le n! \le n^n$
 - Rigorous Definition
   - $\forall \epsilon > 0, \exists N \in \Z^+$, if $n \ge N$, $|a_n - L| < \epsilon$
@@ -480,7 +480,7 @@ $$
 
 - Divergence Test
 
-  - If $\sum_{n=1}^{\infty} a_n$ converges, then $\lim_{n \to \infty} a_n = 0$
+  - If $\displaystyle \sum_{n=1}^{\infty} a_n$ converges, then $\displaystyle \lim_{n \to \infty} a_n = 0$
 
 - If $a_n \ge 0$ and $S_n$ are bounded, $\sum_n a_n$ converges ($S_n$ is bounded and increasing)
 
@@ -488,7 +488,7 @@ $$
 
   - Let $f$ be **continuous**, **non-negative**, and **decreasing**, on some interval $[N, \infty)$
   - Let $a_n = f(n)$
-  - Then $\sum_n a_n$ converges $iff$ $\int_N^{\infty} f(x)dx converges$
+  - Then $\sum_n a_n$ converges $\iff$ $\int_N^{\infty} f(x) \dd x$ converges
 
 - Elementary Comparison Tests
 
@@ -499,7 +499,7 @@ $$
 
 - Limit Comparison Test
 
-  - Let $a_n$, $b_n$ be infinite sequences, s.t. each $b_n > 0$, and $\lim_{n \to \infty} \frac{a_n}{b_n}=L$, $L$ is finite
+  - Let $a_n$, $b_n$ be infinite sequences, s.t. each $b_n > 0$, and $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n}=L$, $L$ is finite
     - If $\sum_n b_n$ converges, so does $\sum_n a_n$
     - If $\sum_n a_n$ diverges and $L \ne 0$, so does $\sum_n b_n$
 
@@ -545,13 +545,13 @@ f'(x)=\sum_{n=0}^{\infty} nA_n(x-c)^{n-1}
 $$
 
 $$
-\int f(x)dx=C + \sum_{n=0}^{\infty} A_n\frac{(x-c)^{n+1}}{n+1}
+\int f(x) \dd x=C + \sum_{n=0}^{\infty} A_n\frac{(x-c)^{n+1}}{n+1}
 $$
 
-​	Let $R$ be the radius of convergence, $A=\lim_{n \to \infty} |\frac{A_{n+1}}{A_n}|$, we have $R = \frac{1}{A}$
+​	Let $R$ be the radius of convergence, $A=\displaystyle \lim_{n \to \infty} |\frac{A_{n+1}}{A_n}|$, we have $R = \frac{1}{A}$
 
 - $R=\infty$, converges everywhere
-- $R=0$, converges only at $x=c$, $\sum_{n=0}^{\infty}A_n (x-c)^n=A_0$
+- $R=0$, converges only at $x=c$, $\displaystyle \sum_{n=0}^{\infty}A_n (x-c)^n=A_0$
 
 ### Taylor Series
 
@@ -559,21 +559,21 @@ $$
 f(x)=\sum_{n=0}^{\infty} \frac{f^{(n)}(c)}{n!} (x-c)^n
 $$
 
-​	If $f(x)=\sum_{n=0}^{\infty} A_n (x-c)^n$ holds true $\forall x$ in some open interval containing $c$, then that power series is a Taylor Series,
+​	If $f(x)=\displaystyle \sum_{n=0}^{\infty} A_n (x-c)^n$ holds true $\forall x$ in some open interval containing $c$, then that power series is a Taylor Series,
 $$
 A_n = \frac{f^{(n)}(c)}{n!}
 $$
-​	This does not indicate that $f(x)=\sum_{n=0}^{\infty} \frac{f^{(n)}(c)}{n!} (x-c)^n$ holds true throughout the radius of convergence.
+​	This does not indicate that $f(x)=\displaystyle \sum_{n=0}^{\infty} \frac{f^{(n)}(c)}{n!} (x-c)^n$ holds true throughout the radius of convergence.
 
 ​	Remainder:
 $$
 \exists a \in [c, x], R_n(x)=\frac{f^{(n+1)}(a)}{(n+1)!}(x-c)^{n+1}
 $$
-​	To prove a power series hold for all $x$, just prove $\lim_{n \to \infty} R_n(x) = 0$
+​	To prove a power series hold for all $x$, just prove $\displaystyle \lim_{n \to \infty} R_n(x) = 0$
 
 ​	In a Taylor series, the $n$th derivative is always obtained from the coefficient of the term $x^n$.
 
-​	Function with no analytical solutions to its integral can be expressed in a power series. $\int \frac{sin(x)}{x}dx$
+​	Function with no analytical solutions to its integral can be expressed in a power series. $\int \frac{\sin(x)}{x} \dd x$
 
 ### 	Common Taylor Series
 
@@ -586,10 +586,10 @@ e^x=\sum_{n=0}^{\infty} \frac{x^n}{n!}
 $$
 
 $$
-sin(x)=\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1}
+\sin(x)=\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1}
 $$
 
 $$
-cos(x)=\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!}x^{2n}
+\cos(x)=\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!}x^{2n}
 $$
 

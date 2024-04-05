@@ -5,21 +5,21 @@
 ### Harmonic Motion (Newton's Second Law + Hooke's Law)
 
 $$
-m \frac{d^2 x}{dt^2}=-kx
+m \dv[2]{x}{t}=-kx
 $$
 
 - Mass on a string
 
 $$
-x(t) = Acos(\omega t + \phi)
+x(t) = A\cos(\omega t + \phi)
 $$
 
 $$
-v(t) = -v_{max}sin(\omega t + \phi)
+v(t) = -v_{max}\sin(\omega t + \phi)
 $$
 
 $$
-a(t)= -a_{max}cos(\omega t + \phi)
+a(t)= -a_{max}\cos(\omega t + \phi)
 $$
 
 - Angular frequency: $\omega = \sqrt{\frac{k}{m}}=2\pi f = \frac{2\pi}{T}$, $\omega (rad/s), f(Hz)$
@@ -38,11 +38,11 @@ $$
     - $b^2 > 4mk$: does not oscillate, attempt to return to equilibrium position
 
 $$
-m \frac{d^2x}{dt^2} + b\frac{dx}{dt}+kx=0
+m \dv[2]{x}{t} + b \dv{x}{t}+kx=0
 $$
 
 $$
-x(t)=A_0 e^{-\frac{b}{2m}t} cos(\omega t + \phi)
+x(t)=A_0 e^{-\frac{b}{2m}t} \cos(\omega t + \phi)
 $$
 
 $$
@@ -57,11 +57,11 @@ $$
   - Quality Factor: $Q = \frac{\omega_0}{\Delta \omega} = \frac{m\omega_0}{b}$, $\Delta \omega$ is full width at half the maximum amplitude, or "half-height" (FWHM / FWHH)
 
 $$
--kx - b \frac{dx}{dt} + F_0 sin(\omega t)=m \frac{d^2 x}{dt^2}
+-kx - b \dv{x}{t} + F_0 \sin(\omega t)=m \dv[2]{x}{t}
 $$
 
 $$
-x(t) = A cos(\omega t + \phi)
+x(t) = A \cos(\omega t + \phi)
 $$
 
 $$
@@ -80,15 +80,15 @@ $$
 
   - Angle & Position: $\frac{\theta}{x}=\frac{2\pi}{\lambda}$
 
-    - At a given time: $y(x)=Asin(\frac{2\pi}{\lambda}x)$
+    - At a given time: $y(x)=A\sin(\frac{2\pi}{\lambda}x)$
     - Position moves $vt$ in $t$
 
     $$
-    y(x, t)=Asin(\frac{2\pi}{\lambda}(x \pm vt))=Asin(\frac{2\pi}{\lambda}x \pm 2\pi f t)
+    y(x, t)=A\sin(\frac{2\pi}{\lambda}(x \pm vt))=A\sin(\frac{2\pi}{\lambda}x \pm 2\pi f t)
     $$
 
     $$
-    y(x,t)=Asin(kx \pm \omega t), k = \frac{2\pi}{\lambda}, \omega = 2\pi f
+    y(x,t)=A\sin(kx \pm \omega t), k = \frac{2\pi}{\lambda}, \omega = 2\pi f
     $$
 
     - $+$: travelling to the left, $-$: travelling to the right
@@ -105,8 +105,8 @@ $$
 - Speed of waves on a string
   - $v=\sqrt{\frac{T}{\mu}}$, $\mu$: Linear density ($kg/m$)
 - Standing waves (Incident + Reflecting waves = Nowhere wave)
-  - $y_+ = Asin(kx-\omega t)$, $y_- = Asin(kx+\omega t)$
-  - $y_+ + y_- = 2Asin(kx)cos(\omega t)$ (Prosthaphaeresis)
+  - $y_+ = A\sin(kx-\omega t)$, $y_- = A\sin(kx+\omega t)$
+  - $y_+ + y_- = 2A\sin(kx)\cos(\omega t)$ (Prosthaphaeresis)
   - Nodes: no wave motion
   - Antinodes: maximal motion
   - Wavelengths: $\lambda_n = \frac{2L}{n}, \forall n \in \Z^+$, $L$ is the length of the string
@@ -170,7 +170,7 @@ $$
 - Sound Intensity ($I$): $\propto$ acoustic pressure squared
 
 $$
-\beta(dB)=10log_{10}(\frac{I}{I_0}), I_0=10^{-12}W/m^2(20 \mu Pa)
+\beta(dB)=10\log_{10}(\frac{I}{I_0}), I_0=10^{-12}W/m^2(20 \mu Pa)
 $$
 
 - Sensitivity is frequency dependent
@@ -264,7 +264,7 @@ $$
 
   - *Power* of a light source is related to the number of photons the light emits times the energy per photon
     $$
-    P=\frac{dE_{light}}{dt}=\frac{dN}{dt}hf
+    P=\dv{E_{light}}{t}=\dv{N}{t}hf
     $$
 
   - Superposition of huge numbers of photons behave like a classical wave
@@ -281,19 +281,18 @@ $$
     \lambda=\frac{h}{p}=\frac{h}{mv}, f=\frac{E}{h}
     $$
     
-
   - $I(x) \propto |A(x)|^2$, $I$ is the intensity of the electromagnetic wave, and $A$ is the amplitude of the electromagnetic wave
-
+  
 - Wavefunction model ($\Psi (x,t)$)
 
   - $|\Psi(x,t)|^2$ tells us the **PROBABILITY DENSITY** of finding a particle at $x$ if we measure it $\rightarrow$ defines a quantum superposition
 
 $$
-\int_{-\infty}^{\infty} |\Psi(x)|^2dx=1
+\int_{-\infty}^{\infty} |\Psi(x)|^2 \dd x=1
 $$
 
 $$
-P(x_1, x_2)=\int_{x_1}^{x_2} |\Psi(x)|^2 dx
+P(x_1, x_2)=\int_{x_1}^{x_2} |\Psi(x)|^2 \dd x
 $$
 
 ### Wave Packets
@@ -348,10 +347,10 @@ $$
   - pure sinusoidal waves
 
 $$
-\frac{d\Psi}{dt}=(const.)\frac{1}{m}\frac{d^2 \Psi}{dx^2}
+\dv{\Psi}{t}=(const.)\frac{1}{m}\dv[2]{\Psi}{x}
 $$
 
-- $\frac{d\Psi}{dt}$ is equivalent to frequency, $\frac{d^2 \Psi}{dx^2}$ is equivalent to $\frac{1}{m\lambda^2} \propto \frac{p^2}{m} \propto mv^2 \propto E$ (if no potential energy, $E = KE$)
+- $\dv{\Psi}{t}$ is equivalent to frequency, $\dv[2]{\Psi}{x}$ is equivalent to $\frac{1}{m\lambda^2} \propto \frac{p^2}{m} \propto mv^2 \propto E$ (if no potential energy, $E = KE$)
 
 $$
 E=hf=\frac{p^2}{2m}, f=\frac{E}{h}
@@ -360,13 +359,13 @@ $$
 - Euler Progression - How "fast" the wavefunction evolves depends on the energy of the particle
 
 $$
-\Psi(x, t + \delta t) = \Psi(x, t) + \delta t (const.)\frac{1}{m}\frac{d^2 \Psi}{dx^2}
+\Psi(x, t + \delta t) = \Psi(x, t) + \delta t (const.)\frac{1}{m}\dv[2]{\Psi}{x}
 $$
 
 - Schrodinger-ish equation with constant $U$
 
 $$
-\frac{d\Psi}{dt}=(const.)\frac{1}{m}\frac{d^2 \Psi}{dx^2} + U \Psi
+\dv{\Psi}{t}=(const.)\frac{1}{m}\dv[2]{\Psi}{x} + U \Psi
 $$
 
 $$
@@ -520,7 +519,7 @@ $$
 
   - Force $\leftrightarrow$ Potential Energy
     $$
-    F_s = -\frac{dU}{ds}, \Delta U= \int_i^f \vec{F} \cdot d\vec{s}
+    F_s = -\dv{U}{s}, \Delta U= \int_i^f \vec{F} \cdot \dd {\vec{s}}
     $$
 
   - Electric force = conservative force
@@ -542,7 +541,7 @@ $$
 
   - Electric Field $\leftrightarrow$ Electric Potential
     $$
-    E_s = -\frac{dV}{ds}, \Delta V = -\int_i^f \vec{E} \cdot {d\vec{s}}
+    E_s = -\dv{V}{s}, \Delta V = -\int_i^f \vec{E} \cdot \dd{\vec{s}}
     $$
 
 - Topographic Maps for Electrostatics
@@ -628,7 +627,7 @@ $$
 $$
 
 $$
-F=qvBsin\theta
+F=qvB\sin\theta
 $$
 
 - Magnetic field is defined by "Lorentz Force" on a charged particle moving in the field ("Tesla")
@@ -675,7 +674,7 @@ $$
   n + ^{14}_{7}N \rightarrow ^{14}_{6}C + p
   $$
 
-  - $\beta$ decay - ($\tau \approx 8267 yr$, $t_{\frac{1}{2}} \approx 5730yr$)
+  - $\beta$ decay - ($\tau \approx 8267$ yrs, $t_{\frac{1}{2}} \approx 5730$ yrs)
 
   $$
   ^{14}_{6}C \rightarrow ^{14}_{7}N + e^- + \bar{\nu_e}
@@ -685,11 +684,11 @@ $$
 
 - Half-life ($\lambda$: chance of nucleus decaying per second, $N$: number of nuclei)
   $$
-  \frac{dN}{dt} = -\lambda N
+  \dv{N}{t} = -\lambda N
   $$
 
   $$
-  t_{\frac{1}{2}}=ln(2)\tau
+  t_{\frac{1}{2}}=\ln(2)\tau
   $$
 
 - Cyclotron
@@ -703,7 +702,7 @@ $$
 - Ampere's Law
 
 $$
-\oint \vec{B} \cdot d\vec{L}=\mu_0I
+\oint \vec{B} \cdot \dd{\vec{L}}=\mu_0I
 $$
 
 $$
@@ -726,7 +725,7 @@ $$
 - Faraday's Law - Magnetic Flux ($Wb = T\cdot m^2$)
 
 $$
-\Phi_m = \int_s \vec{B} \cdot \hat{n}dA
+\Phi_m = \int_s \vec{B} \cdot \hat{n}\dd A
 $$
 
 - Electric charges produce electric fields
@@ -742,7 +741,7 @@ $$
 
   - The direction of the induced *emf* drives current around a wire loop to always **oppose** the change in magnetic flux that causes the *emf*
     $$
-    emf = \epsilon=-\frac{d}{dt} \int_s \vec{B} \cdot \hat{n}dA = -\frac{d\Phi_m}{dt}
+    emf = \epsilon=-\dv{t} \int_s \vec{B} \cdot \hat{n}\dd A = -\dv{\Phi_m}{t}
     $$
 
 - Iron core solenoids and Transformers
@@ -759,7 +758,7 @@ $$
     $$
 
     $$
-    \epsilon = -L\frac{dI}{dt}=-N\frac{d\Phi_m}{dt}
+    \epsilon = -L\dv{I}{t}=-N \dv{\Phi_m}{t}
     $$
 
   - Cylindrical Solenoid
@@ -769,11 +768,11 @@ $$
 
 - Energy in an Inductor
   $$
-  P = \epsilon i = L\frac{di}{dt}i
+  P = \epsilon i = L\dv{i}{t}i
   $$
 
   $$
-  U = \int_0^t Pdt' = \frac{1}{2}LI^2
+  U = \int_0^t P\dd t' = \frac{1}{2}LI^2
   $$
 
   - $R$: Viscous fluid
@@ -800,7 +799,7 @@ $$
 
 - Immediately after Big Bang...
 
-  - The # of protons $\approx$ The # of neutrons ($t_{\frac{1}{2}}(n^0) \approx 14min40sec$)
+  - The # of protons $\approx$ The # of neutrons ($t_{\frac{1}{2}}(n^0) \approx 14$ min $40$ sec)
   - Neutron has a chance to fuse with a proton to create a deuteron ($^2H$), most of which fuse further to form ($^4He$)
   - Potential well inside nuclei is deep enough for neutrons to be stable
   - An hour after, all $H$ and $He$ are formed, up to $^7Li$
