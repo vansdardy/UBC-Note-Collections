@@ -1,0 +1,78 @@
+\section{Condition Expectation Functions}
+\subsection{Conditional Expectation}
+The expectation of $Y_i$ conditional on $X_i = x$ is,
+$$E(Y_i | X_i = x) = \int_y y f_{Y|X}(y | x) \dd y \iff \sum_y y f_{Y|X}(y | x)$$
+and
+$$f_{Y|X}(y | x) = \frac{f_{X, Y}(x, y)}{f_X(x)}$$
+
+The sample conditional expectation is thus defined to be
+$$\hat{E}(Y_i | X_i = x) = \frac{1}{n_X} \sum_{i=1}^{n} y_i I(X_i = x) = \frac{1}{n_X} \sum_{i \in S_X} y_i$$
+where $S_X$ is the set of $i$, and $X_i = x$ and $|S_X| = n_X$
+
+It is important because it links two variables so that the \textbf{conditional expectation} is the typical value of one variable \textbf{given another variable}, which is what econometric models are trying to do.
+
+If our model predicts that $X_i$ typically affect $Y_i$, this is a statement about the conditional expectation of $Y_i$ given $X_i$. If we want to perform a test like a comparison of means, this is also a statement about conditional expectations.
+
+\subsection{Properties of Conditional Expectations}
+Some common properties of CEs include:
+\begin{quote}
+    1. $E(aX_i + bY_i) = aE(X_i) + bE(Y_i)$ \\
+    2. $C(X_i, Y_i) = E(X_iY_i) - E(X_i)E(Y_i)$ \\
+    3. $C(X_i, a) = 0$ \\
+    4. $C(aX_i, bY_i) = abC(X_i, Y_i)$ \\
+    5. $C(X_i + Z_i, Y_i) = C(X_i, Y_i) + C(Z_i, Y_i)$ \\
+    6. $V(X_i) = C(X_i, X_i) = E(X_i^2) - E(X_i)^2$ \\
+    7. $V(aX_i) = a^2V(X_i)$
+\end{quote}
+If $X_i$ and $Y_i$ are two independent variables, then
+$$E(Y_i | X_i) = E(Y_i)$$
+this is equivalent to saying 
+$$\forall x, \pdv{x} E(Y_i | X_i = x) = 0$$
+
+\begin{theorem}
+    The \textbf{\textit{Law of Iterated Expectation (LIE)}} states that:
+    $$E(E(Y_i|X_i = x)) = E(Y_i)$$
+\end{theorem}
+
+\subsection{Conditional Expectation as a Function}
+Consider $E(Y_i | X_i = x)$, as $x$ changes, how does the level of expectation change? Thus,
+\begin{definition}
+    A \textbf{\textit{conditional expectation function (CEF)}} is defined as:
+    $$m(x) = E(Y_i | X_i = x)$$
+\end{definition}
+This describes the average relationship between $X_i$ and $Y_i$.
+
+Some general tests include:
+\begin{quote}
+    1. $\dv{m}{x} = 0$ \\
+    2. $m(ax) = am(x)$ \\
+    3. $m(0) = 0$
+\end{quote}
+
+If $X_i$ and $Y_i$ are independent, then $m(x) = k \in R$, a constant. \\
+The LIE states that $m(x) = \int_x m(x, z) \dd z$
+
+The decomposition property of CEFs include that, if we define $\epsilon_i = Y_i - E(Y_i | X_i)$, then we can decompose $Y_i$ into $m(X_i)$ and $\epsilon_i$, where the CEF describes part of $Y_i$ completely determined by $X_i$ and $\epsilon_i$ describes part of $Y_i$ entirely independent of $X_i$. This also means that:
+\begin{quote}
+    1. $E(\epsilon_i | X_i) = 0 \iff E(\epsilon_i X_i) = 0$ \\
+    2. $C(\epsilon_i, f(X_i)) = 0$
+\end{quote}
+
+The above CEF describes the population, but we only have the sample, so the \textbf{sample CEF} is
+$$\hat{m}(x) = \hat{E}(Y_i | X_i = x) = \frac{1}{n_X} \sum_{i=1}^{n} Y_i I(X_i = x)$$
+This is a naive estimator, as it is \textbf{non-parametric}. This is an example of a category of estimators called \textbf{\textit{kernel density}} models, where the values of $X_i$ are called \textbf{\textit{bins or windows}}. \\
+The problem is the $X_i$ can have lots of possible values, or it may be continuous. Some bins might be empty, or only have a small number of estimations.
+
+The solution is to make assumptions about the CEF, or specifying the model. This brings out the technique of regression analysis. Some common regression models include:
+\begin{quote}
+    1. Logistic regression: $m(x) = \frac{1}{1 + e^{-\beta_0 + \beta_1 x}}$ \\
+    2. Poisson regression: $m(x) = \exp(\beta_0 + \beta_1 x)$ \\
+    3. Polynomial regression: $m(x) = \beta_0 + \beta_1 x + \beta_2 x^2$ \\
+    4. \textbf{Linear regression}: $m(x) = \beta_0 + \beta_1 x$
+\end{quote}
+If we consider a linear regression model as CEF, then if $m(x) = \beta_0 + \beta_1 x_{1i} + \dots + \beta_k x_{ki}$, then the linear regression would be
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \dots + \beta_k X_{ki} + \epsilon_i$$
+where $k$ is the number of variables, and $K$ is the number of parameters. $K = k + 1$. \\
+We can think of linear regression as an \textbf{approximation} to some non-linear CEFs.
+
+\newpage

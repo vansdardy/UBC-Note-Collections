@@ -1,0 +1,71 @@
+\section{Regressions}
+Key terminologies surrounding regressions first starts with the regression model:
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \dots + \beta_k X_{ki} + \epsilon_i$$
+where $Y_i$ is the outcome, $X_{ji}$ is an explanatory variable, $\epsilon_i$ is the residual, and $\beta_j$ is the coefficient of $X_{ji}$.
+
+If $k = 1$, then it is a simple regression; if $k > 1$, then it is a multiple regression. Multivariate regression refers to a vector of outcomes. The most important term we are interested in is $\beta$.
+
+We should ask the question if the model is well-defined, what are the meaning of $\beta$s, do we know $\beta$ is unique.
+
+\subsection{Simple Regression}
+We start with CEFs: \\
+The CEF is defined by the condition that $E(\upsilon_i | X_i) = 0$. If our regression is a good approximation of the CEF, then it needs to meet these conditions, $E(\epsilon_i) = 0$ and $E(\epsilon_iX_i) = 0$
+
+Thus, for a linear regression equation
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \dots + \beta_k X_{ki} + \epsilon_i$$
+we thus yield the moment equation conditions:
+$$\begin{cases}
+    E(\epsilon_i) = 0 \\
+    E(\epsilon_iX_{1i}) = 0 \\
+    \vdots \\
+    E(\epsilon_iX_{ki}) = 0
+\end{cases}$$
+Specifically, we say that the linear regression coefficients $\beta$s are defined as:
+$$(\beta_0, \beta_1, \dots, \beta_k) \equiv \arg \min_{b_0, b_1, \dots, b_k} E((Y_i - b_0 - b_1 X_{1i} - \dots - b_k X_{ki})^2) = \arg \min_{b_0, b_1, \dots, b_k} E(\epsilon_i^2)$$
+where $E(\epsilon_i^2)$ is the mean squared error. \\
+This is equivalent to saying
+$$\begin{cases}
+    \pdv{E}{b_0} = E(\epsilon_i) = 0 \\
+    \pdv{E}{b_1} = E(\epsilon_iX_{1i}) = 0 \\
+    \vdots \\
+    \pdv{E}{b_k} = E(\epsilon_iX_{ki}) = 0
+\end{cases}$$
+
+The necessary condition for a unique solution is that $X_{ji}$ must not be constant, and must not be redundant (not collinear). This is the condition of \textbf{\textit{no perfect collinearity}}.
+
+After solving for a simple linear regression, we have
+$$\beta_1 = \frac{C(X_i, Y_i)}{V(X_i)}$$
+and we also know $\pdv{Y_i}{X_i} = \beta_1$, meaning it is the \textbf{\textit{marginal effect}} of $X_i$. Algebra also shows that
+$$\beta_1 = \rho_{X, Y} \cdot \frac{\sigma_Y}{\sigma_X}$$
+
+Notice that "linear" refers to the coefficients \textbf{NOT} the variables, thus, we can also have a polynomial regression with terms exponentiated.
+$$g(Y_i) = \beta_0 + \beta_1 f_1(X_{1i}) + \dots + \beta_k f_k(X_{ki}) + \epsilon_i$$
+These can be models of $\log$-$\log$ models, $\log$-linear models, or linear-$\log$ models.
+In this case, remember when calculating coefficients, apply \textbf{chain rule}. Some useful approximations for smooth continuous functions include Taylor series or Fourier series.
+
+\subsection{Multiple Regression}
+We consider the \textbf{Frisch-Waugh} anatomy theorem. Essentially, we want to set up another regression like this:
+$$X_{1i} = \alpha_0 + \alpha_2 X_{2i} + \dots + \alpha_k X_{ki} + \tilde{X_{1i}}$$
+from the original multiple regression
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \dots + \beta_k X_{ki} + \epsilon_i$$
+This eventually gives the \textbf{\textit{regression anatomy equation}}:
+$$\beta_j = \frac{C(\tilde{X_{ji}}, Y_i)}{V(\tilde{X_{ji}})}$$
+This means, it is proportional to the correlation of $Y_i$ and the part of $X_{ji}$ \textbf{not explained by other variables}. This is referred to as \textbf{controlling} for other variables.
+
+The simple regression coefficient is a special form of the regression anatomy equation where $X_i = \theta_i + \tilde{X_i}$
+
+\subsection{Relationship between CEFs and Regressions}
+If CEF of $Y_i$ given $X_i$ is linear, it is linear regression, where all $X_{ji}$ are jointly normal.
+
+Linear regression is the best linear approximation in Mean Squared Error (MSE) sense, meaning that if CEF is not linear, the regression is the best possible approximation.
+
+Linear regression is the best \textbf{linear predictor} of the CEF, in the MSE sense.
+
+\subsection{Regression as Model}
+When constructing a linear regression, it is not simply a variable selection problem. It can be very flexible as the polynomial regression above, or as another important category, where dummy terms are involved in the regression.
+
+They can be directly included in the model. However, notice if $D_i$ has $k$ levels, one must use $k - 1$ dummies, as including all of them leads to perfect collinearity. This is referred to as the \textbf{\textit{dummy variable trap}}.
+
+Dummies can also be outcome variables, which are referred to as a \textbf{\textit{linear probability model}} which will be discussed later. One needs to be careful with \textbf{heteroskedasticity} and there are \textbf{no limitations on $\hat{Y_i}$}
+
+\newpage

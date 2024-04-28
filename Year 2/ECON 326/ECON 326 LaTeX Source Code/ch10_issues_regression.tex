@@ -1,0 +1,40 @@
+\section{Issues with Regression}
+There are mainly two technical issues in a regression model that are fixable. One is multicollinearity and the other is heteroskedasticity.
+
+\subsection{Multicollinearity}
+Given an explanatory variable written like:
+$$X_{1i} = \theta_0 + \theta_2 X_{2i} + \dots + \theta_k X_{ki} + \tilde{X_{1i}}$$
+If $\tilde{X_{1i}} = 0$ for all $i$, then this implies perfect collinearity. $R_1^2 = 1$. In some cases, it is almost collinear, where $\tilde{X_{1i}} \approx 0$ for all $i$, here $R_1^2 \approx 1$. \\
+All variables are to some extent collinear to each other, problems occur when multiple variables measures the same property, and they are highly collinear. The variance inflation factor measures the extent of collinearity. Recall that
+$$VIF = \frac{1}{1-R_j^2}$$
+given that the data we are using is homoskedastic.
+
+\subsection{Heteroskedasticity}
+To "solve" heteroskedasticity, one needs to be careful about what variables to choose. The principle is to choose variables that keep as much as explanatory power as possible, and keep non-collinearity.
+
+One may use the \textbf{Principal Components Analysis}, or specifically decomposition to isolate the "latent" aspects of a dataset. We can use the line of best fit as an axis and examine whether the data are heteroskedastic or not. However the new axes would have no economic interpretation.
+
+Returning to the meaning of heteroskedasticity, it means variance in variances. That is,
+$$V(\epsilon_i | X_i) = \sigma^2(X_i)$$
+
+Two notable tests to detect heteroskedasticity is to use \textbf{White's test} or \textbf{Breusch-Pagan test}.
+
+White's test focuses on the relationship between the squared residual and the fitted values, where
+$$\hat{\epsilon_i}^2 = \beta_0 + \beta_1 \hat{Y_i} + \beta_2 \hat{Y_i}^2 + \eta_i$$
+If $\beta_1$ and $\beta_2$ are significant, there is likely heteroskedasticity. We use the test statistic $t = nR^2$ from this regression, and turns out it converges in distribution to a $\chi^2$ distribution, where the degrees of freedom is the number of variables interacting. \\
+If we fail the White's test, we no longer assume homoskedasticity and turn to robust standard errors. That is, finding a way to estimate:
+$$\sum_{i=1}^{n} \hat{\tilde{X_{ji}}}^2 \sigma^2(X_i)$$
+
+\subsection{Linear Probability Models}
+Linear probability models are linear regressions where the outcome variable is a dummy variable. It is heteroskedastic by construction. One way is to use weighted OLS to correct for the standard errors such that, we find $w_i$ for each $\epsilon_i$ that
+$$w_i\epsilon_i \sim_a N(0, w_ib_i)$$
+and $b_i = \sqrt{V(\epsilon_i | X_i)}$
+
+\subsection{Miscellaneous Things}
+Many assumptions of OLS can be relaxed or violated with additional work.
+
+One issue is the representativeness of the sample chosen. The first assumption is that the data are independent of each other, but many datasets deliberately are non-random. These approaches record \textbf{weights} to "reverse" the non-randomness. Usually, frequency weights or sample weights are used to determine the proportion of a certain sample in the population.
+
+Another issue is clustering, where the data may come from a common group, that may be subject to idiosyncratic effects. Another version of the sandwich (White) estimator can be used to address this issue.
+
+\newpage

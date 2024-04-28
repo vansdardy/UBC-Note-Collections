@@ -1,0 +1,91 @@
+\section{Production（生产）}
+\begin{definition}
+    A \textbf{\textit{firm（企业）}} is an organization that transforms inputs (resources) into outputs (goods and services). \\
+    \textbf{\textit{Production}} is the process of transforming inputs into outputs, including other ancillary activities.
+\end{definition}
+Production theory analyzes how much output should be produced, and what combination of inputs should be used to produce. \\
+We make the following assumptions about production:
+\begin{quote}
+    1. Produces single good. \\
+    2. Has already selected the good to be produced. \\
+    3. Uses only two inputs, labour ($L$) and capital ($K$). \\
+    4. Can buy unlimited quantities of both inputs at fixed prices. \\
+    5. Can access unlimited financial resources through bankers, investors.
+\end{quote}
+Thus, we can consider a \textbf{\textit{production function（生产函数）}}, such that it \textbf{shows the maximum amount of output given some input}, can be \textbf{represented by an equation, a graph, or a table}. \\
+The inputs and outputs are measured in physical units per period of time, so if we assume two inputs, the general production can be 
+$$Q = f(L, K)$$
+Notice that \textbf{positive monotonic transformation} does not apply to production functions as the output is cardinal, not ordinal. \\
+Firms can vary some inputs more easily and more quickly, so inputs can be classified as either fixed or variable, where
+\begin{quote}
+    1. Fixed input: an input that cannot be varied over the given time frame. \\
+    2. Variable input: an input that can be varied over the given time frame.
+\end{quote}
+Thus, we can define
+\begin{definition}
+    The \textbf{\textit{long run}} is the time frame in which all inputs are variable; the \textbf{\textit{short run}} is any time frame short enough that at least $1$ input will not vary.
+\end{definition}
+
+
+\subsection{Production with One Variable Input（单变量生产输入）}
+This is a short run production. \\
+The \textbf{\textit{total product（所有产出）}} curve shows the how $Q$ changes by holding $1$ input constant, and $1$ input variable. \\
+For most short-run TP curves:
+\begin{quote}
+    1. $TP = 0$ when $L = 0$ \\
+    2. Initial: increasing at an increasing rate \\
+    3. Then: increasing at a decreasing rate \\
+    4. Finally: decreasing
+\end{quote}
+The \textbf{\textit{marginal product（边际产出）}} is defined to be
+$$MP_L = \dv{TP_L}{L}$$
+Notice that marginal product initially increase (labour specialization), then starts to decline at some point, finally becoming negative (crowding). This is the \textbf{\textit{Law of Diminishing Marginal Returns（边际产出递减）}}, which only applies in short run. \\
+The \textbf{\textit{average product（平均产出）}} is defined to be
+$$AP_L = \frac{TP_L}{L}$$
+The relationship between $AP$ and $MP$ is as follows: 
+\begin{quote}
+    1. when $MP > AP$, $AP$ is increasing \\
+    2. when $MP = AP$, $AP$ obtains its maximum \\
+    3. when $MP < AP$, $AP$ is decreasing
+\end{quote}
+
+\subsection{Production with Two Variable Inputs（双变量生产输入）}
+This could be a short-run or long-run production depending on the number of inputs required. \\
+We use the \textbf{\textit{production isoquant（等产出线）}} to refer to all the combinations of inputs for some given output. We mainly focus on negative-sloped isoquants. \\
+This introduces the concept of \textbf{\textit{marginal rate of technical substitution（技术替换边际速率）}}, that is the rate at which a small quantity of one input can be substituted by the other given a constant output. Mathematically,
+$$MRTS = -\dv{K}{L}$$
+$$MRTS = \frac{MP_L}{MP_K}$$
+
+\subsubsection{Substitutability of Inputs（生产输入的可替换性）}
+Consider a Leontief production function, $Q = \min{\{ax_1, bx_2\}}$, the $MRTS$ is undefined. \\
+Consider a linear production function, $Q = \alpha x_1 + \beta x_2$, the $MRTS$ is $\frac{\alpha}{\beta}$. \\
+Consider a Cobb-Douglas production function, $Q = Ax_1^\alpha x_2^\beta$, where $A$ measures the productive efficiency, the $MRTS$ will be a function of $x_1, x_2$.
+
+\subsubsection{Isocost Lines（等成本线）}
+Given two inputs $L, K$ with their unit price to be $w, r$, where $w$ represents wage and $r$ represents rent, then the firm's total cost is
+$$C = wL + rK$$
+If we consider $K = f(L)$, then from the above cost function, $\frac{C}{r}$ is the intercept and $-\frac{w}{r}$ is the slope. \\
+For a fixed output target, if the firm wishes to maximize profit, it must minimize the costs. Given that
+$$\pi = TR - TC$$
+Cost-minimization occurs when the slope of the isoquant equals the slope of the isocost, that is
+$$\dv{K}{L} = \frac{w}{r} \to \frac{\dd K}{w} = \frac{\dd L}{r} \to \frac{MP_L}{w} = \frac{MP_K}{r}$$
+When the input prices change then there will be a change in the input mix and a change in the \textbf{optimal mix of input}.
+
+\subsubsection{Firm's Long Run Problem（企业长期运营问题）}
+Consider a firm's production function $Q = f(L, K)$, the firm aims to minimize the cost, in the form
+$$\min_{L,K} wL + rK \text{ s.t. } Q = \bar{Q}$$
+We use the Lagrangian to solve for $L^{*}, K^{*}$, and then we can substitute back into the cost function to find the minimum cost. \\
+If the production function is linear, the minimum cost depends on which input has a larger marginal product per unit. \\
+If the production function is Leontief, the minimum cost occurs when $\alpha x_1^{*} = \beta x_2^{*} = Q$.
+
+\subsubsection{Returns to Scale（规模报酬）}
+This describes what happens to the output when all inputs are scaled by the same factor. \\
+If the inputs are scaled by a factor of $k$, then
+\begin{quote}
+    1. Constant returns to scale: output is also scaled by a factor of $k$. \\
+    2. Increasing returns to scale: output is scaled by a factor of $> k$. \\
+    3. Decreasing returns to scale: output is scaled by a factor of $< k$.
+\end{quote}
+The \textbf{\textit{long-run expansion path（长期扩大生产曲线）}} is the input combinations the firm would use at different output levels in the long run.
+
+\newpage

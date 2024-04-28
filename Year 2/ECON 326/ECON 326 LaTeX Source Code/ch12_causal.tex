@@ -1,0 +1,50 @@
+\section{Causal Models}
+In inferential questions, we often want to answer a cause-and-effect statement. We use causal modelling for this specific purpose.
+
+"Correlation is not causation", so first consider the regression anatomy equation:
+$$\beta_1 = \frac{C(Y_i, \tilde{X_{1i}})}{V(\tilde{X_{1i}})} \propto \rho_{Y_i, \tilde{X_{1i}}}$$
+This is a correlation, not causation.
+
+The framework for a causal model is the \textbf{\textit{Potential Outcomes Model}}. In this framework, we define:
+\begin{quote}
+    1. $Y_i$: outcome variable \\
+    2. $D_i$: a dummy variable that refers to "treatment" \\
+    3. $X_i$: covariates (controls)
+\end{quote}
+Then $Y_i(1)$ means the potential outcome when treated, and $Y_i(0)$ means the potential outcome when untreated. We call
+$$\Delta_i = Y_i(1) - Y_i(0)$$
+the \textbf{treatment effect}.
+
+The \textbf{average treatment effects} include:
+\begin{quote}
+    1. $ATE = E(\Delta_i) = E(Y_i(1) - Y_i(0))$, this is the whole population. \\
+    2. $ATT = E(Y_i(1) - Y_i(0) | D_i = 1)$, this is the subpopulation which was treated. \\
+    3. $ATU = E(Y_i(1) - Y_i(0) | D_i = 0)$, this is the subpopulation which was untreated.
+\end{quote}
+This runs into the \textbf{Fundamental Problem of Causal Inference}, where each individual is either treated or not, so we cannot observe both potential outcomes, meaning individual treatment effect is \textbf{unobservable}. This means $ATE$ and $ATT$ are fundamentally unobservable. This is not a statistical problem but a model problem. \\
+If a person's outcome depends only on their own treatment status, then we have
+$$Y_i = Y_i(1)D_i + Y_i(0)(1-D_i)$$
+This is referred to as the \textbf{\textit{stable unit treatment value assumption (SUTVA)}}.
+
+If we compare this with a linear regression,
+$$Y_i = \beta_0 + \beta_1 D_i + \epsilon_i$$
+then we have
+$$\beta_1 = E(Y_i | D_i = 1) - E(Y_i | D_i = 0)$$
+This can use the causal decomposition where:
+\begin{align*}
+    \beta_1 &= (E(Y_i(1) | D_i = 1) - E(Y_i(0) | D_i = 1)) + (E(Y_i(0) | D_i = 1) - E(Y_i(0) | D_i = 0)) \\
+    &= ATT + B
+\end{align*}
+The $B$ part refers to the \textbf{selection bias}, that is, it occurs when the treated group would have behaved differently if the treatment was not available in the first place. If the treated group and the untreated group behaved same if the treatment was unavailable in the first place, then $B = 0$.
+
+It is highly common to see selection bias, as "treatment" is usually an agent's voluntary choice. To diagnose selection bias, one can ask:
+\begin{quote}
+    1. Is there any plausible reason why the treatment group would have behaved differently from the control group if the treatment is unavailable? \\
+    2. Is this reason not captured or controlled by the other covariates in the models?
+\end{quote}
+
+Solutions to this is that it can be minimized if the assignment of treatment is random, or they can be signed to provide lower/upper bound of the treatment effect.
+
+Mathematically, the \textbf{\textit{conditional independence assumption}} says that
+$$E(Y_i(0)|D_i) = E(Y_i) = E(Y_i(1) | D_i)$$
+for all values of $D_i$. In other words, if $D_i$ is \textbf{as good as randomly assigned} given $X_i$, selection bias would be zero.

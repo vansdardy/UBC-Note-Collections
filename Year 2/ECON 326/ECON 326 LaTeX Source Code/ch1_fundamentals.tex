@@ -1,0 +1,26 @@
+\section{Fundamentals}
+Econometrics is a discipline of economics that uses natural economic data to draw conclusions that describe the economic state.
+
+A general economic model is a formal, but simplified description of the real world. It is an abstraction and focuses on the forces and questions at interest. The theoretical framework does not rely on real-world data, while empirical models, or econometric models do.
+
+An \textbf{\textit{econometric model}} first maintains hypothesis about the world (as a model does). There are mainly two types of econometric models:
+\begin{quote}
+    1. Reduced Form: This type answers a narrow question of interest, and only merely describes a data relationship (e.g. minimum wage vs. unemployment). \\
+    2. Structural: This type uses more information to measure specific points from theoretical models. That is identifying the specific components to answer complex questions. It is more generalized, and it is often used as a policy tool.
+\end{quote}
+
+An econometric model involves the use of data, which are a snapshot of economic process. Data reflects the behaviour of the participants in the economy. Some usual kinds include survey data, cross-sectional data, and time series data.
+
+The econometric model is built due to the interest of research questions, which is transforming an observation into a hypothesis. Some common types of research questions include classification of observations, predictions, explorations, correlations, clustering, fitting, identification etc.
+
+An econometric model can serve mainly two different purposes, predictive or inferential. Consider a general model: $y = f(x | \beta)$, where $y$ is the outcome variable, $x$ is the explanatory variable, $\beta$ is the parameter that describes $f$, and $f$ is the relationship between $x$ and $y$, we can first come up with the optimal $\beta^{*}$ where we calculate fitted values $y^{*} = f(x|\beta^{*})$ and calculate the error to be $y - y^{*}$,
+\begin{quote}
+    1. Predictive: A predictive model cares about $y^{*}$, and how accurately the model can predict. We generally do not care about how the predictions are come up. \\
+    2. Inferential: An inferential model cares about $\beta^{*}$ that describes the relationship between $x$ and $y$. We do not care about how accurate the predictions can be.
+\end{quote}
+
+The reason why we use structural models is that it connects to a theory such that if we estimate the properties of this model, we can make \textbf{counterfactual} predictions which are not based on pre-existing patterns in the pre-existing data. This leads out the \textbf{\textit{Lucas critique}} where he argues an econometric model includes agents' decisions based on both past outcomes and \textbf{expectations} of future outcomes, thus a change in the policy will also systematically alter the structure of econometric models. Thus, structural models can identify \textbf{invariant} properties and estimating them which escape the Lucas critique.
+
+Other questions we wish to answer include "does A cause B", which are causal questions in need of causal models. They relate specific parts of the model to cause-and-effect, but we need to consider the possibility of reverse causality or other common factors. Note that causal models are nearly exclusively \textit{inferential} as they are inferential in nature.
+
+\newpage

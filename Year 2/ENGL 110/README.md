@@ -1,0 +1,1 @@
+Similar to WRDS 150B, it is a literature and communication requirement, so no LaTeX notes were summarized.

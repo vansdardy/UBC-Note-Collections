@@ -1,0 +1,102 @@
+\section{Evaluation}
+The model's performance depends on the model itself and the research question. If the model is well-defined and it can explain the research question well, it does not matter if the model does not perform well in other dimensions.
+
+\subsection{Model vs. Non-model}
+Since the relationship between $Y_i$ and $X_i$ are explained by the CEF and the residual, we can think about "how much do the explanatory variables actually explain"? If our model is well, then we should rely on the residual as little as possible.
+
+This is a predictive type of statement, where a model does well in predicting $Y_i$ does a good job answering predictive questions. It can also help inferential questions, but not essential. However, what is objectively "small"?
+
+Once we have estimated the model, we would have sample residuals and fitted values. They estimate the true residual and fitted values, meaning there is a difference in the \textbf{theoretical} and \textbf{empirical} performance. $\hat{}$ can simply removed to represent the population.
+
+\subsection{Loss Functions}
+Mean Squared Error (MSE)
+$$\frac{1}{n} \sum_{i=1}^{n} \hat{\epsilon_i}^2$$
+
+Mean Absolute Deviation (MAD)
+$$\frac{1}{n} \sum_{i=1}^{n} |\hat{\epsilon_i}|$$
+
+Supremum Style Deviation (SSD)
+$$\max_i |\hat{\epsilon_i}|$$
+
+Other loss functions include AIKE, or KLS
+
+\begin{theorem}
+    The \textbf{\textit{Gauss-Markov}} Theorem states that the OLS coefficients provide the \textbf{smallest variance} among all possible unbiased linear estimators.
+\end{theorem}
+
+The MSE approach:
+\begin{quote}
+    1. Treats positive and negative variance in the same way \\
+    2. Penalize many small errors less than a few large errors \\
+    3. Differentiable and smooth \\
+    4. An absolute number
+\end{quote}
+But it does not provide a way of differentiating variations:
+\begin{quote}
+    1. Model does not explain the data well \\
+    2. Data naturally has lot of variation
+\end{quote}
+
+\subsection{R-squared}
+We introduce R-squared to differentiate between errors caused by the model and error natural to data:
+$$\begin{cases}
+    SST = \sum_{i=1}^{n} (Y_i - \bar{Y})^2 \text{ total} \\
+    SSR = \sum_{i=1}^{n} (Y_i - \hat{Y})^2 \text{ residuals} \\
+    SSE = \sum_{i=1}^{n} (\hat{Y_i} - \bar{Y})^2 \text{ errors}
+\end{cases}$$
+and R-squared is defined to begin
+$$R^2 = \frac{SSE}{SST} = 1 - \frac{SSR}{SST}$$
+that is the ratio of variation explained by the model and the total variation.
+\begin{quote}
+    1. SST: sum of squared total \\
+    2. SSR: sum of squared residuals \\
+    3. SSE: sum of squared estimates
+\end{quote}
+
+The properties include that:
+\begin{quote}
+    1. $R^2 = 0$: model is non-explanatory \\
+    2. $R^2 = 1$: model is a perfect-fit \\
+    3. $R^2 \in [0, 1]$, and is unitless
+\end{quote}
+
+When we increase model sizes, $R^2$ is guaranteed to increase and become closer to $1$, thus, it should not be used to select between models of different number of variables.
+
+If we try to penalize a model for having more parameters, we can use the \textbf{adjusted R-squared}.
+$$R_{adj}^2 = 1 - (1-R^2)\frac{n-1}{n-K}$$
+But it loses interpretability and other useful properties, and it can be less than $0$ or greater than $1$.
+
+\subsection{Overfitting}
+Mathematically, it is always true if the "prediction" we are trying to make is an explanation of the existing sample, but it may not always be true predicting out of sample. Thus, a good in-sample fit and a bad out-of-sample fit is referred to as \textbf{\textit{overfitting}}.
+
+We can often reserve $10\%$ of the data so that, we use these data to validate the model. \\
+We may also do cross-validation, where the data is divided to $k$ equal folds. For each fold, we estimate the model using the other $k-1$ folds, and test on the un-used fold. Then we consider performance across folds to see how the model does. \\
+Bad controls (or over-controlling) can be case for model reduction.
+
+\subsection{Interpreting Coefficients}
+Note that,
+$$\beta_j = \frac{C(Y_i, \tilde{X_{ji}})}{V(\tilde{X_{ji}})} = \pdv{m(X_i)}{X_{ji}}$$
+we ask about the impact of changing an explanatory variable on the CEF. \\
+$X_{ji}$ as a variable does not need to enter directly into the regression, it can enter more than once, or interacts with another variable.
+
+Similarly, for a dummy variable, we have
+$$\beta_j = \frac{\Delta m(X_i)}{\Delta X_{ji}}$$
+meaning the change in typical value of $Y_i$ when $X_i$ is present versus when it's not present.
+
+The qualitative variables can be expressed as a set of dummies, thus, a similar tactic can be used to interpret qualitative variables when using $k-1$ dummies to represent it.
+
+Furthermore, what if we believe two different groups have different effects on the outcome? We can use interactions like,
+$$Y_i = \beta_0 + \beta_1 X_i + \beta_2 G_i + \beta_3 X_i \times G_i + \epsilon_i$$
+Then,
+$$\pdv{m}{X_i} = \beta_1 + \beta_3 G_i$$
+given different values of $G_i$, the impact will also be different.
+
+\subsection{Over-controlling}
+Over-controlling refers to including controls that restrict the purpose of the study. This is usually the result of not having a clear conception of what the situation being modeled means economically. In econometrics, this can mean adding structure or justifying variable choices. In causal analysis, this means thinking about the cause-and-effect relationships which create the data.
+
+\subsection{Interpreting Estimates and Precision of Estimates}
+Different samples will lead to slightly different estimates (maybe even very different) of the coefficients, which leads to different interpretations. This also applies to predictions, as it will lead to different fitted values.
+
+Fundamentally, coefficients also have \textbf{sampling distributions}. Thus, we need to answer how much the coefficients vary to determine the uncertainty of the estimates. This depends on how big our sample is and what we assume about the structure of the model.
+
+\newpage

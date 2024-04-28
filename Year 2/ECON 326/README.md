@@ -1,0 +1,1 @@
+This is the sorted notes for ECON 326 - Introduction to Econometrics II.

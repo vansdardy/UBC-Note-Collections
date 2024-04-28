@@ -1,0 +1,57 @@
+\section{Estimation}
+After constructing our regression model, we hope to create \textbf{estimators} for key parameters of interest. We then can establish properties of these estimators giving us the opportunity to perform statistical inference.
+
+\textbf{\textit{Monte Carlo simulation}} can be used to test whether novel models are accurate or not.
+
+There are essentially three types of estimators:
+\begin{quote}
+    1. Sample Analogue \\
+    2. Method of Moments \\
+    3. Ordinary Least Squares
+\end{quote}
+
+\subsection{Sample Analogue Estimators}
+The sample analogue estimator simply adds a $\hat{}$ on top of the statistics involved. For example,
+$$\hat{\beta_1} = \frac{\hat{C}(X_i, Y_i)}{\hat{V}(X_i)}$$
+However, for multiple regression, we need to use iterated regression, that is, the Frisch-Waugh anatomy theorem. The problem with this estimator is that
+\begin{quote}
+    1. It is difficult to calculate \\
+    2. Hard to find an analytical expression for coefficients \\
+    3. Hard to analyze properties of the estimator $\hat{\beta_{j}}$ \\
+    4. Matrix algebra can make the iterations go away
+\end{quote}
+
+\subsection{Method of Moments}
+The variable coefficients in the sample analogue estimator comes from moment equations. In this case, we use \textbf{sample moments}, that is finding estimators that satisfy
+$$\begin{cases}
+    E(\epsilon_i) = 0 \\
+    \vdots \\
+    E(\epsilon_i X_{ki}) = 0
+\end{cases}$$
+For a simple regression, it may look like this
+$$\begin{cases}
+    \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{\beta_0} - \hat{\beta_1}X_i) = 0 \\
+    \frac{1}{n} \sum_{i=1}^{n} X_i(Y_i - \hat{\beta_0} - \hat{\beta_1}X_i) = 0
+\end{cases}$$
+This can be applied to multiple regressions more easily. We can use linear algebra to solve those sample moment equations.
+
+\subsection{Ordinary Least Square}
+First of all, OLS is a method not a model.
+
+In a regression model, there are data we can see, and data we cannot see, where $\beta_j$ is predictive and the residual is everything else. Since the CEF is the most predictive model possible in squared deviation sense, then we approximate the CEF.
+
+This means, we hope to choose $\hat{\beta_j}$ to make the total $\epsilon_i^2$ as small as possible, mathematically,
+$$\min_{b_j} \sum_{i=1}^{n} \epsilon_i^2$$
+
+\subsection{Which Estimator?}
+All of these methods have the same properties and the same assumption, but we prefer Method of Moments as it is fast to compute relying on matrix algebra.
+
+After estimating the coefficients, we can have the \textbf{estimated or sample residuals} from
+$$\hat{\epsilon_i} = Y_i - \hat{\beta_0} - \hat{\beta_1}X_{1i} - \dots - \hat{\beta_k}X_{ki}$$
+
+The \textbf{fitted or predicted values} are that
+$$\hat{Y_i} = \hat{\beta_0} + \hat{\beta_1}X_{1i} + \dots + \hat{\beta_k}X_{ki} \approx \hat{m}(X_i)$$
+and $\hat{\epsilon_i} = Y_i - \hat{Y_i}$
+
+
+\newpage

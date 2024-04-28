@@ -1,0 +1,55 @@
+\section{Omitted Variable Bias}
+A regression specification is an \textbf{assumption} about the structure of the CEF. Mis-specification occurs when we get the assumptions wrong. One way is to not include certain variables as we have many variables to choose from when constructing the model.
+
+In predictive models, we covered this problem by considering the fit of the regression. But in inferential models, we want our estimates to be correct, which amounts to evaluating whether or not we have specified the CEF correctly.
+
+If we have our CEF correct, we are saying $E(\epsilon_i | X_i) = 0$, the strict exogeneity assumption, which further implies $E(\epsilon_i) = 0, E(\epsilon_i X_i) = 0$ to solve for the regression. However, what if $E(\epsilon_i | X_i) \ne 0$, this is \textbf{\textit{endogeneity}} as both $Y_i$ and $X_i$ are jointly affected by the part of the model. Particularly, it arises in causal models.
+
+\subsection{Omitted Variables}
+We can first consider a "true" model:
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \gamma W_i + \epsilon_i$$
+but we have a model of what we believe to be true:
+$$Y_i = b_0 + b_1 X_{1i} + b_2 X_{2i} + e_i$$
+Recall that,
+$$\gamma = \frac{C(Y_i, \tilde{W_i})}{V(\tilde{W_i})}$$
+If $\gamma = 0$, then our model did not misspecify, as $W_i$ is left out. \\
+The other special case is to consider that $E(W_i | X_{1i}, X_{2i}) = \alpha$, which is constant. In this case $e_i = \gamma W_i + \epsilon_i$, so
+$$E(e_i | X_{1i}, X_{2i}) = \gamma \alpha$$
+In this specific case, $b_1 = \beta_1, b_2 = \beta_2$, but $b_0 = \beta_0 + \gamma \alpha$.
+
+\subsection{Omitted Variables Bias}
+When $E(W_i | X_{1i}, X_{2i})$ is not constant, we refer to this situation as \textbf{\textit{omitted variables bias}}.
+
+Firt we have the relationship that $E(e_i | X_{1i}, X_{2i}) = \gamma E(W_i | X_{1i}, X_{2i})$
+
+Notice that by the regression anatomy equation, we still have
+$$b_1 = \frac{C(Y_i, \tilde{X_{1i}})}{V(\tilde{X_{1i}})}$$
+
+After substituting $Y_i$ in with the true model and the relationship between $e_i$ and $W_i$, we eventually use algebraic means to get that
+$$b_1 = \beta_1 + \frac{C(Y_i, \tilde{W_i})}{V(\tilde{W_i})} \cdot \frac{C(W_i, \tilde{X_{1i}})}{V(\tilde{X_{1i}})}$$
+where if we have a regression
+$$W_i = \alpha_0 + \alpha_1 X_{1i} + \alpha_2 X_{2i} + \tilde{W_i}$$
+then
+$$\begin{cases}
+    \gamma = \frac{C(Y_i, \tilde{W_i})}{V(\tilde{W_i})} \\
+    \alpha_1 = \frac{C(W_i, \tilde{X_{1i}})}{V(\tilde{X_{1i}})}
+\end{cases}$$
+This means that, in $b_1$, not only does it have the actual $\beta_1$, but also the direct impact of $W_i$ on $Y_i$, and the impact of other variables on the omitted variable (we can use controls to make this as weak as possible).
+
+In practice,
+$$\gamma = \rho_{Y_i, \tilde{W_i}} \cdot \frac{\sigma_{\tilde{W_i}}}{\sigma_{Y_i}}$$
+$$\alpha_1 = \rho_{W_i, \tilde{X_{1i}}} \cdot \frac{\sigma_{X_{1i}}}{\sigma_{W_i}}$$
+If other variables "eliminate" the effect of $W_i$ on $Y_i$, OVB gets smaller.
+
+This provides us with two rationale of using controls: they are included to capture the effect of a variable we cannot see which we think is relevant, and they isolate a part of $X_i$ which is not affected by the omitted variables.
+
+\subsection{Ramsey RESET Test}
+If the model is well-specified, then conditional on the explanatory variables, the fitted values should have no predictive power, that is
+$$Y_i = \theta_0 + \theta_1 X_{1i} + \dots + \theta_k X_{ki} + \delta_1 \hat{Y_i} + \delta_2 \hat{Y_i}^2 + \dots + \epsilon_i$$
+We expect $\delta_j$ to be small, close to $0$. We test this with $F_{n - k -3}$ test.
+
+However, one should not rely on this test as it is a functional form so it does not tell you where the model failed. And it cannot always detect OVB. It can help detect bad models, but cannot determine if the model is good.
+
+Fundamentally, to handle OVB, one should choose to use good controls, or sign the bias to provide context about overestimation or underestimation, or use a model or technical that handle OVB by design.
+
+\newpage

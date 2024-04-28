@@ -1,0 +1,152 @@
+\section{Consumer Behaviour（消费者行为）}
+Consumer theory is an economic theory that describes consumer behaviour. This theory focuses on the \textbf{demand side} of the market, \textbf{explains situational decision-making} which includes \textit{budget allocation, savings and investment, and decisions when facing uncertainties}. It may further \textbf{predict individuals' responses} to changes in, for example, prices, taxes, income, and the interest rate. \\
+We make the assumption that the consumer always choose the \textbf{best} bundle of good and service that can be afforded. This covers both the consumer's \textbf{\textit{preference（偏好）}} and \textbf{\textit{budget constraint（预算限制）}}.
+
+\subsection{Consumer Preferences（消费者偏好）}
+We first define a commodity bundle as a \textbf{particular combination of goods and services}, and the preference of a consumer means the \textbf{ability to compare and rank commodity bundles}. In this case, we represent bundles in uppercase, and the quantity of each commodity in the bundle in lowercase. \\
+A commodity space describes the combinations of commodity bundles, where we also assume that consumers can consume in partial units, as we can simply adjust the time frame during which the bundle is consumed.
+\begin{definition}
+    Consider $2$ commodity bundles $A$ and $B$. We define:
+    \begin{quote}
+        1. $A$ is preferred to $B$: $A \succ B$ \\
+        2. $B$ is preferred to $A$: $B \succ A$ \\
+        3. $A$ and $B$ are equally preferred, or indifferent: $A \sim B$
+    \end{quote}
+\end{definition}
+Furthermore, we make $4$ assumptions about consumer preferences:
+\begin{quote}
+    1. Completeness and rankability（完全性与可排序性）: The consumer can make one of the three statements about two bundles $A$ and $B$ as in \textbf{Definition 1.1}. \\
+    2. Monotonicity（单调性）:
+    \begin{quote}
+        Ceteris paribus \\
+        1. Weak monotonicity: the more the consumer consumes a good, the consumer cannot be worse off. \\
+        2. Strict monotonicity: the more the consumer consumes a good, the consumer is better off. \\
+        If unwanted units can be discarded at no cost, assume weak monotonicity; \\
+        for most goods over realistic ranges of consumption, assume strict monotonicity.
+    \end{quote}
+    3. Transitivity（传递性）: 
+    \begin{quote}
+        Given bundles $A$, $B$ and $C$, \\
+        1. If $A \succ B, B \succ C$, then $A \succ C$ \\
+        2. If $A \sim B, B \sim C$, then $A \sim C$
+    \end{quote}
+    4. Strict convexity（严格外凸性）: ceteris paribus, the more one has of Good A, the less one is willing to give up of Good B in exchange for more Good A. This is because people value variety in consumption.
+\end{quote}
+In some cases, the assumptions of monotonicity and strict convexity may not apply.
+
+\subsection{Describing Preferences（描述偏好）}
+There are three methods to describe a consumer's preference: ranking every possible pair of consumption bundles (impractical), using a \textbf{\textit{utility function（效用函数）}}, or using \textbf{\textit{indifference curves（无差异曲线）}}.
+\subsubsection{Utility Function（效用函数）}
+We want the utility function to have these properties:
+\begin{quote}
+    1. The utility of a more preferred bundle is larger than a less preferred bundle. \\
+    2. When two bundles are equally preferred, the utility should be equal. \\
+    3. The utility number should reflect the level of satisfaction.
+\end{quote}
+In modern economic theory, we assume utility numbers to be \textbf{ordinal} not \textbf{cardinal}, that is reflection of ranking, NOT reflection of size. \\
+Mathematically,
+\begin{definition}
+    Consider a function $U(\cdot)$, where \\
+    1. $U(A) > U(B) \iff A \succ B$ \\
+    2. $U(A) = U(B) \iff A \sim B$
+\end{definition}
+If there are only two goods, whose quantities are represented by $t, c$, then a general utility function is $U = U(t,c)$, and a specific utility funciton can be $U(t,c) = t^{0.6}c^{0.4}$. \\
+There are several types of utility functions which will be discussed later with indifference curves. \\
+For one particular set of preferences, there can be many utility functions, thus
+\begin{definition}
+    Assume a utility function for two goods with quantities $q_1, q_2$ to be $U = f(q_1, q_2)$, if we have another function $V = g(U)$ such that $\dv{V}{U} > 0$, then we say $g$ is a \textbf{\textit{positive monotonic transform（正方向单调变换）}}.
+\end{definition}
+This thus allows us to describe the \textbf{\textit{marginal utility（边际效用）}} of good $i$ to be the rate-of-change of the total utility as $q_i$ increase by a small amount. Mathematically, we have
+$$MU_i = \pdv{U}{q_i}$$
+
+\subsubsection{Indifference Curves（无差异曲线）}
+The indifference curves are formed in the commodity space by constructing a set of bundles equally preferred to some reference bundle. \\
+The strict monotonicity assumption indicates such curves must have a negative slope, and the strict convexity assumption indicates such curves must be smooth and bow in toward the origin. \\
+We can view them as contours on a map, and since we allow consumers to consume fractional units, there are $\infty$ indifferent curves in a 2D commodity space, that is we can always draw another IC between any two ICs. \\
+A key property of indifference curves is that they \textbf{cannot cross each other}, as that would contradict the assumptions we made for them. \\
+We can thus introduce the \textbf{\textit{marginal rate of substitution（边际替换速率）}}, which is defined from the negative slope of ICs:
+$$MRS = -\dv{q_2}{q_1}$$
+This represents the consumer's marginal willingness to pay. With the strict convexity assumption, the $MRS$ will always be diminishing. \\
+For a particular utility function $U = U(q_1, q_2)$, the marginal rate of substitution can always be expressed as
+$$MRS = \frac{MU_1}{MU_2}$$
+where positive monotonic transforms do not impact this relationship.
+
+\subsubsection{Types of Preferences（偏好类型）}
+There are four major types of preferences. \\
+The first one is \textbf{\textit{linear preferences（线性偏好）}}, they represent two goods that are \textbf{perfect substitutes} of each other (e.g. Pepsi and Coca Cola). The $MRS$ of two goods will be a constant, and in general, it is represented by the utility function:
+$$U(q_1, q_2) = mq_1 + nq_2, m > 0, n > 0$$
+The $MRS$ would thus be $\frac{m}{n}$. \\
+The second one is \textbf{\textit{Leontief preferences（里昂提夫偏好）}}, they represent two goods that are \textbf{perfect complements} of each other (e.g. meat patty and bun). In general, it is represented by the utility function:
+$$U(q_1, q_2) = \min{\{aq_1, bq_2\}}, a > 0, b > 0$$
+The corner points are perfect combinations, and $aq_1 = bq_2$. \\
+The third one is \textbf{\textit{Cobb-Douglas preferences（柯布——道格拉斯偏好）}}, they can represent both substitutability and complementarity, as they capture changes in preferences as consumption changes. In general, it is represented by the utility function:
+$$U(q_1, q_2) = q_1^\alpha q_2^\beta, \alpha > 0, \beta > 0$$
+This is usually written in a way such that $\alpha + \beta = 1$, where a positive monotonic transform can be $V = U^{\frac{1}{\alpha + \beta}}$. \\
+The last one is \textbf{\textit{quasilinear preferences（准线性偏好）}}, they represent a consumer's preference where one will spend all the income on good $1$ when the income is low, and as income increases, there will be a cap on this good. The ICs is merely a vertical translation, so that for the same $q_1$, the $MRS$ on each IC will equal to each other. In general, it is represented by the utility function:
+$$U(q_1, q_2) = \alpha f(q_1) + \beta q_2, \alpha > 0, \beta > 0, \dv{f}{q_1} > 0, \dv[2]{f}{q_1} < 0$$
+
+\subsection{Well-behaved Preferences（良态偏好）}
+These preferences are complete and rankable, transitive, strictly monotonic, and \textbf{convex} (not strictly convex). \\
+Formally,
+\begin{definition}
+    Consider two bundles $A$ and $B$, \\
+    if $A \sim B$ and the preference is convex, given $0 \le t \le 1$, we have
+    $$tA + (1-t)B \succeq A$$
+    that is a combination of $A$ and $B$ will be preferred or equally preferred to $A$ itself
+\end{definition}
+
+\subsection{Budget Constraints（预算限制）}
+With a budget of $m$ and unit price $p_1, p_2$, the budget constraint is described as
+$$p_1q_1 + p_2q_2 \le m$$
+A \textbf{\textit{budget set（预算集）}} is the set of all consumption bundles that satisfy the budget constraint, where the \textbf{budget line} is the set of all bundles that \textbf{exhaust} the budget. Therefore, the budget line can be described as:
+$$p_1q_1 + p_2q_2 = m \to q_2 = -\frac{p_1}{p_2}q_1 + \frac{m}{p_2}$$
+The slope $-\frac{p_1}{p_2}$ represents the opportunity cost. \\
+The budget constraint can also appear in the form of an endowment. \\
+To analyze one commodity, one may use the budget constraint with composite good, where the composite good is all goods except for the good of interest (aggregate good), which is measured in dollars with unit of price to be $\$1$. \\
+The budget constraint can also be non-linear, some typical types include:
+\begin{quote}
+    1. Quantity discounts: a discount is applied after the consumer consumes more than a certain amount of goods. \\
+    2. Quantity limit: consumers cannot buy more than a certain amount. \\
+    3. Food stamps: a type of stamp that can only exchange for a certain type of good for a certain amount.
+\end{quote}
+
+\subsection{Rational Constrained Choice（理性的受限选择）}
+Since we assume the consumers are utility maximizers, then the consumer's problem can thus be described as 
+$$\max_{q_1, q_2}U(q_1, q_2) \text{ s.t. } p_1q_1 + p_2q_2 = m$$
+Assume the consumer's optimal bundle consists of two quantities $q_1^{*}, q_2^{*}$, and these two quantities are referred to as the \textbf{\textit{consumer's ordinary demand}}. This optimal bundle is \textbf{interior}, i.e. $q_1^{*} > 0, q_2^{*} > 0$
+\begin{definition}
+    In economic models, \textbf{\textit{exogenous variables}} are variables determined outside the model, where \textbf{\textit{endogenous variables}} are variables determined within the model.
+\end{definition}
+At the optimal bundle, the slope of IC $=$ the slope of BL (budget line), that is:
+\begin{align*}
+    \dv{q_2}{q_1} &= -\frac{p_1}{p_2} \\
+    MRS &= \frac{p_1}{p_2}
+\end{align*}
+So this indicates, given the budget constraint and the tangency condition, the optimal bundle satisfies
+$$\frac{MU_1}{p_1} = \frac{MU_2}{p_2}$$
+where the ordinary demand functions are expressed as
+$$q_1^{*} = q_1^{*}(p_1, p_2, m), q_2^{*} = q_2^{*}(p_1, p_2, m)$$
+
+\subsubsection{Computing Ordinary Demands（计算常规需求）}
+Two methods can be used to compute ordinary demands. The first one involves the budget constraint and tangency condition, and the second one involves the Lagrangian. \\
+Consider the Cobb-Douglas preference, using either methods, we have
+$$q_1^{*} = \frac{\alpha}{\alpha + \beta} \cdot \frac{m}{p_1}$$
+$$q_2^{*} = \frac{\beta}{\alpha + \beta} \cdot \frac{m}{p_2}$$
+
+Consider the Leontief preference, we have
+$$q_1^{*} = \frac{m}{p_1 + \frac{a}{b}p_2}$$
+$$q_2^{*} = \frac{\frac{a}{b}m}{p_1 + \frac{a}{b}p_2}$$
+We can think the denominator as the price of $1$ unit of combination of the good. \\
+Consider the linear preference, the optimal bundle is usually a corner solution, where either $q_1^{*} = 0 \text{or} q_2^{*} = 0$, it depends on whichever is larger $\frac{MU_1}{p_1}, \frac{MU_2}{p_2}$. \\
+For quasilinear preferences, it depends on the income of the consumer. Consider a threshold income $\bar{m}$, if $m \le \bar{m}$, it would be corner solution where all money will be spent on good $1$; if $m > \bar{m}$, it would be an interior solution where $q_1^{*} = \frac{\bar{m}}{p_1}, q_2^{*} = \frac{m - \bar{m}}{p_2}$. For the interior solution, notice that $MRS = \frac{p_1}{p_2}$ still holds.
+
+\subsection{Indirect Utility Function（非直接效用函数）}
+These functions represent the maximum utility as a function of exogenous parameters only, that is substituting $$q_1^{*}, q_2^{*}$$ for $q_1, q_2$ in the utility function. We denote this function as $V$:
+$$V = V(q_1^{*}, q_2^{*})$$
+
+\subsection{Expenditure Minimization（花费最小化）}
+This problem is choosing the bundle that minimizes the expenditure while reaching a certain utility. Mathematically, this is described as:
+$$\min_{q_1, q_2}p_1q_1 + p_2q_2 \text{ s.t. } U(q_1, q_2) = \bar{U}$$
+This can be solved using the Lagrangian.
+
+\newpage

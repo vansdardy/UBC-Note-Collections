@@ -1,0 +1,34 @@
+\section{Small Sample Properties}
+Right now, we can compute \textbf{point estimates} from our regression, but we do not know how accurate our estimates are. Thus, we need to know the sampling distribution of the relevant estimates, $\hat{\beta_j}, \hat{Y_i}, \hat{\epsilon_i}$.
+
+Small sample properties are those properties that are true regardless of sample size, and large sample properties are asymptotic properties obtained as $n \to \infty$.
+
+The assumptions we have made about a regression is that $X_i$ and $Y_i$ are randomly sampled, and for a linear regression equation, $E(\epsilon_i | X_i) = 0$ (strict exogeneity assumption). However, we only need the weak exogeneity condition, $E(\epsilon_i X_i) = 0, E(\epsilon_i) = 0$ for a regression to work. We also assume no perfect multicollinearity.
+
+\subsection{Unbiasedness}
+The bias in an estimator is described as
+$$B = E(\hat{\theta}) - \theta$$
+such that the estimator is unbiased if $B = 0$.
+
+The first property is that $\hat{\beta_j}$ is \textbf{unbiased}. That is
+$$E(\hat{\beta_j}) = \beta_j$$
+
+The precision of this estimate is then mathematically expressed as:
+$$V(\hat{\beta_j} | X_i) = \frac{\sum_{i=1}^{n} \hat{\tilde{X_{ji}}}^2 \sigma^2(X_i)}{(SST_j (1 - R_j^2))^2}$$
+Essentially, to reduce the standard error, we hope to have $X_{ji}$ to have more variation relative to $Y_i$, but also avoid being explained by other explanatory variables. \\
+Notice that if $X_{ji}$ is perfectly collinear with other $X$ variables, the denominator has $R_j^2 = 1$, blowing up the standard error. A measure of collinearity is \textbf{\textit{variance inflation factor}}, which is simply $\frac{1}{1 - R_j^2}$
+
+We also need to estimate the numerator, and the assumption we have made is \textbf{\textit{homoskedasticity}}, or specifically $\sigma^2(X_i) = \sigma^2$, a constant. In this case, $V(\hat{\beta_j} | X_i) = \frac{\sigma^2}{SST_j (1 - R_j^2)}$. We estimate $\sigma^2$ by having $E(\epsilon^2)$, so the sample analogue for $\sigma^2$ is
+$$\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^{n} \hat{\epsilon}^2$$
+and correcting by the degrees of freedom, the fraction should be $\frac{1}{n - (n - k - 1)}$, or specifically, this estimator is also unbiased.
+
+\subsection{Distribution of Estimates}
+By the unbiasedness and the Gauss-Markov theorem, we know $\hat{\beta_j}$ is unbiased and efficient, now we focus on the sampling distribution.
+
+If $X_i$ is homoskedastic and normally distributed, then $\hat{\beta_j} \sim N(\beta_j, \sqrt{V(\beta_j)})$. This is derived from the assumption that the residual is normally distributed that $\epsilon_i | X_i \sim N(0, \sigma)$ (may not be a good one).
+
+Thus, the inferential formla are either
+$$Z \equiv \frac{\hat{\beta_j} - \beta_j}{\sqrt{V(\hat{\beta_j})}} \sim N(0, 1)$$
+$$t \equiv \frac{\hat{\beta_j} - \beta_j}{\sqrt{\hat{V}(\hat{\beta_j})}} \sim t_{n - k - 1}$$
+
+\newpage

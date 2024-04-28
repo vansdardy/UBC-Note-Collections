@@ -1,0 +1,96 @@
+\section{Perfect Competition（完全市场竞争）}
+\subsection{Firm Supply and Market Structure（企业供给与市场结构）}
+A firm's supply not only depends on its goals (assume profit maximization), the technology it can use (product / cost function), but also the structure of the market. \\
+The two structures we often use to analyze the market are: perfect competition, and monopoly.
+
+\subsection{Perfectly Competitive Market（完全竞争的市场）}
+In a perfectly competitive market, its characteristics include:
+\begin{quote}
+    1. There are many independent buyers and sellers \\
+    2. Goods offered by sellers are identical \\
+    3. Each firm's output is only small fraction of industry output \\
+    4. Buyers know everything about products and price charged by each firm \\
+    5. In the long run, firms are free to enter or exit the market
+\end{quote}
+These characteristics determine that firms are \textbf{\textit{price takers}} in a perfectly competitive market.
+
+\subsection{Firm Demand and Marginal Revenue（企业需求与边际营收）}
+We use uppercase letter to represent the industry side, and lowercase letter to represent the firm side. In the industry side, the Law of Demand is still in effect, where there will be an equilibrium price at which the market clears. For individual firms, they have only one option: matching the equilibrium price at the industry level. \\
+Each firm is only a small proportion compared to the market, and each one's ability to produce is limited by their cost structures. \\
+Note that $P = p = f(Q) \ne f(q)$, given the total revenue to be $TR = pq$ for individual firms, we have $MR = \dv{TR}{q} = p$.
+
+\subsection{Profit Maximization（利润最大化）}
+We are given $\pi = TR - TC$, and firms are price takers. \\
+So a two-step process is involved:
+\begin{quote}
+    1. First, determine which positive output level maximizes profit; \\
+    2. Then, check if $q=0$ will generate more profit
+\end{quote}
+Since if $MR > MC$, then $\pi$ will increase as $q$ increases; if $MR < MC$, then $\pi$ increases as $q$ decreases. Thus, to maximize profit, we must have $p = MR = MC$. That means $\pi_{\max}$ requires setting $q$ when $MC = MR$ and $\dv{MC}{q} > 0$
+
+\subsection{Firm Supply in the Short Run（企业短期供给）}
+In the short run, the firm either produces $q > 0$ s.t. $p = MC, \dv{MC}{q} > 0$, or produces $q = 0$. \\
+Therefore, we are essentially solving one of these two problems
+$$\max_q \pi = pq - (VC + FC)$$
+$$\max_L \pi = pq - (wL + r\bar{K})$$
+Both of which yields that $p = MC^{SR} = \frac{w}{MP_L}$. \\
+In the short run, if a firm \textbf{\textit{shuts down}} and produces $q = 0$, the firm must cover its fixed costs, this is not the same as \textbf{\textit{exiting the market}}. \\
+If the firm is producing at a positive quantity, then $\pi^{SR} = TR - (VC + FC)$; if the firm is producing at $q = 0$, then $\pi^{SR} = -FC$. \\
+A firm should shut down if $-FC > TR - (VC + FC) \iff TR < VC \iff p < AVC_{\min}$.
+
+\subsection{Firm Profit in the Short Run（企业短期利润）}
+Since the profit is determined by $\pi = TR - (VC + FC)$, and the producer surplus is $TR - VC$, we thus have
+\begin{align*}
+    \pi &= TR - TC \\
+    &= pq - TC \\
+    &= q(p - ATC)
+\end{align*}
+Thus, if $p > ATC$, then $\pi > 0$; if $p = ATC$, then $\pi = 0$; if $p < ATC$, then $\pi < 0$. And when $p = AVC_{\min}$, the firm should shut down.
+
+\subsection{Industry Supply in the Short Run（产业短期供给）}
+In the short run, the number of firms in a market is fixed with no exiting or entering. Thus the aggregate quantity is the sum of quantities supplied by each firm. \\
+Assume each firm's supply function to be $q = f(P)$, and there are $n$ firms in the market, then the industry supply function will be $Q = nq = nf(P)$. \\
+For example, if one firm has the supply function $q = \frac{1}{2}P$, and there are $50$ firms in the industry, then the industry has a supply function of $Q = 50 \times \frac{1}{2}P = 25 P$.
+
+\subsection{Firm Supply in the Long Run（企业长期供给）}
+In the long run, the firm is essentially solving one of these two problems:
+$$\max_q \pi = pq - C$$
+$$\max_{L, K} \pi = pq - (wL + rK)$$
+Both of which yields that profit is maximized when $p = MC^{LR} = \frac{w}{MP_L} = \frac{r}{MP_K}$. \\
+Thus, a firm should either produce $q > 0$ where $p = MC^{LR}, \dv{MC}{q} > 0$, or produce at $q = 0$, where the firm \textbf{\textit{exits the market}}. \\
+If the production is at $q > 0$, then $\pi = TR - TC$; if $q = 0$, then $\pi = 0$, as no $L, K$ is employed. A firm should exit the market when $TR - TC < 0 \iff pq < TC \iff p < ATC^{LR}$. \\
+In the long run, there is no barrier of entry.
+
+\subsection{Equilibrium in the Long Run（长期均衡）}
+In the long run, in a perfectly competitive market, new firms can enter and incumbent firms can leave. \\
+If $\pi > 0$, $1+$ new firms will enter the industry:
+\begin{quote}
+    1. increase supply \\
+    2. drive down the market price \\
+    3. decrease the profit of firms in the industry \\
+    4. positive economic profit: not in LR equilibrium
+\end{quote}
+If $\pi < 0$, $1+$ incumbent firms will exit the industry:
+\begin{quote}
+    1. decrease supply \\
+    2. drive up the market price \\
+    3. increase the profit of firms in the industry \\
+    4. negative economic profit: not in LR equilibrium
+\end{quote}
+If $\pi = 0$,
+\begin{quote}
+    1. no new firms will enter the industry \\
+    2. no incumbent firms will exit \\
+    3. this is in LR equilibrium
+\end{quote}
+This mean $\pi = q(p - ATC^{LR}) = 0 \iff  p = ATC^{LR}$, that is firms must operate at efficient scale of production at long run equilibrium.
+
+\subsection{Industry Supply in the Long Run（产业长期供给）}
+In the long run, we can assume the following scenario, the industry starts with
+$$Q = 600, q = 10, n = 60, P = 34$$
+Then there is an increase in demand, then the industry becomes
+$$Q = 660, q = 11, n = 60, P = 48$$
+More firms will enter the market, then the industry becomes
+$$Q = 700, q = 10, n = 70, P = 34$$
+
+\newpage

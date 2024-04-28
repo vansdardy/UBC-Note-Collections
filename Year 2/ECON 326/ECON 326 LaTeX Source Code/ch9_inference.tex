@@ -1,0 +1,34 @@
+\section{Inference}
+Now we know how to build, estimate the model with sampling distribution, we now can test the relevant hypotheses.
+
+\subsection{Testing Single Coefficient}
+This is a hypothesis test that looks like:
+$$\begin{cases}
+    H_0: \beta_1 = 0 \\
+    H_1: \beta_1 \ne 0
+\end{cases}$$
+The distribution follows:
+$$\frac{\hat{\beta_1} - \beta_1}{\hat{SE}_1} \sim_a t_{n - k - 1}$$
+The test statistic here would be
+$$t^{*} = \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}$$
+
+\subsection{Test Combination of Coefficients}
+In this case, we use the delta methods to test their combination. That is, given a linear regression, our null hypothesis is 
+$$H_0: \sum_{j} a_j \beta_j = a$$
+Note that all the $\hat{\beta_j}$s are jointly normal, so their linear combination is also normal. The test statistic is thus
+$$t = \frac{\hat{\beta_1} - \hat{\beta_2}}{SE(\hat{\beta_1} - \hat{\beta_2})}$$
+for a hypothesis $H_0: \beta_1 = \beta_2$
+
+An alternative approach is to create new variable like $X_{1i} + X_{2i}$ and transform the previous regression model to estimate one specific coefficient.
+
+\subsection{Multiple Restrictions}
+Notice that performing multiple comparisons is not equivalent to perform each comparison independently. We wish to introduce the joint size with Bonferroni's correction
+$$\frac{\text{p-value}}{\# \text{ of tests}}$$
+An example null hypothesis is
+$$H_0: \sum_{m} a_m \beta_m = a, \text{ and } \sum_{n} b_n \beta_n = b$$
+The correlated test is the $F$ test. The intuition is that if the hypothesis is true, then there are certain restrictions on the model such that the fit for an unrestricted model is almost the same as the fit for a restricted model. If it is not true, then the fit for the unrestricted model is better than that for the restricted one. The test statistic is thus
+$$F \equiv \frac{(SSR_r - SSR_u) / m}{SSR_u / (n - k - 1)} \sim F_{m, n - k - 1}$$
+
+The last thing is that we can test whether a coefficient is $0$ or not such that the variable can be excluded from the model. We test this for each $j = 1, \dots, k$, and yield model significance.
+
+\newpage

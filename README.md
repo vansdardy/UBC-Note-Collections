@@ -27,5 +27,13 @@ Course Code (Course Name) (Credits)
     - ECON 102 (Principles of Macroeconomics) (3)
     - MATH 223 (Linear Algebra) (3)
     - MATH 226 (Advanced Calculus I) (3)
+    - CPSC 213 (Introduction to Computer System) (4)
+    - CPSC 221 (Basic Algorithms and Data Structures) (4)
+    - ECON 301 (Intermediate Microeconomic Analysis) (3)
+    - ECON 319 (History and Philosophy of Economics from Ricardo to Keynes) (3)
+    - ECON 326 (Introduction to Econometrics II) (3)
+    - ENGL 110 (Approaches to Literature and Culture) (3)
 
 This list and course notes will update after each term ends (around December, April, and August).
+
+The template for the LaTeX is from a generous contributor on Overleaf: https://www.overleaf.com/latex/templates/math-notes-template/kfqdrzrzpvvk
