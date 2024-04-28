@@ -1,0 +1,33 @@
+\section{Discussion}
+Before reporting any useful conclusions, possible issues in the regression model need to be addressed first. In the graph presented in the Appendix, it is likely that the explanatory variables in the regression model suffer from heteroskedasticity. Therefore, White's test is performed for all three multiple regressions first.
+
+It yields that all three regressions failed the White's test, thus, it is necessary not to assume homoskedasticity, and compute the robust standard errors for these explanatory variables. In this case, by incorporating the robust standard errors, the regression tables are presented as the following with comparisons made when homoskedasticity is assumed, the errors for the variables have now been adjusted to incorporate heteroskedasticity:
+\input{graph_table/TP_robust.tex}
+\input{graph_table/OC_robust.tex} 
+\input{graph_table/PV_robust.tex}
+\newpage
+
+\subsection{Specification Check}
+For each dining hall, tests for $H_0^{(0)}, H_0^{(1)}, H_0^{(2)}, H_0^{(3)}$ are performed to see if the result presented in the above regression table answers the research question.
+
+For the Totem Park dining hall, one fails to reject all four null hypotheses. This indicates that it is statistically possible for none of the number of diners to have any impact on the food waste. Even if an additional null hypothesis $H_0^{4}: \beta_0 = 0$ is tested, the test yields $p \approx 0.058 < 0.06$, indicating there is still about a $6\%$ chance that the null hypothesis is true. Thus, it can be asserted that the parameters in Totem Park's regression table are statistically insignificant.
+
+For the Orchard Commons dining hall, one only fails to reject $H_0^{3}$, that is in the multiple regression, it is possible for the number of dinner diners to have no impact on the daily food waste. Therefore, it can be concluded that the number of diners of at least one dining hour has an impact on the daily waste where, specifically, it is the breakfast diners and lunch diners who contribute to this impact. By analyzing Orchard Commons' regression table, the parameters read $\beta_2 = -0.254 \pm 0.096$ and $\beta_3 = 0.373 \pm 0.097$. It can interpreted that for an extra unit of breakfast diners, the daily food waste is expected to decrease by about $-0.25$ pounds; whereas for an extra unit of lunch diners, the daily food waste is expected to increase by about $0.37$ pounds. Thus, apart from the number of diners, it is possible for other factors to explain this difference between dining hours.
+
+For the Place Vanier dining hall, one fails to reject these null hypotheses: $H_0^{(1)}$, and $H_0^{(2)}$. However, for the test on $H_0^{(0)}$, it yields that $p \approx 0.06 < 0.1$, and for the test on $H_0^{(3)}$, it yields that $p \approx 0.04 < 0.05$. From this, a weak conclusion can be made: if the number of diners indeed has an impact on the amount of daily food waste, the source of such an impact is most likely to be the number of dinner diners at Place Vanier. The regression table reported that for the dinner diners, the parameter reads $\beta_3 = 0.183 \pm 0.102$, indicating for an extra unit of dinner diners, it is expected that the daily food waste to increase by about $0.18$ units. Similar to Orchard Commons' situation, other factors can be incorporated to discuss why this is the case.
+
+\subsection{Robustness Analysis}
+Alongside the multiple regression model, the other aforementioned simple regression on the relationship between the amount of daily food waste and the total number of diners is also performed to compare if the results concluded from the previous section are consistent.
+
+For Totem Park, the non-robust result from this regression yields $\alpha_1 = 0.032 \pm 0.070$. The null hypothesis states that $H_0^{'}: \alpha_1 = 0$, and the test for this specification yields that it fails to reject the null hypothesis, indicating it is highly possible that the number of diners has no impact on the amount of daily food waste. This indication aligns with what is concluded in the previous section.
+
+For Orchard Commons, the non-robust result from the regression yields $\alpha_1 = 0.060 \pm 0.014$ and the test for the null hypothesis rejects the null hypothesis by a wide margin. This indicates if one considers all diners at Orchard Commons as a whole, for an extra unit of diner, it is expected that the daily food waste will increase by about $0.06$ pounds. This indeed aligns with what is concluded in the previous section, where the number of diners does have impact on the daily food waste. This regression suggests that the impact from each dining hour is evened out.
+
+For Place Vanier, the non-robust result from the regression yields $\alpha_1 = 0.059 \pm 0.036$ and the test yields that one fails to reject the null hypothesis. There is more than $10\%$ chance that the null hypothesis is factually true. This still somewhat aligns with the results reached from the previous section. The previous section concludes that if there is an impact from the number of diners on the amount of daily food waste, the impact is most likely sourced from the number of dinner diners. The current regression can further affirm that the effect of the number of dinner diners may be masked by the diners at other dining hours, since as a whole, it is still very likely that there is no impact from the number of diners at all.
+
+\subsection{Summary}
+In this \textbf{\textit{Discussion}} section, it is first demonstrated that the explanatory variables suffer from heteroskedasticity.
+
+By comparing and contrasting the conclusions made from both specification checks and robustness tests, it is seen that the same conclusions can be reached and the results align with each other with proper reasoning.
+
+\newpage

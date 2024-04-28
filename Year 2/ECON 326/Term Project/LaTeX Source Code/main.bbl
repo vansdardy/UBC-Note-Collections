@@ -1,0 +1,144 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Graves%
+\ \BBA {} Chan%
+}{%
+Graves%
+\ \BBA {} Chan%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+cleanup}
+\APACinsertmetastar {%
+cleanup}%
+\begin{APACrefauthors}%
+Graves, J.%
+\BCBT {}\ \BBA {} Chan, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {cleanup.r.} {cleanup.r.}
+\newblock
+\APAChowpublished {Jupyter Notebook}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ren%
+}{%
+Ren%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+template}
+\APACinsertmetastar {%
+template}%
+\begin{APACrefauthors}%
+Ren, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+\APACrefbtitle {Math Notes Template.} {Math notes template.}
+\newblock
+\APAChowpublished {Overleaf Template}.
+\newblock
+\begin{APACrefURL} \url{https://www.overleaf.com/latex/templates/math-notes-template/kfqdrzrzpvvk} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+SHCS%
+}{%
+SHCS%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+introduce_all_access}
+\APACinsertmetastar {%
+introduce_all_access}%
+\begin{APACrefauthors}%
+SHCS.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{Apr}{}.
+\newblock
+\APACrefbtitle {Introducing All Access Dining at UBC Vancouver.} {Introducing all access dining at ubc vancouver.}
+\newblock
+\APACaddressPublisher{}{University of British Columbia Student Housing and Community Services}.
+\newblock
+\begin{APACrefURL} \url{https://shcs.ubc.ca/introducing-all-access-dining-at-ubc-vancouver/#:~:text=Following%20a%20successful%20launch%20of,Place%20Vanier%20and%20Totem%20Park.} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tian%
+}{%
+Tian%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+data_workbook}
+\APACinsertmetastar {%
+data_workbook}%
+\begin{APACrefauthors}%
+Tian, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{Apr}{}.
+\newblock
+\APACrefbtitle {Data Workbook.} {Data workbook.}
+\newblock
+\APAChowpublished {Jupyter Notebook}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+UBC%
+}{%
+UBC%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+ubcallaccessdining}
+\APACinsertmetastar {%
+ubcallaccessdining}%
+\begin{APACrefauthors}%
+UBC.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+\APACrefbtitle {Residence Dining Plan.} {Residence dining plan.}
+\newblock
+\APACaddressPublisher{}{University of British Columbia}.
+\newblock
+\begin{APACrefURL} \url{https://food.ubc.ca/meal-plans/residence-meal-plan-all-access-dining/} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+UBC-Food-Services%
+}{%
+UBC-Food-Services%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+food_waste}
+\APACinsertmetastar {%
+food_waste}%
+\begin{APACrefauthors}%
+UBC-Food-Services.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {ECON326 data raw.zip.} {Econ326 data raw.zip.}
+\newblock
+\APAChowpublished {ZIP File}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
