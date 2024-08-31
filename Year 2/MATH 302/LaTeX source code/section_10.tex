@@ -1,0 +1,68 @@
+\section{Section 10}
+\subsection{Conditional Distribution of Discrete Random Variables}
+\begin{definition}
+    Let $X$ be a discrete r.v., $B$ be an event with $\Prob(B) > 0$, the conditional p.m.f of $X$ given $B$ is defined as:
+    $$p_{X|B}(k) = \Prob(X = k \ | \ B) = \frac{\Prob(X = k, B)}{\Prob(B)} = \frac{\Prob(B \ | \ X = k)\Prob(X = k)}{\Prob(B)}$$
+\end{definition}
+\begin{definition}
+    Following the same setup, the expected value of $X$ given $B$ is
+    $$\E(X \ | \ B) = \sum_{k} k \times p_{X | B}(k)$$
+\end{definition}
+\begin{theorem}
+    The \textbf{\textit{Law of Total Probability}} states that, if $B_1, \dots, B_n$ is a partition of $\Omega$, then
+    $$\Prob(A) = \sum_{i} \Prob(A \ | \ B_i)\Prob(B_i)$$
+    This gives us
+    $$p_X(k) = \sum_{i = 1}^{n} p_{X | B_i}(k) \cdot \Prob(B_i)$$
+    bringing the expected value to be
+    $$\E(X) = \sum_{i = 1}^{n} \E(X \ | \ B_i) \cdot \Prob(B_i)$$
+\end{theorem}
+We then transition from conditioning on events to conditioning on r.v.s. Then,
+\begin{definition}
+    Let $Y$ be another discrete r.v., so conditioning on $\{Y = y\}$, then
+    $$p_{X|Y}(x|y) = \Prob(X = x \ | \ Y = y) = \frac{p_{X, Y}(x, y)}{p_Y(y)}$$
+\end{definition}
+So this gives the conditional expected value of $X$ conditional on $Y = y$, we have
+$$\E(X \ | \ Y = y) = \sum_{x} x \cdot p_{X|Y}(x|y)$$
+Since $\{Y = y\}$ form a partition, then we have:
+$$p_X(x) = \sum_{y} p_{X|Y}(x|y) p_Y(y)$$
+$$\E(X) = \sum_{y} \E(X \ | \ Y = y) \cdot p_Y(y)$$
+By Bayes' Formula, we also have:
+$$p_{X|Y}(x|y) = \frac{p_{Y|X}(y|x)p_X(x)}{p_Y(y)}$$
+
+\subsection{Conditional Distribution for Continuous Random Variables}
+Analagous to discrete cases, 
+\begin{definition}
+    Let $X, Y$ be jointly continuous, the conditional function of $X$ given $Y = y$ is defined as:
+    $$f_{X|Y}(x|y) = \frac{f_{X, Y}(x, y)}{f_Y(y)}$$
+    The \textbf{\textit{conditional expectation}} of $g(X)$ given $Y = y$ is defined as:
+    $$\E(g(X) \ | \ Y = y) = \int_{-\infty}^{\infty} g(x) \cdot f_{X|Y}(x|y) \dd x$$
+    The \textbf{\textit{conditional probability}} of $X \in A$ given $Y = y$ is defined as:
+    $$\Prob(X \in A \ | \ Y = y) = \int_A f_{X|Y}(x|y) \dd x$$
+\end{definition}
+Then by definition, 
+$$f_X(x) = \int_{-\infty}^{\infty} f_{X|Y}(x|y) \cdot f_Y(y) \dd y$$
+$$\E(g(X)) = \int_{-\infty}^{\infty} \E(g(X) \ | \ Y = y) \cdot f_Y(y) \dd y$$
+
+\subsection{Conditional Expectation}
+From previous definitions, we can consider $\E(X \ | \ Y = y) = v(y)$ to be a function of $y$. Then we transform this to $v(Y)$ so that $\E(X \ | \ Y) = v(Y)$ and it becomes a r.v.
+\begin{theorem}
+    The \textbf{\textit{Law of Iterated Expectation}} states that:
+    $$\E(X) = \E(\E(X | Y))$$
+\end{theorem}
+Conditional expectation respects linearity, thus, we have
+$$\E(X_1 + X_2 \ | \ Y) = \E(X_1 \ | \ Y) + \E(X_2 \ | \ Y)$$
+Independence means that conditioning has no effect, thus, we should have
+$$p_{X|Y}(x|y) = p_X(x)$$
+$$f_{X|Y}(x|y) = f_X(x)$$
+if and only if $X, Y$ are independent. This also adds that:
+$$\E(X \ | \ Y = y) = \E(X), \E(X \ | \ Y) = \E(X)$$
+Some properties include:
+\begin{quote}
+    1. $\E(X \ | \ X = x) = x$ \\
+    2. $\E(g(X) \ | \ X = x) = g(x)$ \\
+    3. $\E(X \ | \ X) = X$ \\
+    4. $\E(g(X) \ | \ X) = g(X)$ \\
+    5. $\E(g(X)f(Z) \ | \ X) = g(X) \cdot \E(f(Z)\ | \ X)$
+\end{quote}
+
+\newpage

@@ -1,0 +1,91 @@
+\section{Section 2 - Conditional Probability and Independence}
+\subsection{Conditional Probability}
+We write $\Prob(A | B)$ to be ``the probability that event $A$ occurs \textbf{given} event $B$ occurs".
+\begin{definition}
+    The probability that $A$ occurs given $B$ occurs is defined to be:
+    $$\Prob(A|B) = \frac{\Prob(AB)}{\Prob(B)}$$
+    where $\Prob(AB)$ represents that both $A$ and $B$ occurs.
+\end{definition}
+\begin{theorem}
+    $\Prob(A_1A_2\dots A_n) = \Prob(A_1) \times \Prob(A_2 | A_1) \times \dots \times \Prob(A_n | A_1A_2\dots A_{n-1})$. \\
+    We also have:
+    $$\Prob(A) = \Prob(A|B) \cdot \Prob(B) + \Prob(A|B^C) \cdot \Prob(B^C)$$
+    Furthermore, if $B_1, \dots, B_n$ is a partition of $\Omega$, then
+    $$\Prob(A) = \sum_{i = 1}^n \Prob(A|B_i)\Prob(B_i)$$
+\end{theorem}
+
+\subsection{Bayes' Formula}
+\begin{theorem}
+    \textbf{\textit{Bayes' Formula}} is the following:
+    $$\Prob(B|A) = \frac{\Prob(A|B) \cdot \Prob(B)}{\Prob(A)} = \frac{\Prob(A|B) \cdot \Prob(B)}{\Prob(A|B) \cdot \Prob(B) + \Prob(A|B^C) \cdot \Prob(B^C)}$$
+\end{theorem}
+This is often used to represent situations like ``false positives", where the table is the following: \par
+{
+\centering
+\begin{tabular}{|l|l|l|} 
+    \hline
+    Test $\downarrow$ Actual $\rightarrow$ & Positive       & Negative        \\ 
+    \hline
+    Positive & True Positive  & False Positive  \\ 
+    \hline
+    Negative & False Negative & True Negative   \\
+    \hline
+\end{tabular}\par
+}
+
+\subsection{Independence}
+\begin{definition}
+    $A$ and $B$ are independent if and only if $\Prob(A) = \Prob(A|B)$, equivalently
+    $$\Prob(AB) = \Prob(A) \times \Prob(B)$$
+\end{definition}
+If $A$ and $B$ are independent, then $A$ and $B^C$ are also independent. Mutually exclusive (disjoint) is not equivalent to independence. The independence between two events is essentially \textbf{proportional overlap}. For independence with more than $2$ events, say $A_1, \dots, A_n$, they are independent if and only if for any set of indices $1 \le i_1 < i_2 < \dots < i_k \le n$, we have
+$$\Prob(A_{i_1}A_{i_2}\dots A_{i_k}) = \Prob(A_{i_1}) \times \Prob(A_{i_2}) \times \dots \times \Prob(A_{i_k})$$
+If we have $A$, $B$ and $C$, and we only have
+\begin{quote}
+    1. $\Prob(AB) = \Prob(A) \times \Prob(B)$ \\
+    2. $\Prob(BC) = \Prob(B) \times \Prob(C)$ \\
+    3. $\Prob(CA) = \Prob(C) \times \Prob(A)$
+\end{quote}
+they are only \textbf{\textit{pairwise independent}}.
+\begin{definition}
+    Random variables $X_1, \dots, X_n$ are independent if and only if, $\forall B_1, \dots, B_n \subset \R$,
+    $$\Prob(X_1 \in B_1, X_2 \in B_2, \dots, X_n \in B_n) = \prod_{i = 1}^{n} \Prob(X_i \in B_i)$$
+\end{definition}
+This implies that discrete random variables $X_1, \dots, X_n$ are independent if and only if, $\forall k_1, \dots, k_n \in \R$, we have
+$$\Prob(X_1 = k_1, X_2 = k_2, \dots, X_n = k_n) = \prod_{i = 1}^{n} \Prob(X_i = k_i)$$
+
+\subsection{Independent Trials}
+A \textbf{\textit{trial}} is a run of an experiment, where we we consider an experiment with two outcomes: $1$ to denote success with probability $p$, and $0$ to denote failure with probability $1 - p$.
+\begin{definition}
+    A \textbf{\textit{Bernoulli random variable}} with parameter $p$ satisfies:
+    $$X = \begin{cases}
+        1 & \text{with probability } p \\
+        0 & \text{with probability } 1-p
+    \end{cases}$$
+    This random variable represents $1$ independent trial. \\
+    We denote this random variable to be $X \sim \text{Bern}(p)$
+\end{definition}
+If we have $n$ trials, and let random variable $X$ be the number of successes, we have
+\begin{definition}
+    A \textbf{\textit{binomial random variable}} with parameter $n$ and $p$ satisfies:
+    $$\Prob(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$$
+    for $k = 0, 1, \dots, n$. \\
+    We denote this random variable to be $X \sim \text{Bin}(n, p)$
+\end{definition}
+If $X_1, \dots, X_n \sim \text{Bern}(p)$, and they are all independent, then
+$$X_1 + X_2 + \dots + X_n \sim \text{Bin}(n, p)$$
+If we have unbounded trials, and let random variable $X$ be the number of trials until the $1$st success, we have
+\begin{definition}
+    A \textbf{\textit{geometric random variable}} with parameter $p$ satisfies:
+    $$\Prob(X = k) = (1-p)^{k-1}p$$
+    for $k = 1, 2, \dots$
+    We denote this random variable to be $X \sim \text{Geom}(p)$
+\end{definition}
+
+\subsection{Conditional Independence}
+\begin{definition}
+    Events $A$ and $B$ are said to be \textbf{\textit{conditionally independent}} given event $D$ if
+    $$\Prob(AB|D) = \Prob(A|D) \times \Prob(B|D)$$
+\end{definition}
+
+\newpage

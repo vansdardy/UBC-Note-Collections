@@ -1,0 +1,1 @@
+This is an A2 level course, the language course is more interactive than note-based, thus, written notes won't be included for now.

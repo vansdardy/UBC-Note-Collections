@@ -1,0 +1,59 @@
+\section{Section 6 - Joint Distribution of Random Variables}
+\subsection{Joint Distribution of Discrete Random Variables}
+\begin{definition}
+    Let $X, Y$ be discrete r.v.s defined on the same sample space, then the \textbf{\textit{joint p.m.f}} is defined by:
+    $$p(k, l) = \Prob(X = k, Y = l)$$
+    for all values of $k$ and $l$.
+\end{definition}
+\begin{definition}
+    Given a joint p.m.f of $p(k, l)$, the p.m.f of $X$ is defined by:
+    $$p_X(k) = \sum_{l}p(k, l)$$
+    where $p_X$ is the \textbf{\textit{marginal p.m.f}} of $X$
+\end{definition}
+\begin{theorem}
+    Let $g: \R^2 \to \R$, and let $X, Y$ be discrete r.v. with joint p.m.f $p$, then:
+    $$\E(g(X, Y)) = \sum_{k, l} g(k, l)p(k, l)$$
+\end{theorem}
+A famous example in game theory is the situation of Prisoner's Dilemma.
+
+\subsection{Jointly Continuous Random Variables}
+\begin{definition}
+    R.v.s $X, Y$ are \textbf{\textit{jointly continuous}} if $\exists f: \R^2 \to \R^+$ such that $\forall B \subset \R^2$, we have
+    $$\Prob((X, Y) \in B) = \iint_B f(x, y) \dd x \dd y$$
+\end{definition}
+We need:
+\begin{quote}
+    1. $f(x, y) \ge 0$ \\
+    2. $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) \dd x \dd y = 1$
+\end{quote}
+\begin{definition}
+    Let $g: \R^2 \to \R$, the expected value of $g$ can be characterized by:
+    $$\E(g(X, Y)) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(x, y) f(x, y) \dd x \dd y$$
+\end{definition}
+\textbf{If ($X, Y$) are jointly continuous, then $X, Y$ are continuous r.v.s}. However, if $X, Y$ are continuous, $(X, Y)$ need not be jointly continuous.
+\begin{definition}
+    Let $(X, Y)$ be jointly continuous with joint p.d.f $f$, then $X$ is continuous with p.d.f $f_X$ satisfying:
+    $$f_X(x) = \int_{-\infty}^{\infty} f(x, y) \dd y$$
+\end{definition}
+We specifically analyze uniform r.v.s in higher dimensions. Consider $D \subset \R^2$ with $A_D < \infty$, then $(X, Y)$ has uniform distribution on $D$ if:
+$$f(x, y) = \begin{cases}
+    \frac{1}{A_D} & (x, y) \in D \\
+    0 & (x, y) \notin D
+\end{cases}$$
+Let $(X_1, \dots, X_n) \sim \Unif(\sqrt{n}B_n)$, with $B_n = \{(x_1, \dots, x_n): x_1^2 + \dots + x_n^2 \le n\}$, then we first have:
+$$f(x_1, \dots, x_n) = \begin{cases}
+    \frac{1}{\text{Vol}(\sqrt{n}B_n)} & (x_1, \dots, x_n) \in \sqrt{n}B_n \\
+    0 & (x_1, \dots, x_n) \notin \sqrt{n}B_n
+\end{cases}$$
+For $r > 0$, we also have $\text{Vol}(rB_n) = r^n\text{Vol}(B_n)$. \\
+The marginal of $X_1$ is derived to be ($V_i = \text{Vol}(B_i)$):
+$$f_{X_1}(x_1) = \frac{V_{n-1} \cdot n^{\frac{n}{2}}}{V_n \sqrt{n}^n \sqrt{n - x_1^2}} \cdot (\frac{n - x_1^2}{n})^{\frac{n}{2}}$$
+when taking $n \to \infty$, it converges to $\phi(x_1)$
+
+\subsection{Joint Distribution and Independence}
+For $X, Y$ be discrete r.v.s with joint p.m.f $p$ and marginal $p_X$, $p_Y$, $X$ and $Y$ are independent if and only if:
+$$p(k, l) = p_X(k) \times p_Y(l)$$
+Analagously, for $X, Y$ be continuous r.v.s with joint p.d.f $f$ and marginal $f_X$, $f_Y$, $X$ and $Y$ are independent if and only if:
+$$f(x, y) = f_X(x) \times f_Y(y)$$
+
+\newpage

@@ -1,0 +1,42 @@
+\section{Section 9}
+\subsection{Estimating Tail Probabilities}
+\begin{theorem}
+    \textbf{\textit{Markov Inequality}} states that, for a non-negative random variable $X$ and some $t > 0$, we have
+    $$\Prob(X \ge t) \le \frac{\E(X)}{t}$$
+\end{theorem}
+The proof relies on $X \ge t \cdot 1_{[X \ge t]}$.
+\begin{theorem}
+    \textbf{\textit{Chebychev's Inequality}} states that, for a random variable $X$ with $\E(X) = \mu$ and $\sigma^2(X) = \sigma^2$, then for some $t > 0$, we have:
+    $$\Prob(|X - \mu| \ge t) \le \frac{\sigma^2}{t^2}$$
+\end{theorem}
+For $X_i$ be uncorrelated (independence suffices) with $\E(X_i) = \mu$ and $\sigma^2(X_i) = \sigma^2$, then define $S_n = X_1 + \dots + X_n$, we have
+$$\Prob(|S_n - n\mu| \ge \sqrt{n}t) \le \frac{\sigma^2}{t^2}$$
+$$\Prob(|\frac{S_n}{n} - \mu| \ge \frac{t}{\sqrt{n}}) \le \frac{\sigma^2}{t^2}$$
+
+\subsection{}
+\subsection{Law of Large Numbers, Central Limit Theorem, General Version}
+\begin{theorem}
+    Let $X_1, \dots, X_n$ be iid with $\E(X_i) = \mu, \sigma^2(X_i) = \sigma^2 < \infty$, let
+    $$\bar{X}_n = \frac{X_1 + \dots + X_n}{n}$$
+    then $\forall \varepsilon > 0$,
+    $$\lim_{n \to \infty} \Prob(|\bar{X}_n - \mu| \le \varepsilon) = 1$$
+    $$\lim_{n \to \infty} \Prob(|\bar{X}_n - \mu| > \varepsilon) = 0$$
+\end{theorem}
+If we only focus on a small interval around $\mu$, we ask about the distribution of $\bar{X}_n$. We examine $Z_n = \frac{\sqrt{n}}{\sigma}(\bar{X}_n - \mu)$, so that $\E(Z_n) = 1$ and $\sigma^2(Z_n) = 1$.
+\begin{theorem}
+    Let $X_1, \dots, X_n$ be iid with $\E(X_i) = \mu, \sigma^2(X_i) = \sigma^2 < \infty$, let
+    $$Z_n = \frac{1}{\sigma \sqrt{n}} \sum_{i = 1}^{n} (X_i - \mu)$$
+    Then $Z_n \to_d N(0, 1)$, $\forall a \le b \in (-\infty, \infty)$, we have
+    $$\lim_{n \to \infty} \Prob(Z_n \in [a, b]) = \Phi(b) - \Phi(a)$$
+\end{theorem}
+This means a normalized sum of many iid r.v.s is almost $N(0, 1)$, that is
+$$\frac{1}{\sqrt{n}} \sum \pm 1 \approx N(0, 1)$$
+The normal approximation start with $X_1, \dots, X_n$ being iid, with $\E(X_i) = \mu$ and $\sigma^2(X_i) = \sigma^2$, let $S_n = X_1 + \dots + X_n$, thus, we know $\E(S_n) = n\mu$ and $\sigma^2(S_n) = n\sigma^2$, so if $n$ is large
+$$S_n \approx N(n\mu, n\sigma^2) = n \mu + \sqrt{n}\sigma N(0, 1)$$
+\begin{theorem}
+    $$|\Prob(Z_n \le x) - \Phi(x)| \le \frac{3\E|X - \mu|^3}{\sigma^3 \sqrt{n}}$$
+\end{theorem}
+The tail decay for normal random variables has:
+$$\Prob(N(0, 1) \ge t) \le e^{-\frac{t^2}{2}}$$
+
+\newpage

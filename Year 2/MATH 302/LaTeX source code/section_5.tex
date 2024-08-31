@@ -1,0 +1,45 @@
+\section{Section 5}
+\subsection{Moment Generating Function}
+\begin{definition}
+    The \textbf{\textit{moment generating function}} of a r.v. $X$ is the function $M: \R \to \R^+$ defined by:
+    $$M(t) = M_X(t) = \E(e^{tX})$$
+\end{definition}
+The m.g.f of some common r.v.s include:
+\begin{quote}
+    1. $X \sim \Bern(p)$: $M(t) = 1 - p + pe^t$ \\
+    2. $X \sim \Unif(0, 1)$: $M(t) = \frac{1}{t}(e^t - 1)$ \\
+    3. $X \sim N(0, 1)$: $M(t) = e^{\frac{1}{2}t^2}$ \\
+    4. $X \sim \Exp(\lambda)$:
+    $$M(t) = \begin{cases}
+        \frac{\lambda}{\lambda - t} & t < \lambda \\
+        \infty & t \ge \lambda
+    \end{cases}$$
+\end{quote}
+\begin{theorem}
+    M.g.f can generate moments in the following way:
+    $$M^{(n)}(0) = \E(X^n)$$
+    That is
+    $$\dv[n]{}{t}M(t)|_{t = 0} = \E(X^n)$$
+\end{theorem}
+We say that $X$ and $Y$ are equal in distribution if $\forall B \subset \R$, $\Prob(X \in B) = \Prob(Y \in B)$.
+\begin{theorem}
+    If $M_X(t) = M_Y(t) \ne \infty$, we say $X \stackrel{\text{dist.}}{=} Y$. \\
+    More generally, if $\exists \delta > 0$, $\forall t \in (-\delta, \delta)$, $M_X(t) = M_Y(t) \ne \infty$, we say $X \stackrel{\text{dist.}}{=} Y$.
+\end{theorem}
+
+\subsection{Distribution of a Function of a Random Variable}
+\begin{theorem}
+    Let $X$ be a discrete r.v. with p.m.f $p_X$, $g$ be an one-to-one function with $Y = g(X)$, then $Y$ has p.m.f satisfying $p_Y(g(k)) = p_X(k)$
+\end{theorem}
+If $X$ is still discrete, but $g$ is no longer $one-to-one$, then we have
+$$p_Y(l) = \sum_{k: g(k) = l} p_X(k)$$
+For continuous random variables, we derive its c.d.f for $g(X)$. \\
+For affine transformations, that is $Y = aX + b$, we should have
+$$f_Y(s) = \frac{1}{|a|} \times f_X(\frac{s - b}{a})$$
+If $g$ is one-to-one and differentiable for continuous r.v. $X$, and $Y = g(X)$, we would have:
+$$f_Y(y) = \frac{f_X(g^{-1}(y))}{|g'(g^{-1}(y))|}$$
+We also need $g$ have derivative at only finite number of points and $g^{-1}$ existing. For other points, $f_Y(y) = 0$.
+If $g$ is only differentiable and has derivative at finitely many number of points, with $Y = g(X)$, we have:
+$$f_Y(y) = \sum_{x: g(x) = y, g'(x) \ne 0} \frac{f_X(x)}{|g'(x)|}$$
+
+\newpage

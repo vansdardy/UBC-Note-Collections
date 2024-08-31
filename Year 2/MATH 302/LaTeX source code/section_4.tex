@@ -1,0 +1,106 @@
+\section{Section 4}
+\subsection{Law of Large Numbers (LLN), Binomial Version}
+Consider $X_i \sim \text{Bern}(p)$, and $S_n = X_1 + \dots + X_n$ all of which are independent. We already know $S_n \sim \text{Bin}(n, p)$, but as $n$ gets large, it becomes very hard to calculate, thus we use binomial approximation:
+\begin{quote}
+    1. First order approximation: $S_n \approx \E(S_n) = np$ \\
+    2. Second order approximation (deviation from mean is Gaussian):
+    $$S_n \approx \E(S_n) + \sqrt{\sigma^2(S_n)}\cdot N(0, 1) = np + \sqrt{np(1-p)} \cdot N(0, 1)$$
+\end{quote}
+\begin{theorem}
+    The \textbf{\textit{Law of Large Numbers}} claim:
+    $$\forall \varepsilon > 0, \lim_{n \to \infty} \Prob(|\frac{S_n}{n} - p| < \varepsilon) = 1$$
+    This is equivalent to saying:
+    $$\forall \delta > 0, \exists N, n \ge N, 1 - \delta \le \Prob(|\frac{S_n}{n} - p| < \varepsilon) \le 1$$
+    We can call this $\frac{S_n}{n}$ converges to $p$ in probability.
+\end{theorem}
+We define $\frac{S_n}{n}$ to be \textbf{\textit{proportion of success}}, with expected value $p$. \\
+Note that for any r.v. $X$, $\{|X| \le a\} \subset \{X \le a\}$.
+
+\subsection{Central Limit Theorem (CLT), Binomial Version}
+Let r.v. $S_n \sim \text{Bin}(n, p)$ with $\E(S_n) = np$ and $\sigma^2(S_n) = np(1-p)$, we standardize it to another r.v. $Q_n$ with:
+$$Q_n = \frac{S_n - np}{\sqrt{np(1-p)}}$$
+so $\E(Q_n) = 0$ and $\sigma^2(Q_n) = 1$. \\
+Then $Q_n$ converges to $N(0, 1)$ in distribution.
+\begin{theorem}
+    The \textbf{\textit{Central Limit Theorem}} (CLT)) claim:
+    $$\lim_{n \to \infty} \Prob(Q_n \in [a, b]) = \Phi(b) - \Phi(a)$$
+\end{theorem}
+The normal approximation goes from CLT saying:
+$$\frac{S_n - np}{\sqrt{np(1-p)}} \to_d N(0, 1)$$
+This means for large $n$, $S_n$ is approximately $N(np, np(1-p))$, the approximation is accurate if $np(1-p)>10$. \\
+Consider a random walk problem, where one takes 1 step left or right each with $\frac{1}{2}$ probability, about how far is the person from home after $n$ steps, assuming the person starts from the house. \\
+Let
+$$X_i = \begin{cases}
+    1 & \frac{1}{2} \\
+    -1 & \frac{1}{2}
+\end{cases}$$
+and $Y_i \sim \text{Bern}(\frac{1}{2})$, then $X_i = (Y_i - \frac{1}{2}) \times 2$. Then if we let $Z_n$ be the distance after $n$ steps, we have
+$$Z_n = \sum_{i = 1}^{n} X_i = 2 \sum_{i = 1}^{n} (Y_i - \frac{1}{2}) = -n + 2\sum_{i = 1}^{n} Y_i = -n + 2S_n$$
+Then by normal approximation, we have $Z_n \approx -n + 2 \cdot N(\frac{n}{2}, \frac{n}{4}) = -n + 2(\frac{n}{2} + \frac{\sqrt{n}}{2} \cdot N(0, 1)) = \sqrt{n} \cdot N(0, 1)$. \\
+The concentration of standard normal r.v. is as follows:
+\begin{quote}
+    1. $\Prob(N(0, 1) \in [-1, 1]) \approx 0.68$ \\
+    2. $\Prob(N(0, 1) \in [-2, 2]) \approx 0.95$ \\
+    3. $\Prob(N(0, 1) \in [-3, 3]) \approx 0.997$
+\end{quote}
+We then know with normal approximation:
+$$\text{Bin}(n, p) \in [np - 3\sqrt{np(1-p)}, np + 3\sqrt{np(1-p)}]$$
+
+\subsection{Application of Normal Approximation and Confidence Intervals}
+To find a 95\% confidence interval, we first start with an estimator $\hat{\mu}$. We express this estimator as some normal r.v. with information about $\mu$. We then find the distribution of $\hat{\mu} - \mu$ and build relationship with a standard normal distribution $N(0, 1)$. Finally, we may use the concentration of a standard normal variable to find the 95\% confidence interval. \\
+Recall with normal approximation $\Prob(\text{Bin}(n, p) \in [a, b]) \approx \Prob(N(np, np(1-p)) \in [a, b])$, then for large $n$, we should have for $Z \sim N(0, 1)$,
+$$S_n \approx np + \sqrt{np(1-p)} \cdot Z$$
+and $\hat{p} = \frac{S_n}{n}$. So $\hat{p} - p \approx \sqrt{\frac{p(1-p)}{n}} \cdot Z$.
+\begin{align*}
+    \Prob(|\hat{p} - p| \le \varepsilon) &\approx \Prob(|Z| \le \frac{\varepsilon \sqrt{n}}{\sqrt{p(1-p)}}) \\
+    &\ge \Prob(|Z| \le 2\varepsilon\sqrt{n}) \{\sqrt{p(1-p)} \le \frac{1}{2}\}
+\end{align*}
+For a 95\% confidence interval, we choose $\varepsilon = \frac{1}{\sqrt{n}}$, then we know:
+$$p \in [\hat{p} - \frac{1}{\sqrt{n}}, \hat{p} + \frac{1}{\sqrt{n}}]$$
+
+\subsection{Poisson Random Variable}
+\begin{definition}
+    A discrete r.v. $X$ has \textbf{\textit{Poisson}} distribution with parameter $\lambda > 0$ if:
+    $$\Prob(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}$$
+    We denote $X \sim \text{Poisson}(\lambda)$.
+\end{definition}
+\begin{theorem}
+    Let $\lambda > 0$, $k \in \mathbb{Z}^+$, then:
+    $$\lim_{n \to \infty} \Prob(\text{Bin}(n, \frac{\lambda}{n}) = k) = \Prob(\text{Poisson}(\lambda) = k)$$
+\end{theorem}
+The p.m.f of $\text{Bin}(n, \frac{\lambda}{n})$ converges to the p.m.f of $\text{Poisson}(\lambda)$. \\
+$\text{Bin}(n, p) \approx \text{Poisson}(np)$ for $n$ large and $p$ small.
+\begin{theorem}
+    Let $X \sim \text{Bin}(n, p)$, and $Y \sim \text{Poisson}(np)$, then for any $A \subset \mathbb{Z}^+$, we have
+    $$|\Prob(X \in A) - \Prob(Y \in A)| \le np^2$$
+\end{theorem}
+The properties of a Poisson r.v. include:
+\begin{quote}
+    Let $X \sim \text{Poisson}(\lambda)$, $Y \sim \text{Poisson}(\alpha)$
+    1. $\E(X) = \lambda, \sigma^2(X) = \lambda$ \\
+    2. $X + Y \sim \text{Poisson}(\lambda + \alpha)$
+\end{quote}
+Often it is natural to model as Poisson even without knowing $n$ or $p$ for
+underlying Binomial distribution. We only need to know $np = \lambda$.
+
+\subsection{Exponential Distribution}
+An exponential r.v. models continuous waiting time, analagous to geometric r.v. modelling discrete waiting time.
+\begin{definition}
+    A continuous r.v. $X$ has \textbf{\textit{exponential distribution}} with parameter $\lambda > 0$ if its p.d.f, $f$, is:
+    $$f(x) = \begin{cases}
+        \lambda e^{-\lambda x} & x \ge 0 \\
+        0 & x < 0
+    \end{cases}$$
+    We write $X \sim \text{Exp}(\lambda)$
+\end{definition}
+Thus, we have $\Prob(X > t) = e^{-\lambda t}$, giving us the c.d.f, $F$, to be:
+$$F(s) = 1 - e^{-\lambda s}$$
+A useful property is that $X \sim \text{Exp}(\alpha), Y \sim \text{Exp}(\beta)$, and they are independent, if we define $Z = \min(X, Y)$, then $Z \sim \text{Exp}(\alpha + \beta)$. \\
+Other general properties include:
+\begin{quote}
+    1. $\E(X) = \frac{1}{\lambda}, \sigma^2(X) = \frac{1}{\lambda^2}$ \\
+    2. $\alpha X \sim \text{Exp}(\frac{\lambda}{\alpha})$ \\
+    3. Memorylessness: $\Prob(X > s + t \ | \ X > t) = \Prob(X > s)$
+\end{quote}
+
+\newpage

@@ -1,0 +1,122 @@
+\section{Section 3 - Random Variables}
+\subsection{Probability Distribution}
+Probability distribution for a random variable $X$ is the set of all probabilities $\{\Prob(X \in B)\}$, we use a p.m.f for discrete random variables to represent its probability distribution. What if the random variable is not discrete?
+\begin{definition}
+    A random variable $X$ has \textbf{\textit{probability density function}} (p.d.f) $f$ if
+    $$\Prob(X \le a) = \int_{-\infty}^{a} f(x) \dd x$$
+\end{definition}
+If $X$ has a p.d.f, we call $X$ to be a \textbf{\textit{continuous random variable}}. A valid p.d.f must satisfy two conditions:
+\begin{quote}
+    1. $\displaystyle \int_{-\infty}^{\infty} f(x) \dd x = 1$ \\
+    2. $f(x) \ge 0$
+\end{quote}
+We have the following properties of a p.d.f:
+\begin{quote}
+    1. $\Prob(X \in [a, b]) = \int_{a}^{b} f(x) \dd x$ \\
+    2. $\Prob(X \in B) = \int_{B} f(x) \dd x$ \\
+    3. $\Prob(X = k) = 0$
+\end{quote}
+\begin{definition}
+    Let random variable $X$ have p.d.f:
+    $$f(x) = \begin{cases}
+        \frac{1}{b - a} & x \in [a, b] \\
+        0 & x \notin [a, b]
+    \end{cases}$$
+    We say $X$ is a uniform variable with parameters $a, b$, where $X \sim \text{Unif}(a, b)$
+\end{definition}
+The intuitive meaning of $f(x)$ is the following:
+$$f(a) \approx \frac{\Prob(X \in [a, a+\varepsilon])}{\varepsilon}$$
+
+\subsection{Cumulative Distribution Function}
+\begin{definition}
+    The \textbf{\textit{cumulative distribution function}} (c.d.f), $F$, of a random variable $X$ satisfies:
+    $$F(s) = \Prob(X \le s)$$
+    for all $s \in \R$. \\
+    The c.d.f completely characterizes the probability distribution of a random variable.
+\end{definition}
+Furthermore, if r.v. $X$ is continuous with p.d.f $f(x)$, we then have
+$$F(s) = \int_{-\infty}^{s} f(x) \dd x$$
+This also gives that $f(x) = F'(x)$, for where $F'$ is defined, if $F'$ is undefined, then we choose an arbitrary value.
+\begin{theorem}
+    If c.d.f is continuous and differentiable at all but finite number of points, then the underlying random variable is continuous.
+\end{theorem}
+The c.d.f of discrete r.v.s would have jumps at each available $X = k$.
+\begin{theorem}
+    Suppose r.v. $X$ has c.d.f $F$ which is piecewise constant, then $X$ is a discrete r.v. The values that $X$ can take are the places where $F$ has jumps. If $x$ is such a point, then $\Prob(X = x)$ is the size of the jump.
+\end{theorem}
+We also know that a c.d.f must be \textbf{non-negative}, \textbf{always increasing}, and the limit as it approaches $\infty$ is $1$.
+
+\subsection{Expectation}
+\begin{definition}
+    The expected value of a r.v. $X$ is:
+    \begin{quote}
+        1. Discrete: $\E(X) = \sum_{k} kp(k)$ \\
+        2. Continuous: $\E(X) = \int_{-\infty}^{\infty} xf(x)\dd x$
+    \end{quote}
+    It is essentially the weighted average of values that $X$ can take.
+\end{definition}
+Some expected values for common random variables are:
+\begin{quote}
+    1. $X \sim \text{Bern}(p): \E(X) = p$ \\
+    2. $X \sim \text{Bin}(n, p): \E(X) = np$ \\
+    3. $X \sim \text{Unif}(a, b): \E(X) = \frac{a+b}{2}$ \\
+    4. $X \sim \text{Geom}(p): \E(X) = \frac{1}{p}$
+\end{quote}
+\begin{theorem}
+    $$\E(X_1 + \dots + X_n) = \E(X_1) + \dots + \E(X_n)$$
+\end{theorem}
+Specifically for a geometric r.v., we have the property:
+$$\E(X) = \sum_{k \ge 1} \Prob(X \ge k) = \sum_{k \ge 1} (1-p)^{k-1}$$
+This is derived from expected values of non-negative r.v.s where:
+\begin{quote}
+    1. Discrete: $\E(X) = \sum_{k = 1}^{\infty} \Prob(X \ge k)$ \\
+    2. Continuous: $\E(X) = \int_{0}^{\infty} \Prob(X \ge x) \dd x$
+\end{quote}
+\begin{theorem}
+    Let the range of r.v. $X$ be contained in the domain of some real function $g$, then
+    $$\E(g(X)) = \sum_{k} g(k)p(k)$$
+    $$\E(g(X)) = \int_{-\infty}^{\infty} g(x)f(x) \dd x$$
+\end{theorem}
+\begin{definition}
+    The $n$th \textbf{\textit{moment}} of r.v $X$ is defined to be $\E(X^n)$
+\end{definition}
+
+\subsection{Variance}
+\begin{definition}
+    Let $X$ be a r.v with mean $\mu$, then the \textbf{\textit{variance}} of $X$ is
+    $$\text{Var}(X) = \E(X - \mu)^2$$
+    We may also denote it as $\sigma^2(X)$, where $\sigma(X)$ denotes the \textbf{\textit{standard deviation}} of $X$ with $\sigma(X) = \sqrt{\text{Var}(X)}$.
+\end{definition}
+We can consider a function $g$, where $g(X) = (X - \mu)^2$. Then we may use Theorem 3.4 to yield corresponding formulas for discrete and continuous r.v.s. \\
+Some variances of common r.v.s include:
+\begin{quote}
+    1. $X \sim \text{Bern}(p): \sigma^2(X) = p(1-p)$ \\
+    2. $X \sim \text{Bin}(n, p): \sigma^2(X) = np(1-p)$ \\
+    3. $X \sim \text{Geom}(p): \E(X) = \frac{1-p}{p^2}$
+\end{quote}
+\begin{theorem}
+    If $X$ is constant, then $\sigma^2(X) = 0$. \\
+    If $X_1, \dots, X_n$ are independent, then $\sigma^2(X_1 + \dots + X_n) = \sigma^2(X_1) + \dots + \sigma^2(X_n)$.
+    $$\E(aX+b) = a\E(X) + b$$
+    $$\sigma(aX+b) =a^2\sigma^2(X)$$
+    $$\sigma^2(X) = \E(X^2) - (\E(X))^2$$
+\end{theorem}
+
+\subsection{Gaussian Distribution}
+\begin{definition}
+    R.v. $Z$ has \textbf{\textit{standard normal distribution}} if it has p.d.f:
+    $$\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$
+    We denote $Z \sim N(0, 1)$
+\end{definition}
+The corresponding c.d.f is thus:
+$$\Phi(s) = \Prob(Z \le s) = \int_{-\infty}^{s} \phi(x) \dd x$$
+$Z$ is called standard normal because $\E(Z) = 0, \sigma^2(Z) = 1$. For the entire family of normal r.v.s, just consider $X = \sigma Z + \mu$, then we would have $X \sim N(\mu, \sigma^2)$, with $\E(X) = \mu$ and $\sigma^2(X) = \sigma^2$. \\
+Then for such a normal r.v. $X$, we have
+$$F(s) = \Prob(X \le s) = \Prob(Z \le \frac{s - \mu}{\sigma}) = \Phi(\frac{s-\mu}{\sigma})$$
+$$f(s) = \dv{s}F(s) = \frac{1}{\sigma} \cdot \phi(\frac{s-\mu}{\sigma}) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(s - \mu)^2}{2\sigma^2}}$$
+If $X \sim N(\mu, \sigma^2)$ and $Y = aX+b$, then we have
+$$Y \sim N(a\mu + b, a^2\sigma^2)$$
+Furthermore, we have a special property for the standard normal c.d.f:
+$$\Phi(t) = 1 - \Phi(-t)$$
+
+\newpage

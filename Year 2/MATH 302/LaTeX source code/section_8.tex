@@ -1,0 +1,64 @@
+\section{Section 8 - Expectation and Variance in Multivariate Setting}
+\subsection{}
+\subsection{Expectation and Variance for Sums of r.v.s}
+\begin{theorem}
+    Regardless of $X, Y$ being independent or not, we have:
+    $$\E(X+Y) = \E(X) + \E(Y)$$
+    $$\E(f(X) + g(Y)) = \E(f(X)) + \E(g(Y))$$
+    For $X, Y$ being independent r.v.s, we have:
+    $$\E(X \cdot Y) = \E(X) \cdot \E(Y)$$
+    $$\sigma^2(X + Y) = \sigma^2(X) + \sigma^2(Y)$$
+    $$\E(\frac{X}{Y}) = \E(X) \cdot \E(\frac{1}{Y})$$
+\end{theorem}
+\begin{theorem}
+    Let $X_1, \dots, X_n$ be independently identically distributed r.v.s with $\E(X_i) = \mu$ and $\sigma^2(X_i) = \sigma^2$, if we define:
+    $$\bar{X}_n = \frac{X_1 + \dots + X_n}{n}$$
+    we have $\E(\bar{X}_n) = \mu$ and $\sigma^2(\bar{X}_n) = \frac{\sigma^2}{n}$
+\end{theorem}
+\begin{definition}
+    Let $A$ be an event, the indicator of that event $1_A$ is a random variable satisfying:
+    $$1_A = \begin{cases}
+        1 & \text{A happens} \\
+        0 & \text{A does not happen}
+    \end{cases}$$
+\end{definition}
+We know that $1_A \sim \Bern(p)$, with $p = \Prob(A)$ and $\E(1_A) = \Prob(A)$
+
+\subsection{Sums and Moment Generating Functions}
+We know functions of $X, Y$ are independent if $X, Y$ are independent. Then, if $X, Y$ are independent, $M_{X+Y}(t) = M_X(t)M_Y(t)$. That is the m.g.f of sum is product of m.g.f. \\
+For $X \sim N(0, \sigma^2)$, we have $M_X(t) = e^{\frac{t^2\sigma^2}{2}}$. \\
+Since $X \sim \Bin(n, p)$ and we know $X \stackrel{\text{dist.}}{=} X_1 + \dots + X_n$ with $X_i \sim \Bern(p)$, so we know
+$$M_X(t) = (1 - p + pe^t)^n$$
+For Poisson variables $X \sim \Poisson(\alpha)$, we have
+$$M_X(t) = \exp(\alpha(e^t - 1))$$
+And in this case, if $X_1, \dots, X_n \sim \Poisson(1)$, we know $\sum_{i} X_i \sim \Poisson(n)$
+
+\subsection{Covariance and Correlation}
+To say something about the level of dependence between $X$ and $Y$, we can look into the covariance of $X$ and $Y$.
+\begin{definition}
+    Let $X, Y$ be r.v.s with $\mu_X, \mu_Y$, we have
+    $$\text{Cov}(X, Y) = \E((X - \mu_X)(Y - \mu_Y)) = \E(XY) - \E(X)\E(Y)$$
+\end{definition}
+If $X$ and $Y$ are independent, then the covariance of $X$ and $Y$ is $0$. However, the other way may not stand, since if $f$ is an even function, $X \sim (-a, a)$, then $\text{Cov}(X, f(X)) = 0$. \\
+The properties of covariances include:
+\begin{quote}
+    1. $|\text{Cov}(X,Y)| \le \sqrt{\sigma^2(X)\sigma^2(Y)}$ \\
+    2. $\text{Cov}(X, Y) = \text{Cov}(Y, X)$ \\
+    3. $\text{Cov}(aX + bZ, Y) = a \text{Cov}(X, Y) + b \text{Cov}(Z, Y)$ \\
+    4. $\text{Cov}(X, X) = \sigma^2(X)$
+\end{quote}
+Consider two events $A, B$ and their corresponding indicator variables $1_A, 1_B$, then we have
+$$\text{Cov}(1_A, 1_B) = \E(1_A1_B) - \E(1_A)\E(1_B) = \Prob(AB) - \Prob(A)\Prob(B)$$
+Thus, $\text{Cov}(1_A, 1_B) = 0 \iff$ $A, B$ are independent.
+\begin{theorem}
+    For r.v.s $X_1, \dots, X_n$, we have
+    $$\sigma^2(\sum_{i = 1}^{n} X_i) = \sum_{i = 1}^{n} \sigma^2(X_i) + 2 \sum_{1 \le i < j \le n} \text{Cov}(X_i, X_j)$$
+\end{theorem}
+\begin{definition}
+    $$\text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sqrt{\sigma^2(X)\sigma^2(Y)}}$$
+    We also know it is $\in [-1, 1]$
+\end{definition}
+Then $Y = aX + b \iff \text{Corr}(X, Y) = 1$. \\
+Furthermore, if $X_i$ and $X_j$ are pairwise uncorrelated, then we still have:
+$$\sigma^2(\sum_{i = 1}^{n} X_i) = \sum_{i = 1}^{n} \sigma^2(X_i)$$
+\newpage

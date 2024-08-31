@@ -1,0 +1,69 @@
+\section{Section 1}
+\subsection{Sample Space and Probabilities}
+\begin{definition}
+    A \textbf{\textit{sample point}} is a possible outcome, denoted as $\omega$. \\
+    A \textbf{\textit{sample space}} is the set of all sample points, denoted as $\Omega$.
+\end{definition}
+An \textbf{\textit{event}} is a subset of $\Omega$, with $F$ representing the set of all possible events, we then have
+$$|F| = 2^{|\Omega|}$$
+A probability measure is a function where:
+$$\Prob: F \to [0, 1]$$
+such that for an event $A \in F$, $\Prob(A)$ means the probability of event $A$ occuring. \\
+It is trivial that $\Prob(\varnothing) = 0$ and $\Prob(\Omega) = 1$, where $\forall A \in F, \Prob(A) \in [0, 1]$.
+\begin{theorem}
+    If events $A_1, A_2, \dots$ are pairwise disjoint, that is, $\forall i \ne j, A_i \cap A_j = \varnothing$, we have
+    $$\Prob(\bigcup_{i = 1}^{n} A_i) = \sum_{i = 1}^{n} \Prob(A_i)$$
+\end{theorem}
+We then define
+\begin{definition}
+    The triple $(\Omega, F, \Prob)$ is called a \textbf{\textit{probability space}}.
+\end{definition}
+
+\subsection{Random sampling}
+\textbf{\textit{Sampling}} is choosing an object at random from a given set.
+\begin{theorem}
+    If all outcomes are equally likely, if $|\Omega| < \infty$, then
+    $$\Prob(A) = \frac{|A|}{|\Omega|}$$
+    where $A$ is an event.
+\end{theorem}
+
+\subsection{Infinitely many outcomes}
+\begin{definition}
+    Sample spaces that are finite or countably infinite are \textbf{\textit{discrete}}.
+\end{definition}
+When $\Omega$ is discrete, we have $\Prob(A) = \sum_{\omega \in A} \Prob(\{\omega\})$. \\
+Uncountably infinite sample spaces can be the set $[0, 1]$. Notice that in this case, we \textbf{do not} have $\Prob(A) = \sum_{\omega \in A} \Prob(\{\omega\})$.
+
+\subsection{Consequences of Rules of Probability}
+\begin{definition}
+    Complement of a set $A$:
+    $$A^C = \{\omega \in \Omega \ | \ \omega \notin A\}$$
+    Union of two sets $A$ and $B$:
+    $$A \cup B = \{\omega \in \Omega \ | \ \omega \in A \lor \omega \in B\}$$
+    Intersection of two sets $A$ and $B$:
+    $$A \cap B = \{\omega \in \Omega \ | \ \omega \in A \land \omega \in B\}$$
+    Difference of two sets $A$ and $B$:
+    $$A - B = \{\omega \in \Omega \ | \ \omega \in A \land \omega \notin B\}$$
+\end{definition}
+We then have the following properties:
+\begin{quote}
+    1. $\Prob(A) = 1 - \Prob(A^C)$ \\
+    2. If $A = \bigcup_{i = 1}^n A_i$, and $A_i$ are pairwise disjoint, $\Prob(A) = \sum_{i} A_i$. \\
+    3. If $B \subset A$, $\Prob(B) \le \Prob(A)$. \\
+    4. $\Prob(A \cup B) = \Prob(A) + \Prob(B) - \Prob(A \cap B)$ \\
+    5. $\Prob(A \cup B \cup C) = \Prob(A) + \Prob(B) + \Prob(C) - \Prob(A \cap B) - \Prob(B \cap C) - \Prob(C \cap A) + \Prob(A \cap B \cap C)$
+\end{quote}
+
+\subsection{Random Variables}
+\begin{definition}
+    A \textbf{\textit{random variable}} (r.v.) is a function from $\Omega$ to $\R$. If we define a random variable $X$, then we know
+    $$X: \Omega \to \R$$
+\end{definition}
+\begin{definition}
+    The \textbf{\textit{probability distribution}} of a random variable $X$ is the collection of probabilities $\Prob(X \in B)$ for $B \subset \R$, where $X \in B$ is defined as
+    $$\{\omega \in \Omega: X(\omega) \in B\}$$
+\end{definition}
+A discrete random variable takes value on a discrete set, then the \textbf{\textit{probability mass function}} (p.m.f) of a discrete random variable $X$ is defined to be the collection of probabilities
+$$p(k) = \Prob(X = k)$$
+for all $k$ values $X$ may take. This implies: $\Prob(X \in B) = \sum_{k \in B} p(k)$
+\newpage
