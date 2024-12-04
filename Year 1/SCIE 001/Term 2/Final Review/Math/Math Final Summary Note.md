@@ -24,7 +24,7 @@ $$
   - $\sum$ Area of strip
   - $n \to \infty$
 
-- $f$ is continuous on $[a,b]$, consider $\int_a^b f(x)dx$
+- $f$ is continuous on $[a,b]$, consider $\int_a^b f(x) \dd x$
 
   - $n$ strips: $\Delta x=\frac{b-a}{n}$
 
@@ -162,8 +162,8 @@ $$
 
 ​		Let $f$ be continuous on $I$, $\exists a \in I$
 
-- Part 1: Define $F(x)=\int_a^x f(t)dt$ on $I$ $\rightarrow$ $F'(x)=f(x)$ on $I$
-- Part 2: $G$ be any antiderivative of $f$ on $I$, then $\forall b \in I$, $\int_a^b f(t)dt=G(b)-G(a)$
+- Part 1: Define $F(x)=\int_a^x f(t) \dd t$ on $I$ $\rightarrow$ $F'(x)=f(x)$ on $I$
+- Part 2: $G$ be any antiderivative of $f$ on $I$, then $\forall b \in I$, $\int_a^b f(t) \dd t=G(b)-G(a)$
 
 ## Area Between Curves
 
@@ -221,15 +221,15 @@ $$
 $$
 
 $$
-Case 1: \Delta > 0, \int \frac{dx+e}{ax^2 + bx +c} \dd x=\int (\frac{A}{x-m}+\frac{B}{x-n}) \dd x
+\text{Case 1}: \Delta > 0, \int \frac{dx+e}{ax^2 + bx +c} \dd x=\int (\frac{A}{x-m}+\frac{B}{x-n}) \dd x
 $$
 
 $$
-Case 2: \Delta = 0, \int \frac{dx+e}{ax^2 + bx +c} \dd x = \int [\frac{A}{x-m}+\frac{B}{(x-m)^2}] \dd x
+\text{Case 2}: \Delta = 0, \int \frac{dx+e}{ax^2 + bx +c} \dd x = \int [\frac{A}{x-m}+\frac{B}{(x-m)^2}] \dd x
 $$
 
 $$
-Case 3: \Delta < 0, \text{complete the square for denominator}
+\text{Case 3}: \Delta < 0, \text{ complete the square for denominator}
 $$
 
 $$
@@ -241,7 +241,7 @@ $$
 $$
 
 $$
-\text{By long division}, \frac{P(x)}{Q(x)}=s(x)+\frac{r(x)}{Q(x)}, \text{if} \deg(P(x))>\deg(Q(x))
+\text{By long division}, \frac{P(x)}{Q(x)}=s(x)+\frac{r(x)}{Q(x)}, \text{ if} \deg(P(x))>\deg(Q(x))
 $$
 
 ### 	Trig Sub
@@ -269,7 +269,7 @@ $$
   - $m$ odd, $u=\sin(x) \rightarrow \int u^n (1-u^2)^{\frac{m-1}{2}}\dd u$
   - $m$ and $n$ even, integration of sum of even power of $\sin(x)$
 - $\int \sec^m(x)\tan^n(x) \dd x$
-  - $\int \sec^2(x)dx=\tan(x)+C$
+  - $\int \sec^2(x) \dd x=\tan(x)+C$
   - $\int \sec(x)\tan(x)dx = \sec(x)+C$
 
 - Trig sub
@@ -297,7 +297,7 @@ $$
 $$
 
 $$
-\text{Volume} = \int_a^b 2 \pi x [f(x)-g(x)]dx
+\text{Volume} = \int_a^b 2 \pi x [f(x)-g(x)] \dd x
 $$
 
 ## Improper Integrals
@@ -374,7 +374,7 @@ $$
 
 - Median
   - Uniform: $\frac{a + b}{2}$
-  - Exponential: $\frac{ln2}{k}$
+  - Exponential: $\frac{\ln2}{k}$
   - Standard: $0$
 
 $$
