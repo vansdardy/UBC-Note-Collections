@@ -43,7 +43,6 @@ Course Code (Course Name) (Credits)
     |CPSC 320|Intermediate Algorithm Design and Analysis|3|
     |ECON 356|Introduction to International Finance|3|
 - Year 3 (12 courses, 22 credits + 32 ECTS credits)
-    - In this school year, I had the opportunity to go on exchange to ETH Z\"urich for the first semester, hence the ECTS credits shown below. The German course was taken at the next door Universit\"at Z\"urich. However, I did get into a very bad mental state during the stay in Switzerland and after I returned to UBC. Luckily, at the time of writing this, I am doing better already. Thus, you may notice a lack of organized notes for this year's content except for the quantum physics course. That one, I really put a lot of effort, and should be preserved here. I am, however, going to slowly (I mean probably years) put together the notes for my ETHZ exchange, because they really are good courses, but I have yet been unable to understand them to a level up to which I can organize the notes. So, wish me luck.
     |Course Code|Course Name|Credits|
     |---|---|---|
     |402-0209-00L|Quantum Physics for Non-Physicists|6 ECTS|
@@ -59,6 +58,8 @@ Course Code (Course Name) (Credits)
     |FREN 202|Elementary French II|3|
     |FREN 301|Intermediate French I|3|
     |FREN 302|Intermediate French II|3|
+    In this school year, I had the opportunity to go on exchange to ETH Z\"urich for the first semester, hence the ECTS credits shown below. The German course was taken at the next door Universit\"at Z\"urich. However, I did get into a very bad mental state during the stay in Switzerland and after I returned to UBC. Luckily, at the time of writing this, I am doing better already. Thus, you may notice a lack of organized notes for this year's content except for the quantum physics course. That one, I really put a lot of effort, and should be preserved here. I am, however, going to slowly (I mean probably years) put together the notes for my ETHZ exchange, because they really are good courses, but I have yet been unable to understand them to a level up to which I can organize the notes. So, wish me luck.
+- Year 4 (TBD)
 
 
 This list and course notes will update after each term ends (around December, April, and August).
