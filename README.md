@@ -14,13 +14,15 @@ Course Code (Course Name) (Credits)
 
 ## Table of Contents
 - Year 1 (7 courses, 47 credits)
-    - CPSC 110 (Computation, Programs, and Programming) (4)
-    - CPSC 121 (Models of Computation) (4)
-    - FREN 101 (Beginners' French) (3)
-    - FREN 102 (Beginners' French) (3)
-    - SCIE 001 (Science One) (27)
-    - STAT 200 (Elementary Statistics for Applications) (3)
-    - WRDS 150B (Writing and Research in the Disciplines) (3)
+    |Course Code|Course Name|Credits|
+    |---|---|---|
+    |CPSC 110|Computation, Programs, and Programming|4|
+    |CPSC 121|Models of Computation|4|
+    |FREN 101|Beginners' French|3|
+    |FREN 102|Beginners' French|3|
+    |SCIE 001|Science One|27|
+    |STAT 200|Elementary Statistics for Applications|3|
+    |WRDS 150B|Writing and Research in the Disciplines|3|
 - Year 2 (16 courses, 51 credits)
     - CPSC 210 (Software Construction) (4)
     - ECON 101 (Principles of Microeconomics) (3)
