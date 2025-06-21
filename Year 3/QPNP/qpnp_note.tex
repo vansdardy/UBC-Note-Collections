@@ -1,0 +1,115 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, physics}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{ctex}
+\usepackage{tikz-cd}
+\usepackage{mathtools}
+\usepackage{tabularx, tabulary}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{LightBlue}{Blue!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\impt}[1]{\textcolor{blue}{\textbf{\textit{#1}}}}
+\newcommand{\uimpt}[1]{\underline{\textbf{\textit{#1}}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\id}{\mathbb{I}}
+\newcommand{\imag}{\mathrm{i}}
+\newcommand{\cplx}{\mathbf{z}}
+\newcommand{\conj}[1]{#1^{*}}
+\newcommand{\conjt}[1]{#1^{\dagger}}
+\newcommand{\re}[1]{\text{Re}(#1)}
+\newcommand{\im}[1]{\text{Im}(#1)}
+\newcommand{\planck}{\hbar}
+\newcommand{\hilbert}{\mathcal{H}}
+\newcommand{\ketpsi}{\ket{\psi}}
+\newcommand{\ketPsi}{\ket{\Psi}}
+\newcommand{\ketphi}{\ket{\phi}}
+\newcommand{\ketPhi}{\ket{\Phi}}
+\newcommand{\brapsi}{\bra{\psi}}
+\newcommand{\braPsi}{\bra{\Psi}}
+\newcommand{\braphi}{\bra{\phi}}
+\newcommand{\braPhi}{\bra{\Phi}}
+\newcommand{\ketplus}{\ket{+}}
+\newcommand{\ketminus}{\ket{-}}
+\newcommand{\braplus}{\bra{+}}
+\newcommand{\braminus}{\bra{-}}
+\newcommand{\ketx}{\ket{x}}
+\newcommand{\brax}{\bra{x}}
+\newcommand{\Span}[1]{\text{span}\{#1\}}
+\newcommand{\intR}{\int_{\R}}
+\newcommand{\dx}{\dd x}
+\newcommand{\Sum}[2]{\sum_{#1}^{#2}}
+\newcommand{\Sumi}[1]{\sum_{#1}}
+\newcommand{\Prod}[2]{\prod_{#1}^{#2}}
+\newcommand{\hamiltonian}{\hat{H}}
+\newcommand{\oppos}{\hat{X}}
+\newcommand{\opmtm}{\hat{P}}
+\newcommand{\opuni}{\mathcal{U}}
+\newcommand{\annih}{\hat{a}}
+\newcommand{\creat}{\hat{a}^{\dagger}}
+\newcommand{\opnum}{\hat{n}}
+\newcommand{\proj}[1]{\Pi_{#1}}
+\newcommand{\Prob}[1]{\text{Pr}(#1)}
+\newcommand{\urep}{\mathfrak{U}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGreen}
+
+\declaretheoremstyle[name=Postulate,]{poststy}
+\declaretheorem[style=poststy,numberwithin=section]{postulate}
+\tcolorboxenvironment{postulate}{colback=Lavender!45}
+
+\declaretheoremstyle[name=Lemma,]{lemsty}
+\declaretheorem[style=lemsty,numberwithin=section]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightOrange}
+
+\declaretheoremstyle[name=Definition,]{defnsty}
+\declaretheorem[style=defnsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\setstretch{1.2}
+\geometry{
+    letterpaper,
+    textheight=9in,
+    textwidth=6.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\begin{document}
+
+\input{cover_page.tex}
+\input{1_math.tex}
+\input{2_postulates.tex}
+\input{3_unitary_dynamics.tex}
+\input{4_stern_gerlach.tex}
+\input{5_pos_mtm.tex}
+\input{6_stationary_state_in_potential.tex}
+\input{7_harmonic_oscillator.tex}
+\input{8_uncertainty.tex}
+\input{9_quantum_spins.tex}
+\input{10_density_formalism.tex}
+\input{11_additional_topics.tex}
+
+\end{document}

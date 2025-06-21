@@ -1,0 +1,1 @@
+I did not do well in this class, actually got the worst grade among all my major courses. Probably due to the fact that I was constantly distracted in class and never properly reviewed for it. I will use the excuse again, I could not focus because I hated my life back then.

@@ -1,0 +1,1 @@
+This course gave me a constant stream of PTSD triggers, and it's not because that the course is bad or what, in fact, the course is quite well taught, it's because it constantly reminds me of the fact that I couldn't understand a lot of things when I was taking the Computer Systems course at ETHZ. I wish I focused and properly reviewed for it.

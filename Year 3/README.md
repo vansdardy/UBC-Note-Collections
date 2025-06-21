@@ -1,1 +1,1 @@
-This may be updated later.
+There will not be organized notes except for the quantum physics course, will be slowly updated as time progresses.

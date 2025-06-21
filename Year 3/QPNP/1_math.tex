@@ -1,0 +1,306 @@
+\section{Mathematical Tools and Notations - 数学工具及符号标记}
+This first section is motivated by commonly-used symbolic notations and relevant mathematical tools required to perform analyses and calculations.
+
+\subsection{Notations - 符号标记}
+The most commonly used notations in this note include the following: \\
+\begin{tabularx}{\textwidth}{p{1in}X}
+    $\imag$ & different from ``$i$'', this represents the imaginary unit. Notice that $\frac{1}{\imag} = -\imag = \conj{\imag}$. \\
+    $\abs{\cplx}$ & the norm of the complex number $\cplx$. \\
+    $\re{\cplx}, \im{\cplx}$ & the real part and the imaginary part of complex number $\cplx$. \\
+    $\conj{\cplx}$ & the complex conjugate of complex number $\cplx$. \\
+    $\dagger$ & superscript symbol to denote the complex adjoint of a matrix. \\
+    $\hilbert$ & a Hilbert space, a mathematical notation used to denote a \impt{quantum system}. \\
+    $\ketpsi$ & usually represents a normalized vector in a given $\hilbert$, a mathematical notation used to denote a \impt{quantum state} in a quantum system. \\
+    $\braket{\phi}{\psi}$ & mathematically, it represents the \textit{inner product} of $\ketphi$ and $\ketpsi$. \\
+    $\dyad{\phi}{\psi}$ & mathematically, it represents the \textit{outer product} of $\ketphi$ and $\ketpsi$. \\
+    $\ket{0}, \ket{1}$ & one set of basis vectors for a qubit, with $\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$ and $\ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$. \\
+    $\ketplus, \ketminus$ & another set of basis vectors for a qubit, with $\ketplus = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ and $\ketminus = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$. \\
+    $\delta(x)$ & \hyperref[subsec:dirac-delta]{\textcolor{cyan}{Dirac delta function}}. \\
+    $\proj{x}$ & represents a projector onto one orthonormal basis $\ket{x}$, $\proj{x} = \dyad{x}{x}$. \\
+    $\mathcal{O}$ & usually denotes an observable. \\
+    $X, Y, Z$ & denote Pauli-X, Pauli-Y, Pauli-Z observables respectively. \\
+    $\oppos, \opmtm$ & position observable and momentum observable. \\
+    $H$ & denotes Hadamard operator, $H = \frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 & 1 \\
+        1 & -1
+    \end{pmatrix}$. \\
+    $\hbar$ & reduced Planck's constant, $\approx 1.05 \times 10^{-34} \text{J} \cdot \text{s}$, $h = 2\pi\hbar$. It relates the frequency of wave/light with \impt{rotational velocity/angular frequency} $\omega$. We have $\omega = 2\pi f$, $hf = \hbar \omega$. It shows up when calculating the energy of a photon of wavelength $\lambda$: $f = \frac{c}{\lambda} \to \omega = \frac{2\pi c}{\lambda} \to \text{Experiments: } E_\lambda = \hbar \omega$. \\
+    $\opuni$ & mostly denotes a unitary operator/evolution. \\
+    $\hat{H}$ & denotes the Hamiltonian in a Schr\"odinger's equation. \\
+    $[A, B]$ & commutator between matrices $A$ and $B$, if $[A, B] = 0$, the two matrices commutes, otherwise, one needs to add the difference. \\
+    $\annih, \creat$ & the annihilation and creation operators. \\
+    $\opnum$ & the number operator, equivalent to $\creat\annih$. \\
+    $\tr(A)$ & trace of a square matrix $A$. \\
+    $\mathfrak{U}$ & a unitary representation of a group on a Hilbert space. \\
+    $\rho$ & the density operator.
+\end{tabularx}
+% ----------------------------------------------------------------
+\subsection{Mathematical Tools - 数学工具}
+\subsubsection{Complex Numbers - 复数}
+A complex number $\cplx$ can be considered as a vector in a complex plane with coordinates $(a, b)$. Let the \impt{norm} of $\cplx$ be defined as \impt{$r = \sqrt{a^2 + b^2}$}, and the \impt{argument} (the angle between the vector and the positive real axis) of $\cplx$ be $\theta$. Then, the complex number $\cplx$ can be represented in a variety of ways:
+\begin{definition}
+    Given a complex number $\cplx$, its coordinates, and its argument, we have:
+    $$\cplx = a + b\imag$$
+    $$\cplx = re^{\imag \theta} = r(\cos \theta + \imag \sin \theta)$$
+    We further denote the real part of this complex number $\re{\cplx} = a$, and the imaginary part $\im{\cplx} = b$.
+\end{definition}
+The second representation is well-defined due to \impt{Euler's formula}:
+$$e^{\imag \theta} = \cos \theta + \imag \sin \theta$$
+Furthermore, a useful byproduct of such a representation is the following:
+\begin{definition}
+    The complex conjugate of a complex number $\cplx$ is denoted as $\conj{\cplx}$, with properties:
+    $$\conj{\cplx} = a - b\imag$$
+    $$\conj{\cplx} = re^{-\imag \theta} = r(\cos \theta - \imag \sin \theta)$$
+\end{definition}
+It is trivial to notice that for a complex number $\cplx$ and its conjugate, their norms are equal,
+$$\abs{\cplx} = \abs{\conj{\cplx}} = \sqrt{a^2 + b^2} = r, \abs{\cplx}^2 = \abs{\conj{\cplx}}^2 = \cplx \conj{\cplx}$$
+and further gives us two useful properties:
+$$\re{\cplx} = \frac{\cplx + \conj{\cplx}}{2}, \im{\cplx} = \frac{\cplx - \conj{\cplx}}{2\imag}$$
+With the real part and the imaginary part of a complex number defined, we can also have:
+\begin{align*}
+    \re{\cplx} = 0 &\implies \cplx^2 = -\abs{\cplx}^2 \\
+    \im{\cplx} = 0 &\implies \cplx^2 = \abs{\cplx}^2
+\end{align*}
+Further observations about the complex conjugate include the following:
+\begin{quote}
+    Let $\cplx_1, \cplx_2$ be two complex numbers, then: \\
+    1. $\conj{(\cplx_1 + \cplx_2)} = \conj{\cplx_1} + \conj{\cplx_2}$ \\
+    2. $\conj{(\cplx_1 \cplx_2)} = \conj{\cplx_1}\conj{\cplx_2}$ \\
+    These two properties imply the \impt{linearity of conjugation}. \\
+    3. $\im{\cplx} = 0 \implies \conj{\cplx} = -\cplx$. \\
+    4. $r = 1 \implies \conj{\cplx} = \frac{1}{\cplx}$ (the complex number is \impt{unitary})
+\end{quote}
+\newpage
+% ----------------------------------------------------------------
+\subsubsection{Linear Algebra - 线性代数}
+\begin{definition}
+    Given a vector $\vec{\cplx}$ in a complex vector space, let
+    $$\vec{\cplx} = \begin{pmatrix}
+        \cplx_1 \\
+        \cplx_2 \\
+        \vdots \\
+        \cplx_n
+    \end{pmatrix}$$
+    then, the \uimpt{conjugate (Hermitian) transpose} of $\vec{\cplx}$ is denoted as:
+    $$\vec{\cplx}^{\dagger} = \begin{pmatrix}
+        \conj{\cplx_1} & \conj{\cplx_2} & \dots & \conj{\cplx_n}
+    \end{pmatrix}$$
+    Similarly, given a matrix $A \in \C^{m \times n}$ over a complex vector space, with element on the $i$th row and $j$th column be $a_{ij}$, then the \uimpt{complex conjugate/adjoint} of $A$, denoted as $A^{\dagger} \in \C^{n \times m}$, has elements on the $j$th row and $i$th column be $a_{ji}' = \conj{a_{ij}}$. \\
+    This yields:
+    $$\vec{\cplx}^{\dagger} = \conj{(\vec{\cplx}^{\top})}$$
+    $$A^{\dagger} = \conj{(A^{\top})}$$
+\end{definition}
+\label{subsec:hermitian}
+\begin{definition}
+    A linear operator $A: \hilbert \to \hilbert$ (or complex vector spaces in general) is \uimpt{self-adjoint (Hermitian)} if:
+    $$A = A^{\dagger}$$
+\end{definition}
+\begin{theorem}
+    \uimpt{Spectral decomposition for Hermitian operators}: \\
+    Let $A$ be Hermitian, there exists an orthonormal basis $\{\ket{x}\}_x$ such that they are \uimpt{eigenvectors} of $A$, and \uimpt{all eigenvalues} $\lambda \in \R$.
+\end{theorem}
+This is to claim, there exists an orthonormal basis $\{\ket{x}\}_x$ such that
+$$\forall x, A \ket{x} = \lambda_x \ket{x}, \lambda_x \in \R$$
+where $\braket{x}{x'} = \delta_{xx'}$. We can then express this Hermitian operator as:
+$$A = \Sumi{x} \lambda_x \dyad{x}{x} = \Sumi{x} \lambda_x \proj{x}$$
+We say $\{\lambda_x\}$ \impt{form the spectrum}.
+\label{subsec:unitary}
+\begin{definition}
+    A linear operator $\mathcal{U}: \hilbert \to \hilbert$ is a \uimpt{unitary operator} if we have
+    $$\mathcal{U}\mathcal{U}^{\dagger} = \mathcal{U}^{\dagger}\mathcal{U} = \id$$
+\end{definition}
+We further denote the set of unitaries on $\hilbert$ by 
+$$\opuni(\hilbert) = \{\opuni: \hilbert \to \hilbert \text{ is a linear operator} \mid \opuni\opuni^{\dagger} = \opuni^{\dagger}\opuni = \id\}$$
+\begin{theorem}
+    \uimpt{Spectral decomposition for Unitary operators}: \\
+    Let $\opuni$ be unitary on $\hilbert$, there exists an orthonormal basis $\{\ket{k}\}_k$ of $\opuni$ such that all eigenvalues $\{\lambda_k\}_k$ have $\abs{\lambda_k} = 1$.
+\end{theorem}
+Hence, 
+$$\opuni = \Sumi{k} \lambda_k \dyad{k}{k} = \Sumi{k}e^{\imag \alpha_k} \dyad{k}{k}$$
+These properties indicate that unitary matrices are invertible; they preserve normalization and inner product. The proof of such preservation is as follows:
+\begin{align*}
+    (\opuni \ketphi, \opuni \ketpsi) &= \conjt{(\opuni \ketphi)} (\opuni \ketpsi) \\
+    &= \mel{\phi}{\conjt{\opuni}\opuni}{\psi} \\
+    &= \braket{\phi}{\psi}
+\end{align*}
+Generally, in a $d$-dimensional complex vector space, we can express $\opuni = VD\conjt{V}$ with $V$ being an orthonormal basis transformation and
+$$D = \begin{pmatrix}
+    e^{\imag \alpha_1} & \dots & 0 \\
+    \vdots & \ddots & \vdots \\
+    0 & \dots & e^{\imag \alpha_d}
+\end{pmatrix}$$
+\begin{definition}
+    The \uimpt{tensor product} between two Hilbert spaces $\hilbert_A$ and $\hilbert_B$ is defined as:
+    $$\hilbert_A \otimes \hilbert_B := \text{span}\{\ketpsi_A \otimes \ketphi_B \mid \ketpsi_A \in \hilbert_A, \ketphi_B \in \hilbert_B\}$$
+\end{definition}
+The tensor products have the following identifications:
+\begin{quote}
+    1. Multiplication with scalars: $\forall a \in \C, (a \ketpsi_A) \otimes \ketphi_B = \ketpsi_A \otimes (a \ketphi_B) = a(\ketpsi_A \otimes \ketphi_B)$. \\
+    2. Distributive property: $(\ket{\psi_1}_A + \ket{\psi_2}_A) \otimes \ketphi_B = \ket{\psi_1}_A \otimes \ketphi_B + \ket{\psi_2}_A \otimes \ketphi_B$. \\
+    3. How operators act: $(S_A \otimes T_B)(\ketpsi_A \otimes \ketphi_B) = (S_A \ketpsi_A) \otimes (T_B \ketphi_B)$. \\
+    4. Inner products: $(\bra{\psi_1}_A \otimes \bra{\phi_1}_B)(\ket{\psi_2}_A \otimes \ket{\phi_2}_B) = \braket{\psi_1}{\psi_2}_A \braket{\phi_1}{\phi_2}_B$
+\end{quote}
+How do we make tensor products explicit? First, we start with single vectors. Consider two vectors:
+$$\vec{x} = \begin{pmatrix}
+    x_1 \\
+    \vdots \\
+    x_n
+\end{pmatrix}, \vec{y} = \begin{pmatrix}
+    y_1 \\
+    \vdots \\
+    y_m
+\end{pmatrix}$$
+Then, the tensor product of these two vectors is:
+$$\vec{x} \otimes \vec{y} = \begin{pmatrix}
+    x_1 \vec{y} \\
+    \vdots \\
+    x_n \vec{y}
+\end{pmatrix} = \begin{pmatrix}
+    x_1 y_1 \\
+    \vdots \\
+    x_1 y_m \\
+    \vdots \\
+    x_n y_1 \\
+    \vdots \\
+    x_n y_m
+\end{pmatrix}$$
+Then, this implies the tensor product for matrices. Consider two matrices:
+$$A = \begin{pmatrix}
+    a_{11} & \dots & a_{1n} \\
+    \vdots & \ddots & \vdots \\
+    a_{n1} & \dots & a_{nn}
+\end{pmatrix} \in \C^{n \times n}, B = \begin{pmatrix}
+    b_{11} & \dots & b_{1m} \\
+    \vdots & \ddots & \vdots \\
+    b_{m1} & \dots & b_{mm}
+\end{pmatrix} \in \C^{m \times m}$$
+Their tensor product will be:
+$$A \otimes B = \begin{pmatrix}
+    a_{11} B & \dots & a_{1n} B \\
+    \vdots & \ddots & \vdots \\
+    a_{n1} B & \dots & a_{nn} B
+\end{pmatrix} \in \C^{mn \times mn}$$
+
+\label{subsec:commutator}
+\begin{definition}
+    Given two matrices $A, B$, define their \uimpt{commutator} to be
+    $$[A, B] = AB - BA$$
+    If $[A,B] = 0$, we say $A$ and $B$ are \uimpt{commutative} or \uimpt{commutes with each other}. 
+\end{definition}
+\begin{lemma}
+    Two diagonalizable operators commute if and only if there exists a common eigenbasis between the two operators.
+\end{lemma}
+The proof of this lemma is as follows: \\
+We first show the backward deduction. We assume that $A, B$ share an eigenbasis. Hence, in this basis, we can diagonalize the two matrices with its eigenvalues:
+$$A = \begin{pmatrix}
+    a_1 &  & \\
+    & a_2 & \\
+    & & \ddots
+\end{pmatrix}, B = \begin{pmatrix}
+    b_1 &  & \\
+    & b_2 & \\
+    & & \ddots
+\end{pmatrix}$$
+Thus, we have
+$$AB = BA = \begin{pmatrix}
+    a_1b_1 &  & \\
+    & a_2b_2 & \\
+    & & \ddots
+\end{pmatrix}$$
+Then we show the forward deduction. We assume $AB=BA$ and $\ket{k}$ is an eigenvector of $A$, then
+$$AB\ket{k} = BA\ket{k} = B(\alpha_k \ket{k}) = \alpha_k B\ket{k}$$
+This means that $B\ket{k}$ is an eigenvector of $A$ with the same eigenvalue. With the loss of generality, the same holds for all eigenvectors of $A$ and vice versa for $B$. This means that $A$ and $B$ share the same eigenspace, meaning there exists a same eigenbasis.
+\begin{theorem}
+    We define the exponentiation of a matrix $A$ with base $e$ to be:
+    $$e^A = \Sum{n = 0}{\infty} \frac{A^n}{n!}$$
+\end{theorem}
+\begin{definition}
+    The \uimpt{trace} of a square matrix $A$ is the sum of elements on its main diagonal. It is also the \uimpt{sum of eigenvalues} of the matrix. We denote the trace of $A$ to be $\tr(A)$.
+\end{definition}
+We have the following theorems for the trace:
+\begin{theorem}
+    Linearity of trace:
+    $$\tr(\alpha A + \beta B) = \alpha \tr(A) + \beta \tr(B)$$
+\end{theorem}
+\begin{theorem}
+    Cyclic property of the trace:
+    $$\tr(AB) = \tr(BA)$$
+    This further yields:
+    $$\tr([A,B]) = 0$$
+\end{theorem}
+\begin{theorem}
+    The trace of a matrix $\tr(A)$ is \uimpt{independent} of the basis chosen to represent $A$.
+\end{theorem}
+A useful property of the trace is that:
+$$\tr(A) = \Sum{k=1}{d} \ev{A}{\phi_k}$$
+with orthonormal basis $\{\ket{\phi_k}\}_{k=1}^d$.
+\begin{definition}
+    A \uimpt{group} is defined to be a set with an \uimpt{associative operation}. Consider a set $G$ and an operation $\cdot$, we can form a group if given $a, b \in G$ and $a \cdot b \in G$, we further have
+    \begin{quote}
+        1. $(a \cdot b) \cdot c = a \cdot (b \cdot c)$. \\
+        2. $\exists \id, a \cdot \id = a$ \\
+        3. $\exists a^{-1}, a \cdot a^{-1} = \id$
+    \end{quote}
+\end{definition}
+
+\newpage
+% ----------------------------------------------------------------
+\subsubsection{Analysis - 分析}
+\label{subsec:dirac-delta}
+\begin{definition}
+    A \uimpt{Dirac delta function} $\delta(x)$ is defined as
+    $$\intR \delta(x) f(x) \dx = f(0) \to \intR \delta(x-y)f(x) \dx = f(y)$$
+    such that it has the property
+    $$\delta(x) = \begin{cases}
+        0 & x \ne 0 \\
+        +\infty & x = 0
+    \end{cases}$$
+    $$\intR \delta(x) \dx = 1$$
+\end{definition}
+There are some other useful properties of the Dirac delta function, which are as follows:
+$$\delta(ax) = \frac{1}{\abs{a}}\delta(x) \implies \delta(-x) = \delta(x)$$
+$$\delta(x) = \frac{1}{2\pi} \intR e^{\imag px} \dd p = \frac{1}{2\pi\hbar} \intR \exp(\frac{\imag p x}{\hbar}) \dd p$$
+
+\label{subsec:fourier}
+\begin{definition}
+    Let $f: \R \to \R$ be an integrable function. The \uimpt{Fourier transform} of $f$ is a function $F$ defined as:
+    $$F(t) = \mathcal{F}[f] = \frac{1}{\sqrt{2\pi}} \intR f(x) \exp(-\imag t x) \dd x$$
+    The inverse of the Fourier transform is another Fourier transform:
+    $$f(x) = \mathcal{F}^{-1}[F] = \frac{1}{\sqrt{2\pi}} \intR F(t) \exp(\imag t x) \dd t$$
+    An extra form of the Fourier transform is:
+    $$f(x) = \frac{1}{\sqrt{2k\pi}} \intR F(t) \exp(\frac{\imag t x}{k}) \dd t$$
+\end{definition}
+\begin{theorem}
+    The linearity of the transform indicates:
+    $$\forall a, b \in \C, \mathcal{F}[af+bg] = a\mathcal{F}[f] + b\mathcal{F}[g]$$
+\end{theorem}
+\begin{theorem}
+    The transform of derivatives indicates:
+    $$\mathcal{F}[f'] = \frac{\imag p}{\hbar} \mathcal{F}[f]$$
+\end{theorem}
+\begin{theorem}
+    The transform of the shift indicates that:
+    $$\mathcal{F}[f(x-x_0)] = \exp(-\imag p x_0)\mathcal{F}[f]$$
+\end{theorem}
+
+\label{subsec:differential-eqn}
+\begin{theorem}
+    Consider a $2^{nd}$ degree ordinary differential equation of the form
+    $$y'' + py' + y = 0$$
+    We further consider its relating quadratic equation:
+    $$\lambda^2 + p\lambda + q = 0$$
+    where its solution is one of the following scenarios:
+    \begin{quote}
+        1. Two unequal real roots $a \ne b$. \\
+        2. Two equal real roots $a = b$. \\
+        3. Two complex roots $\alpha \pm \imag \beta$.
+    \end{quote}
+    The general solution to the ODE is the following in respective scenarios:
+    \begin{quote}
+        1. $y = c_1e^{ax} + c_2e^{bx}$. \\
+        2. $y = c_1e^{ax} + c_2xe^{ax}$. \\
+        3. $y = c_1e^{\alpha x}\cos(\beta x) + c_2e^{ax}\sin(\beta x) = c_1e^{(\alpha + \imag \beta)x} + c_2e^{(\alpha - \imag \beta)x}$
+    \end{quote}
+\end{theorem}
+
+\newpage

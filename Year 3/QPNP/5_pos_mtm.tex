@@ -1,0 +1,185 @@
+\section{Position and Momentum Observables - 位置与动量可观测量}
+\subsection{The Properties of and Transformations between the Observables - 可观测量的性质和互相变换}
+In this section, we explore the relationship between the two important observables. \\
+First, we revisit the 1D continuous system, where the quantum system is defined as a Hilbert space: $\hilbert = \Span{\ket{x}}_{x \in \R}$ with the condition $\braket{x}{x'} = \delta(x-x')$. A general quantum state can be expressed in the position basis:
+$$\ketpsi = \intR \psi(x)\ketx \dd x, \intR \abs{\psi(x)}^2 \dd x = 1$$
+where in particular we know $\psi(x) = \braket{x}{\psi}$. \\
+We have the \impt{position observable} to be:
+$$\oppos = \intR x \dyad{x} \dd x$$
+However, we can also represent the same state in another basis, say $\ket{p}_{p \in \R}$. Here, a general state will be represented as:
+$$\ketpsi = \intR \tilde{\psi}(p) \ket{p} \dd p, \tilde{\psi}(p) = \braket{p}{\psi}$$
+We now wish to understand how the position wavefunction and the momentum wavefunction relate with each other. Here, we may substitute the state in different bases in the wavefunction calculation:
+\begin{align*}
+    \psi(x) &= \braket{x}{\psi} \\
+    &= \brax \intR \tilde{\psi}(p) \ket{p} \dd p \\
+    &= \intR \tilde{\psi}(p) \braket{x}{p} \dd p \\
+    \tilde{\psi}(p) &= \intR \psi(x) \braket{p}{x} \dd x
+\end{align*}
+We observe that, knowing the inner product between these two bases is enough to properly build the relationship.
+\begin{definition}
+    Define $\ket{p}_{p \in \R}$ to be the \uimpt{momentum basis} in an 1D continuous system, where the inner product between the position basis and the momentum basis is:
+    $$\forall x, p \in \R, \braket{x}{p} = \frac{1}{\sqrt{2\pi\hbar}}\exp(\frac{\imag p x}{\hbar})$$
+\end{definition}
+Therefore,
+\begin{align*}
+    \psi(x) &= \frac{1}{\sqrt{2\pi\hbar}} \intR \tilde{\psi}(p) \exp(\frac{\imag p x}{\hbar}) \dd p \\
+    \tilde{\psi}(p) &= \frac{1}{\sqrt{2\pi\hbar}} \intR \psi(x) \exp(-\frac{\imag p x}{\hbar}) \dd x
+\end{align*}
+They represent the \impt{Fourier transform} between the two bases. \\
+We can thus further express a basis state in the other basis as follows:
+\begin{align*}
+    \ketx &= \id \ketx \\
+    &= \intR \dyad{p} \dd p \ketx \\
+    &= \intR \ket{p}\braket{p}{x} \dd p \\
+    &= \frac{1}{\sqrt{2\pi\hbar}} \intR \exp(-\frac{\imag p x}{\hbar}) \ket{p} \dd p \\
+    \ket{p} &= \frac{1}{\sqrt{2\pi\hbar}} \intR \exp(\frac{\imag p x}{\hbar}) \ket{x} \dd x
+\end{align*}
+This can be confirmed by the above definition being consistent with the Dirac delta function $\braket{x}{x'} = \delta(x-x')$ even expressing $\ketx$ in the momentum basis. The deduction process is hereby not shown.
+\begin{definition}
+    Define the momentum observable to be:
+    $$\hat{P} = \intR p \dyad{p} \dd p$$
+    where it has the property of being Hermitian: $\conjt{\hat{P}} = \hat{P}$
+\end{definition}
+It is straightforward to understand that when the observables act on the respective wavefunction of respective basis, we have:
+$$\begin{cases}
+    \hat{X}: \psi(x) \mapsto x \cdot \psi(x) \\
+    \hat{P}: \tilde{\psi}(p) \mapsto p \cdot \tilde{\psi}(p)
+\end{cases}$$
+However, we wish to further know how the observables act on each other's wavefunction. One way is to calculate $\psi(x)$ after $\hat{P}$ is applied:
+\begin{align*}
+    \mel{x}{\hat{P}}{\psi} &= \brax (\intR p \dyad{p} \dd p) \ketpsi \\
+    &= \intR p \braket{x}{p}\braket{p}{\psi} \dd p \\
+    &= \frac{1}{\sqrt{2 \pi \hbar}} \intR p \cdot \exp(\frac{\imag p x}{\hbar}) \tilde{\psi}(p) \dd p
+\end{align*}
+The key here is to notice that: $p \cdot \exp(\frac{\imag p x}{\hbar}) = (-\imag \hbar)\pdv{x}\exp(\frac{\imag p x}{\hbar})$. Notice that the partial derivative and the integral are both linear, thus, we can swap their positions and have:
+\begin{align*}
+    \mel{x}{\hat{P}}{\psi} &= -\imag \hbar \pdv{x} \intR \frac{1}{\sqrt{2 \pi \hbar}} \exp(\frac{\imag p x}{\hbar}) \tilde{\psi}(p) \dd p \\
+    &= -\imag \hbar \pdv{x} \psi(x)
+\end{align*}
+Therefore, we yield:
+$$\begin{cases}
+    \hat{X}: \tilde{\psi}(p) \mapsto +\imag \hbar \pdv{p}\tilde{\psi}(p) \\
+    \hat{P}: \psi(x) \mapsto -\imag \hbar \pdv{x}\psi(x)
+\end{cases}$$
+Finally, we wish to observe how the two observables commute. We first have:
+\begin{align*}
+    \mel{x}{\hat{X}\hat{P}}{\psi} &= (\brax \hat{X})(\hat{P} \ketpsi) \\
+    &= x\mel{x}{\hat{P}}{\psi} \\
+    &= x \cdot (-\imag \hbar \pdv{x} \psi(x))
+\end{align*}
+Then, we also have:
+\begin{align*}
+    \mel{x}{\hat{P}\hat{X}}{\psi} &= (\brax \hat{P})(\hat{X} \ketpsi) \\
+    &= \mel{x}{\hat{P}}{(x \cdot \psi(x))} \\
+    &= -\imag \hbar \pdv{x} (x \cdot \psi(x)) \\
+    &= -\imag \hbar \psi(x) - \imag \hbar x \cdot \pdv{x}\psi(x)
+\end{align*}
+So, we must have:
+$$\mel{x}{[\hat{X}, \hat{P}]}{\psi} = \mel{x}{\hat{X}\hat{P}}{\psi} - \mel{x}{\hat{P}\hat{X}}{\psi} = \imag \hbar \psi(x)$$
+This eventually gives us
+\begin{theorem}
+    $$[\hat{X}, \hat{P}] = \imag \hbar \id$$
+\end{theorem}
+
+\subsection{Ehrenfest Relations - 埃伦费斯特原理}
+\label{subsec:ehrenfest}
+So far, we can understand the action of operators as one of the following:
+\begin{quote}
+    1. Representation of the action itself \\
+    2. Provides eigenvectors and eigenvalues \\
+    3. Its action on coefficients of vectors in a specific basis
+\end{quote}
+We have previously shown the canonical commutation relation between the position and momentum observables. Now we wish to utilize this knowledge to connect the classical representations and the quantum representations. \\
+Consider a neutral particle in an 1D continuous space. \impt{Classically}, we may express the total energy $E$ in this classical system by the sum of the particle's kinetic energy $E_k = \frac{1}{2}\mu \cdot v^2 = \frac{p^2}{2\mu}$ and the particle's potential energy $E_p = V(x)$, where the position $x$ is a function of time $x(t)$ and the momentum is also a function of time $p(t)$. The equation of motion are derived to be:
+$$\pdv{t}x(t) = \frac{p(t)}{\mu}, \pdv{t}p(t) = -\pdv{V(x(t))}{x}$$
+In the quantum world, classical physical variables, as shown in the Stern-Gerlach experiment, are promoted to observables/operators. In this case:
+\begin{quote}
+    1. Total Energy: $\hamiltonian$. \\
+    2. Position: $\hat{X}$. \\
+    3. Momentum: $\hat{P}$.
+\end{quote}
+where the Hamiltonian is:
+$$\hamiltonian = \frac{\opmtm^2}{2\mu} + V(\oppos)$$
+and we assume that $V$ has a Taylor expansion, where
+$$V(\oppos) = \Sum{n=0}{\infty}a_n \oppos^n$$
+Recall that for a time-independent observable, we have
+$$\pdv{t}\expval{\hat{A}}_t = \frac{\imag}{\hbar} \expval{[\hamiltonian, \hat{A}]}_t$$
+This gives us:
+\begin{align*}
+    \pdv{t}\expval{\oppos}_t &= \frac{\imag}{\hbar} \expval{[\frac{\opmtm^2}{2\mu} + V(\oppos), \oppos]}_t \\
+    &= \frac{\imag}{\hbar} \expval{[\frac{\opmtm^2}{2\mu}, \oppos] + [V(\oppos), \oppos]}_t \\
+    &= \frac{\imag}{2\mu \hbar} \expval{[\opmtm^2, \oppos]}_t
+\end{align*}
+Specifically, we have
+\begin{align*}
+    [\opmtm^2, \oppos] &= \opmtm\opmtm\oppos - \oppos\opmtm\opmtm \\
+    &= \opmtm(\oppos\opmtm - [\oppos, \opmtm]) - \oppos\opmtm\opmtm \\
+    &= -\opmtm[\oppos, \opmtm] + \opmtm\oppos\opmtm - \oppos\opmtm\opmtm \\
+    &= -\imag \hbar \opmtm + ([\opmtm, \oppos])\opmtm \\
+    &= -2\imag\hbar\opmtm
+\end{align*}
+Therefore,
+\begin{align*}
+    \pdv{t}\expval{\oppos}_t &= \frac{\imag}{2\mu \hbar} \expval{[\opmtm^2, \oppos]}_t \\
+    &= \frac{\imag}{2\mu \hbar} \expval{-2\imag\hbar\opmtm}_t \\
+    &= \frac{\expval{\opmtm}_t}{\mu}
+\end{align*}
+In a similar fashion, we have:
+\begin{align*}
+    \pdv{t}\expval{\opmtm}_t &= \frac{\imag}{\hbar} \expval{[\frac{\opmtm^2}{2\mu} + V(\oppos), \opmtm]}_t \\
+    &= \frac{\imag}{\hbar} \expval{[V(\oppos), \opmtm]}_t \\
+    &= \frac{\imag}{\hbar} \expval{\imag\hbar \pdv{V(\oppos)}{x}}_t \\
+    &= -\expval{\pdv{V(\oppos)}{x}}_t
+\end{align*}
+This concludes that:
+\begin{theorem}
+    The \uimpt{Ehrenfest Relations/Theorem} claims that for a neutral particle in an 1D continuous system, we have an analagous relationship between classical physical quantities and their promoted observables, specifically:
+    $$\pdv{t}\expval{\oppos}_t = \frac{\expval{\opmtm}_t}{\mu}$$
+    $$ \pdv{t}\expval{\opmtm}_t =  -\expval{\pdv{V(\oppos)}{x}}_t$$
+\end{theorem}
+In this case, we further explore how the Schr\"odinger's Equation is affected for such a particle. \\
+For vectors, we already have the Schr\"odinger's Equation to be:
+$$\hamiltonian \ket{\psi(t)} = \imag \hbar \pdv{t}\ket{\psi(t)}$$
+The position wavefunction is thus transformed in the following way (by applying $\brax$ from the left):
+\begin{align*}
+    \forall x \in \R, \mel{x}{\hamiltonian}{\psi(t)} &= \mel{x}{\imag \hbar \pdv{t}}{\psi(t)} \\
+    &= \imag\hbar \pdv{t}\braket{x}{\psi(t)} \\
+    &= \imag \hbar \pdv{t}\psi(x, t)
+\end{align*}
+If we further separate the Hamiltonian in its respective parts, we first have:
+\begin{align*}
+    \frac{\opmtm^2}{2\mu}: \psi(x, t) &\mapsto \frac{1}{2\mu}(-\imag\hbar\pdv{x})^2 = -\frac{\hbar^2}{2\mu}\pdv[2]{x} \psi(x, t) \\
+    V(\oppos): \psi(x, t) &\mapsto V(x)\psi(x, t)
+\end{align*}
+Therefore, 
+\begin{theorem}
+    For a neutral particle in 1D-continous space, we have two Schr\"odinger's Equation, one for position, and one for momentum:
+    \begin{align*}
+        -\frac{\hbar^2}{2\mu}\pdv[2]{x} \psi(x, t) + V(x)\psi(x, t) &= \imag \hbar \pdv{t}\psi(x, t) \\
+        \frac{p^2}{2\mu}\tilde{\psi}(p, t) + V(\imag \hbar \pdv{p})\tilde{\psi}(p, t) &= \imag \hbar \pdv{t}\tilde{\psi}(p, t)
+    \end{align*}
+\end{theorem}
+If we have solutions for $\psi(x, t)$ and $\tilde{\psi}(p, t)$, then we know that
+$$\ket{\psi(t)} = \intR \psi(x, t) \ket{x} \dd x = \intR \tilde{\psi}(p,t) \ket{p} \dd p$$
+is a solution for the Schr\"odinger's Equation for $\ket{\psi(t)}$. \\
+To simply demonstrate, consider a free particle where $V(x) = 0$, so the Hamiltonian is directly $\hamiltonian = \frac{\opmtm^2}{2\mu}$. We know that $\opmtm^2 = \intR p^2 \dyad{p} \dd p$ is diagonal in the momentum basis, so it is easier for us to solve the equation for $\tilde{\psi}(p, t)$.
+\begin{align*}
+    \frac{p^2}{2\mu}\tilde{\psi}(p, t) &= \imag \hbar \pdv{t}\tilde{\psi}(p, t) \\
+    -\frac{\imag p^2}{2\mu\hbar} \tilde{\psi}(p, t) &= \pdv{t} \tilde{\psi}(p, t) \\
+    \tilde{\psi}(p, t) &= \tilde{\psi}(p, 0) \cdot \exp(-\frac{\imag p^2t}{2\mu\hbar})
+\end{align*}
+Thus, the equation of motion for a general state $\ket{\psi(t)}$ is:
+$$\ket{\psi(t)} = \intR \tilde{\psi}(p, 0) \cdot \exp(-\frac{\imag p^2t}{2\mu\hbar}) \ket{p} \dd p$$
+The consistency can be checked with the propagator:
+$$\opuni(t) = \exp(-\frac{\imag \hamiltonian t}{\hbar})$$
+applied to $\ket{\psi(0)} = \intR \tilde{\psi}(p, 0) \ket{p} \dd p$. \\
+By the Ehrenfest relations, we also know
+$$\pdv{t} \expval{\opmtm}_t = - \expval{\pdv{V(\oppos)}{x}}_t = 0$$
+This indicates the momentum is conserved, which further implies:
+$$\pdv{t} \expval{\oppos}_t = \frac{\expval{\opmtm}_t}{\mu} = \frac{\expval{\opmtm}_0}{\mu}$$
+which is equivalent to $\expval{\oppos}_t = \expval{\oppos}_0 + t \cdot \frac{\expval{\opmtm}_0}{\mu}$. \\
+In this case, $(\Delta \oppos)_t \propto t^2$. On a similar note, we yielded that the momentum wavefunction is transformed in the following way:
+$$\tilde{\psi}(p, t) = \tilde{\psi}(p, 0) \cdot \exp(-\frac{\imag p^2t}{2\mu\hbar})$$
+We can observe it only evolves with a complex phase. This indicates that every moment of $\opmtm$, which is $\expval{\opmtm^n}_t$ is time-independent. In momentum space, this does not change much, but in position space, it changes the wavefunction significantly, more specifically, the probability spreads out as time evolves.
+
+\newpage

@@ -1,0 +1,38 @@
+\section{Uncertainty Relations - 不确定性}
+We know the relationship between the position and momentum basis through their inner product, 
+$$\begin{matrix}
+    \ket{x} \\
+    \ket{p}
+\end{matrix} = \frac{1}{\sqrt{2\pi\hbar}} \intR \exp(\mp \frac{\imag p x}{\hbar}) \begin{matrix}
+    \ket{p} \\ \ket{x}
+\end{matrix} \dd \begin{matrix}
+    p \\ x
+\end{matrix}$$
+Consider $\Prob{p}_{\ketx}$, notice that this probability density is uniform, as $\abs{\frac{1}{\sqrt{2\pi\hbar}}\exp(\mp \frac{\imag p x}{\hbar})}^2$ is a constant and independent of $x$ or $p$. So, if we have complete certainty in $\ket{x}$, we have \impt{complete uncertainty} about $\ket{p}$. This relation is the consequence of $[\oppos, \opmtm] = \imag \hbar$.
+\begin{theorem}
+    Let $\hilbert$ be an arbitrary quantum system, and consider $\ketpsi \in \hilbert$ with $A = \conjt{A}, B = \conjt{B}$. Then, we first have:
+    $$(\Delta A)^2 = \expval{A^2}{\psi} - (\expval{A}{\psi})^2$$
+    $$(\Delta B)^2 = \expval{B^2}{\psi} - (\expval{B}{\psi})^2$$
+    then the \uimpt{Robertson Uncertainty Principle} says that
+    $$\forall \ketpsi \in \hilbert, \Delta A \Delta B \ge \frac{1}{2}\abs{\expval{[A, B]}{\psi}}$$
+\end{theorem}
+From the Robertson Uncertainty Principle, we substitute $A, B$ with $\oppos, \opmtm$, we thus have,
+\begin{theorem}
+    The \uimpt{Heisenberg Uncertainty Principle} says that
+    $$\Delta \oppos \Delta \opmtm \ge \frac{1}{2}\abs{\expval{[\oppos, \opmtm]}{\psi}} = \frac{\hbar}{2}$$
+\end{theorem}
+The Robertson Uncertainty Principle is proven through Cauchy-Schwarz Inequality, where we take the lower bound to be the absolute value of the imaginary part of the inner product (for tighter bounds, we can use the real part of the inner product). \par
+Consider the following examples,
+\begin{quote}
+    1. Gaussian wavepackets:
+    $$\psi(x) = \frac{1}{\sqrt[4]{2\pi\sigma^2}}\exp(-\frac{(x-x_0)^2}{4\sigma^2})\exp(\imag k x) \to (\Delta X)^2 = \sigma^2$$
+    $$\tilde{\psi}(p) = \sqrt[4]{\frac{2\sigma^2}{\pi \hbar^2}}\exp(-\frac{(p - \hbar k)^2}{4\hbar^2 / 4\sigma^2})\exp(-\frac{\imag x_0 (p-\hbar k)}{\hbar}) \to (\Delta P)^2 = \frac{\hbar^2}{4\sigma^2}$$
+    From this, we have $\Delta X \Delta P = \frac{\hbar}{2}$, which is exactly the minimum joint uncertainty on $X$ and $P$. \\
+    2. Spin Measurements / Qubit Measurements: we first have $\hilbert = \Span{\ket{0}, \ket{1}}$, then with the operators $\hat{S}_{x, y, z} = \frac{\hbar}{2}X, Y, Z$. We know $[X, Z] = -2\imag Y$, then $[\hat{S}_x, \hat{S}_z] = -\imag\hbar \hat{S}_y$. Then the uncertainty is:
+    $$\Delta \hat{S}_x \Delta \hat{S}_z \ge \frac{1}{2}\abs{\expval{\hat{S}_y}{\psi}}$$
+    which is \impt{state dependent}. If $\ketpsi = \ket{+\imag}$, the uncertainty will be $\ge (\frac{\hbar}{2})^2$; if $\ketpsi = \ket{1}$, the uncertainty will be $\ge 0$ (trivial).
+\end{quote}
+The Robertson Uncertainty Principle only implies the trivial case, that is, $\Delta A \Delta B \ge 0$, when $[A, B] = 0$ ($A,B$ commute) or $[A, B] \ne 0$ but the commutator is orthogonal to $\ketpsi$. \\
+The lower bound is state-independent when the commutator is proportional to $\id$. The bound is also state-independent for general states only if it is an \impt{infinite-dimensional} space.
+
+\newpage

@@ -1,0 +1,1 @@
+This is the course I really enjoyed learning, and was taught by Prof. Philipp Kammerlander. And this is also the course with the most organized note of the school year.
