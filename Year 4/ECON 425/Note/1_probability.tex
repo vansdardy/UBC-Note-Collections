@@ -1,0 +1,81 @@
+\section{Review on Probability}
+For our study in econometrics, it is important to lay down the groundwork in probability theory. Therefore, we start by giving a general review on probability theory, and highlight the concepts where we use most frequently in the field of econometrics.
+
+\subsection{Basic Concepts}
+\begin{definition}
+    Let $S$ be a \uimpt{sample space} which denotes a set of all possible outcomes.
+\end{definition}
+where each element $s \in S$ is an outcome. Then, we consider a $\sigma$-field $\mathcal{F}$ which is a collection of subsets of $S$, such that it satisfies these properties:
+\begin{quote}
+    1. $S \in \mathcal{F}$. \\
+    2. If $A \in \mathcal{F}$, then the complement of $A$ in $S$ is also an element of $\mathcal{F}$. \\
+    3. If $A_1, A_2, \dots, A_n \in \mathcal{F}$, then $\bigcup_{i = 1}^n A_i \in \mathcal{F}$.
+\end{quote}
+With this set, consider a probability map $\prob$ such that
+$$\prob: \mathcal{F} \to [0, 1]$$
+\begin{definition}
+    $(S, \mathcal{F}, \prob)$ forms a \uimpt{probability space}.
+\end{definition}
+\begin{definition}
+    A \uimpt{random variable} $X$ is a map
+    $$X: S \to \R$$
+\end{definition}
+Analogously, a \uimpt{random vector} is a map $X: S \to \R^k$. \\
+Consider a set $B$, we write:
+$$\prob(\{s \in S \mid X(s) \in B\}) = \prob(X \in B)$$
+A map that maps $B$ to $\prob(X \in B)$ describes the \impt{distribution} of $X$.
+\begin{proposition}
+    If random variables/vectors are \uimpt{identically distributed}, $f(X_i)$ and $f(X_j)$ are also identically distributed for some transformation $f$.
+\end{proposition}
+\begin{definition}
+    Consider two random variables/vectors $X_1, X_2$, and given two sets $A, B$. If
+    $$\prob(X_1 \in A \mid X_2 \in B) = \prob(X_1 \in A)$$
+    or
+    $$\prob(X_1 \in A \land X_2 \in B) = \prob(X_1 \in A) \times \prob(X_2 \in B)$$
+    we say the two random variables/vectors $X_1, X_2$ are \uimpt{independent}.
+\end{definition}
+\begin{proposition}
+    If $X_i$ and $X_j$ are independent, then $f(X_i)$ and $g(X_j)$ are independent for transformations $f, g$ and random variables/vectors $X_i, X_j$. \\
+    Additionally, $\Cov{X_i}{X_j} = 0$.
+\end{proposition}
+However, note that, two \impt{uncorrelated} random variables/vectors does not imply they are independent. \\
+We give some useful properties about variance and covariance:
+\begin{quote}
+    1. $\Var{aX + bY} = a^2\Var{X} + b^2\Var{Y} + 2ab\Cov{X}{Y}$. \\
+    2. $\Cov{aX + bY}{cZ + dW} = ac\Cov{X}{Z} + ad\Cov{X}{W} + bc\Cov{Y}{Z} + bd\Cov{Y}{W}$.
+    3. $\Cov{X}{Y} = \expect{(X - \expect{X})(Y - \expect{Y})} = \expect{XY} - \expect{X}\expect{Y}$. \\
+    4. $\Var{X} = \Cov{X}{X}$.
+\end{quote}
+Additionally, for independent identically distributed (abbr. iid) variables:
+\begin{quote}
+    1. $\expect{\Sum{i = 1}{n} X_i} = \Sum{i = 1}{n} \expect{X_i} = n \expect{X_i}$. \\
+    2. $\Var{\Sum{i = 1}{n} X_i} = n\Var{X_i}$.
+\end{quote}
+Now we discuss conditional expectation. Consider a continuous random variable $X$ with probability distribution of $f_X$ so that
+$$\expect{X} = \int_{-\infty}^{\infty} xf_X(x)\dd x$$
+Since we have the probability map of $\prob: \mathcal{F} \to [0, 1]$ and an event $C$, then we have the map of $\prob_C: \mathcal{F} \to [0, 1]$ where
+$$\prob_C(A) = \prob(A \mid C) = \frac{\prob(A \land C)}{\prob(C)}$$
+Then, given some new information $Y$, the joint density is thus: $f_{X, Y}(x, y)$, with the conditional density of $X$ given $Y = y$ to be:
+$$f_{X \mid Y}(x \mid y) = \frac{f_{X, Y}(x, y)}{f_Y(y)}$$
+This means that $\expect{X \mid Y = y}$ is a \impt{constant} and a function of $y$: $g_{X \mid Y}(y)$. We then write $\expect{X \mid Y} = g_{X \mid Y}(Y)$, which is a \impt{random variable}. \\
+Several properties of the conditional expectation include:
+\begin{quote}
+    1. $\expect{\expect{X \mid Y = y}} = \expect{X \mid Y = y}$. \\
+    2. $\expect{aX_1 + bX_2 \mid Y} = a\expect{X_1 \mid Y} + b\expect{X_2 \mid Y}$. \\
+    3. If $X, Y$ are independent, we have $\expect{X \mid Y} = \expect{X}$. \\
+    4. $\expect{Xg(Y)\mid Y} = g(Y)\expect{X \mid Y}$. \\
+    5. The \uimpt{Law of Iterated Expectation} states that $\expect{\expect{X \mid Y}} = \expect{X}$. Or more generally, we have
+    $$\expect{\expect{X \mid \text{large info.}} \mid \text{small info.}} = \expect{X \mid \text{small info.}}$$
+    $$\expect{\expect{X \mid \text{small info.}} \mid \text{large info.}} = \expect{X \mid \text{small info.}}$$
+    where ``small info.'' means that you can obtain it from ``large info.''. For example, knowing $Z$ is a small info. compared to knowing $X, Z$.
+\end{quote}
+This also gives conditional variance to be:
+$$\Var{Y \mid X} = \expect{Y^2 \mid X} - \expect{Y \mid X}^2$$
+and conditional variance behaving in a similar way.
+\begin{lemma}
+    For any transformation $g$, we have:
+    $$\expect{(Y - g(X))^2} \ge \expect{(Y - \expect{Y \mid X})^2}$$
+\end{lemma}
+
+
+\newpage

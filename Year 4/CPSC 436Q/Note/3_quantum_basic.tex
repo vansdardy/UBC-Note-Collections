@@ -1,0 +1,119 @@
+\section{Basics of Quantum Information Processing - 量子信息处理初步}
+\subsection{Complex Numbers - 复数}
+Let $a, b, c, d, r, \theta \in \R$, we introduce the imaginary unit $\imag$ where $\imag^2 = -1$. \\
+A complex number is in the form of $z = a + b\imag$ with the following arithmetic properties:
+\begin{align*}
+    (a + b\imag)(c + d\imag) &= (ac - bd) + (ad + bc)\imag \\
+    \abs{a + b\imag} &= \sqrt{a^2 + b^2} \\
+    e^{\imag \theta} &= \cos \theta + \imag \sin \theta \\
+    \conj{(a + b \imag)} &= a - b\imag
+\end{align*}
+Let $z, z_1, z_2 \in \C$, then we have:
+\begin{align*}
+    \abs{z}^2 &= z \cdot \conj{z} \\
+    z_1 &= r_1 e^{\imag \theta_1} \\
+    z_2 &= r_2 e^{\imag \theta_2} \\
+    z_1z_2 &= (r_1r_2) e^{\imag (\theta_1  + \theta_2)}
+\end{align*}
+
+\subsection{Quantum State - 量子态}
+\begin{definition}
+    A quantum state of $n$ qubits is described by a column vector of length $2^n$,
+    $$\vec{\alpha} = (\alpha_{00 \dots 0}, \alpha_{00 \dots 1}, \dots, \alpha_{11 \dots 1})^\top$$
+    such that $\alpha_{\mathbf{x}} \in \C$, and $\Sumi{\mathbf{x}} \abs{\alpha_{\mathbf{x}}}^2 = 1$.
+\end{definition}
+It is easy to see any deterministic state is a quantum state.
+
+\subsection{Kronecker Product and Dirac Notation}
+\begin{definition}
+    Let $A \in \C^{m_1 \times m_2}$ and $B \in \C^{n_1 \times n_2}$, then
+    $$A \otimes B = \begin{pmatrix}
+        a_{11}B & a_{12}B & \cdots & a_{1,m_2}B \\
+        a_{21}B & a_{22}B & \cdots & a_{2,m_2}B \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m_11}B & a_{m_1, 2}B & \cdots & a_{m_1,m_2}B
+    \end{pmatrix} \in \C^{(m_1 \times n_1)(m_2 \times n_2)}$$
+\end{definition}
+It is conventional to write $\vec{\alpha}$ as $\ket{\alpha}$:
+$$\ket{\alpha} = \Sumi{\mathbf{x}} \alpha_{\mathbf{x}} \ket{x_1 x_2 \cdots x_n}$$
+In $\C^d$ for $d > 2$, it is conventional to write:
+$$\ket{0} = \begin{pmatrix}
+    1 \\ 0 \\ \vdots \\ 0
+\end{pmatrix}, \ket{1} = \begin{pmatrix}
+    0 \\ 1 \\ \vdots \\ 0
+\end{pmatrix}, \ket{d - 1} = \begin{pmatrix}
+    0 \\ 0 \\ \vdots \\ 1
+\end{pmatrix}$$
+The properties of the Kronecker product consists of the following:
+\begin{quote}
+    Let $A, B, C, D \in \C^{m \times n}$, and let $\alpha, \beta \in \C$. \\
+    1. Bilinearity: if $A$ and $B$ have same dimensions, $$C \otimes (\alpha A + \beta B) = \alpha C \otimes A + \beta C \otimes B$$
+    2. Associativity $$(A \otimes B) \otimes C = A \otimes (B \otimes C)$$
+    3. Mixed product: if $A, C$ have same dimensions, and $B, D$ have same dimensions
+    $$(A \otimes B)(C \otimes D) = AC \otimes BD$$
+\end{quote}
+With these setup, we can see that if $A \in \C^{d \times d}$, then
+$$A \ket{i} = \Sum{j = 1}{d} A_{ji} \ket{j}$$
+for all $i \in \{1, \dots, d\}$.
+
+\subsection{Quantum Operations - 量子操作}
+\begin{definition}
+    A square matrix $\opuni$ is \uimpt{unitary} if $\conjt{\opuni}\opuni = \id$.
+\end{definition}
+\begin{lemma}
+    $\ket{u_1}, \ket{u_2}, \dots, \ket{u_d} \in \C^d$ form an orthonormal basis if there exists a unitary matrix $\opuni$ such that $\ket{u_i} = \opuni \ket{i}$
+\end{lemma}
+\begin{definition}
+    A \uimpt{quantum operation} on $d$-dimensional quantum states is described by a $d \times d$ unitary matrix.
+\end{definition}
+Common elementary gates include
+$$H = \frac{1}{\sqrt{2}}\begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+\end{pmatrix}, X = \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+\end{pmatrix}, Y = \begin{pmatrix}
+    0 & -\imag \\
+    \imag & 0
+\end{pmatrix}, Z = \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+\end{pmatrix}, T = \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{\imag \frac{\pi}{4}}
+\end{pmatrix}, \text{CNOT}, \text{Toffoli}$$
+where $H$ is the \impt{Hadamard} gate, and $X, Y, Z$ are \impt{Pauli gates}.
+
+\subsection{Quantum Circuit - 量子电路}
+\begin{definition}
+    A \uimpt{quantum circuit} is a sequency of quantum operations.
+\end{definition}
+\begin{definition}
+    \uimpt{Measuring a quantum state} of $n$-qubits \impt{in the quantum basis} $\ketpsi = \Sumi{\mathbf{x}} \alpha_{\mathbf{x}}\ket{\mathbf{x}}$ refers to a process that returns an $n$-bit classical string $\mathbf{x} \in \{0, 1\}^n$ with probability $\abs{\alpha_{\mathbf{x}}}^2$.
+\end{definition}
+Common universal gate sets for a quantum circuit include
+$$\{H, \text{CNOT}, T\}, \{H, \text{Toffoli}\}$$
+
+\subsection{Unitary Matrix in Quantum Computation - 量子计算中的酉矩阵}
+We refer the \impt{bra} notation to be row vectors (e.g. $\brapsi$) and \impt{ket} notation to be column vectors (e.g. $\ketpsi$). Let $\ketpsi,\ketphi \in \C^d$, we have $\brapsi = \conjt{\ketpsi}, \braket{\phi}{\psi} = \brapsi \cdot \ketpsi$. The norm of $\ketpsi$ is $\norm{\ketpsi} = \sqrt{\braket{\psi}}$.
+\begin{lemma}
+    For operations $\text{op} \in \{*, \top, \dagger\}$, we have
+    \begin{align*}
+        (A + B)^{\text{op}} &= A^{\text{op}} + B^{\text{op}} \\
+        (A \otimes B)^{\text{op}} &= A^{\text{op}} \otimes B^{\text{op}}
+    \end{align*}
+    and $\conj{(AB)} = \conj{A}\conj{B}$, $(AB)^\top = B^\top A^\top$, $\conjt{(AB)} = \conjt{B}\conjt{A}$
+\end{lemma}
+\begin{lemma}
+    Suppose $\ketpsi = \Sum{i = 1}{d} \alpha_i \ket{i} \in \C^d$, then $\ketpsi$ is a quantum state if and only if $\braket{\psi} = 1$.
+\end{lemma}
+\begin{theorem}
+    Let $\ket{u_1}, \ket{u_2}, \dots, \ket{u_d} \in \C^d$, then $\braket{u_i}{u_j} = \delta_{ij}$ for all $i, j \in \{1, \dots, d\}$ if and only if they form an orthonormal basis. \\
+    Equivalently, a $d \times d$ matrix is unitary if and only if the columns of $A$ are unit vectors and are pair-wise orthogonal.
+\end{theorem}
+\begin{theorem}
+    A $d \times d$ complex matrix $A$ maps a $d$-dimensional quantum state to another $d$-dimensional quantum state if and only if $A$ is unitary.
+\end{theorem}
+
+\newpage

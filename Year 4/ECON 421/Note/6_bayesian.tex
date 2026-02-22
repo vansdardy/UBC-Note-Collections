@@ -1,0 +1,170 @@
+\section{Bayesian Games}
+Bayesian games contains a set of players, their available actions, payoffs, and additional to a strategic form, set of types for each player with their corresponding type distribution.
+\begin{definition}
+    Let list $G := (I; p; \{A_i\}_{i = 1}^n; \{u_i\}_{i = 1}^n; \{\Theta_i\}_{i = 1}^n)$ denote a Bayesian game, where
+    \begin{quote}
+        1. $I$ is the set of players. \\
+        2. $A_i$ is the set of available actions for player $i$. \\
+        3. $u_i$ is the payoff function for player $i$. \\
+        4. $\Theta_i$ is the set of possible types for player $i$. \\
+        5. $p_i$ is the probability density of types for player $i$.
+    \end{quote}
+\end{definition}
+The strategies in a Bayesian game is a map $s_i: \Theta_i \to A_i$ such that $s_i(\theta_i) \in A_i$, where it represents what action will be chosen when $\theta_i$ is observed. We focus on pure strategies, even though mixed strategies can also be considered.
+\begin{definition}
+    A \uimpt{Bayesian-Nash equilibrium} is a strategy profile $\mathbf{s}^* = \begin{pmatrix}
+        s_1^* & s_2^* & \cdots & s_n^*
+    \end{pmatrix}^\top$ where $s_i(\theta_i)$ is optimal given $\oppoI{s}(\oppoI{\theta})$ and $\theta_i$. \\
+    And $s_i^*(\theta_i)$ maximizes expected payoff
+    $$U_i(a_i, \oppoI{s} \mid \theta_i) = \expect{u_i(a_i, \oppoI{s}(\oppoI{\theta}) \mid \theta_i)}$$
+    Player $i$ does not know opponents' types or actions.
+\end{definition}
+
+\subsection{Cournot Model}
+Consider a revised versoin of the Cournot model, where each firm has a cost $c_i$ with distribution $F_i$ over $[0, 1)$, and $q_i(c_i)$ maps cost to output. We should have:
+$$q_i^*(c_i) = \argmax_{q_i \ge 0} (1 - q_i - q_j^*(c_j) - c_i)q_i$$
+for all $i$. Since player $i$ does not know about opponents' types or actions, we want the $q_i$ that maximizes the expected value of the above expression. And we assume that we can do this linearly, then it becomes maximizing
+$$(1 - q_i - \bar{q}_j - c_i)q_i$$
+where we denote $\bar{q}_j = \expect{q_j^*(c_j)}$. Then, the best response of player $i$ is:
+$$q_i^*(c_i) = \begin{cases}
+    \frac{1}{2}(1 - c_i - \bar{q}_j) & 1 - c_i - \bar{q}_j \ge 0 \\
+    0 & 1 - c_i - \bar{q}_j < 0
+\end{cases}$$
+If we take the expected value of $q_i^*(c_i)$, we thus have:
+$$\bar{q}_i = \frac{1}{2}(1 - \bar{c}_i - \bar{q}_j)$$
+which gives a system of equations that solves $\bar{q}_1, \bar{q}_2$ that only depends on $\bar{c}_1, \bar{c}_2$, which can be substituted back to find $q_i^*$.
+
+\subsection{Auctions}
+\subsubsection{First Price Auctions}
+Consider the type of each bidder to be $\theta_i \sim U(0, 1)$, with the payoff to be:
+$$u_i(a_i, \theta) = \begin{cases}
+    \theta_i - a_i & a_i > a_j \\
+    \frac{1}{2}(\theta_i - a_i) & a_i = a_j \\
+    0 & a_i < a_j
+\end{cases}$$
+We want to find a BNE in symmetric linear strategies where
+$$b_i(\theta_i) = \alpha \theta_i + \beta_i$$
+with $\alpha > 0, \beta \ge 0$. \\
+The procedure is the following, assume $j$ uses the strategy with $\alpha, \beta$ given, the optimal bidding for $i$ must also use the strategy with the same $\alpha, \beta$, and finally check that the strategy is indeed optimal. \\
+Assume $b_2(\theta_2) = \alpha \theta_2 + \beta$, ($\tilde{\theta}$, means the variable $\theta$ is unknown to the current player)
+\begin{align*}
+    U_1(b, \theta_1) &= (\theta_1 - b)\prob(b_2(\tilde{\theta}_2) < b) + 0 \cdot \prob(b_2(\tilde{\theta}_2) > b) + \frac{\theta_1 - b}{2}\prob(b_2(\tilde{\theta}_2) = b) \\
+    &= (\theta_1 - b) \cdot F(\frac{b - \beta}{\alpha})
+\end{align*}
+The probability distribution of a bid $b$ follows that:
+$$G(b) = \begin{cases}
+    1 & b > \alpha + \beta \\
+    \frac{b - \beta}{\alpha} & \beta \le b \le \alpha + \beta \\
+    0 & b < \beta
+\end{cases}$$
+We want to find $\alpha, \beta$ such that the optimal bid for P1 also follows the same strategy, meaning $\max_{b}U_1(b \mid \theta_1)$, that is:
+\begin{align*}
+    \eval{\dv{b}U_1}_{b = \alpha \theta_1 + \beta} &= 0 \\
+    \dv{b}(\theta_1 - b)G(b) &= -G(b) + (\theta_1 - b)g(b) = 0 \\
+    (\theta_1 - b) \cdot \frac{1}{\alpha} &= \frac{b - \beta}{\alpha} \\
+    b &= \frac{\theta_1 + \beta}{2}
+\end{align*}
+We thus have: $\alpha = \frac{1}{2}, \beta = 0$. \\
+Check if this is optimal. We are trying to maximize:
+$$U_i(b \mid \theta_i) = (\theta_i - b)G(b) = \begin{cases}
+    (\theta_i - b)2b & b \in [0, \frac{1}{2}] \equiv \theta_i \in [0, 1] \\
+    \theta_i - b & b > \frac{1}{2}
+\end{cases}$$
+The first case is quadratic and concave, so the $(\alpha, \beta)$ is indeed optimal for the strategy. \\
+The expected revenue can be found with the following way. Revenue is always given by the highest bid: $b^{(1)}(\theta) = \max(b_1^*(\theta_1), b_2^*(\theta_2))$. The distribution of the highest bid is thus:
+\begin{align*}
+    G^{(1)}(x) &= \prob(b_1^*(\theta_1) \le x \land b_2^*(\theta_2) \le x) \\
+    &= \prob(b_1^*(\theta_1) \le x) \times \prob(b_2^*(\theta_2) \le x) \\
+    &= (G(x))^2 \\
+    &= 4x^2
+\end{align*}
+which gives $g^{(1)}(x) = 8x$. The expected revenue is thus:
+$$R^{FPA} = \int_{0}^{\frac{1}{2}} x g^{(1)}(x) \dd x = \frac{1}{3}$$
+
+\subsubsection{Second Price Auction}
+Contrary to the strategic form, we introduce a private value $\theta_i \ge 0$ to each bidder. We have previously shown that bid-your-own-value is optimal regardless of opponents' actions. In the case of a Bayesian game, bid-your-own-value remains to be a weakly dominant strategy. Thus, $b_i^*(\theta_i) = \theta_i$. \\
+Now we consider its expected revenue. Let $\theta_i \sim U(0, 1)$. Then, the CDF of each bidder's bid is:
+$$H(b) = \begin{cases}
+    b & b \in [0, 1] \\
+    1 & b > 1
+\end{cases}$$
+Then, $b^{(2)} = \min(b_1^*(\theta_1), b_2^*(\theta_2))$.
+\begin{align*}
+    H^{(2)}(b) &= \prob(b^{(2)} \le b) \\
+    &= 1 - \prob(b^{(2)} > b) \\
+    &= 1 - \prob(b_1 > b \land b_2 > b) \\
+    &= 1 - (1 - \prob(b_1 \le b))(1 - \prob(b_2 \le b)) \\
+    &= 1 - (1 - b)(1 - b) \\
+    &= 1 - (1 + b^2 - 2b) \\\
+    &= 2b - b^2
+\end{align*}
+This means: $h^{(2)}(b) = 2-2b$. Thus,
+$$R^{SPA} = \int_{0}^{1} b \cdot h^{(2)}(b) \dd b = \frac{1}{3}$$
+
+\subsection{Revenue Equivalence}
+Consider two bidders, with values independently distributed on $[\underline{\theta}, \bar{\theta}]$ with CDF $F$. 
+\begin{definition}
+    An \uimpt{auction format} specifies possible bids $b_i$, quantity function $q_i(b) \in [0, 1]$ and payment function $t_i(b) \ge 0$.
+\end{definition}
+We fix an auction format $q_i, t_i$ and fix the BNE of this auction to be $b_i^*$. \\
+We define:
+\begin{quote}
+    1. $q_i^*(\theta_1, \theta_2) = q_i^*(b_1^*(\theta_1), b_2^*(\theta_2))$. \\
+    2. $t_i^*(\theta_1, \theta_2) = q_i^*(b_1^*(\theta_1), b_2^*(\theta_2))$. \\
+    3. $\bar{q}_i(\theta_i) = \expect{q_i^*(\theta_i, \tilde{\theta}_j)}$ and $\bar{t}_i(\theta_i) = \expect{t_i^*(\theta_i, \tilde{\theta}_j)}$
+\end{quote}
+We say the BNE is \impt{efficient} if $q_i^* = 1$ whenever $\theta_i > \theta_j$. In an efficient equilibrium, $\bar{q}_i = \prob(\theta_i > \tilde{\theta}_j) = F(\theta_i)$. The expected payoff of type $\theta_i$ is thus $U_i(\theta_i) = \theta_i \bar{q}_i - \bar{t}_i$.
+\begin{definition}
+    A type $\theta_i$ could imitate $\theta_i'$ and bid $b_i^*(\theta_i')$, obtaining $\theta_i \bar{q}_i(\theta_i') - \bar{t}_i(\theta_i')$. \\
+    In equilibrium, the deviation is not profitable
+    $$\theta_i \in \argmax_{\theta_i'}\theta_i \bar{q}_i(\theta_i') - \bar{t}_i(\theta_i')$$
+    This is \uimpt{incentive compatibility}.
+\end{definition}
+The first-order condition is thus:
+\begin{align*}
+    \pdv{\theta_i'} \theta_i \bar{q}_i(\theta_i') - \bar{t}_i(\theta_i') &= 0 \\
+    \theta_i \bar{q}_i'(\theta_i') - \bar{t}_i'(\theta_i') &= 0
+\end{align*}
+for all $\theta_i'$. \\
+Using this, we differentiate $U_i$ over $\theta_i$ and obtain:
+\begin{align*}
+    \dv{\theta_i} U_i &= \bar{q}_i(\theta_i) + \theta_i \bar{q}_i'(\theta_i) - \bar{t}_i'(\theta_i) \\
+    &= \bar{q}_i(\theta_i)
+\end{align*}
+This means:
+\begin{align*}
+    U_i(\theta_i) - U_i(\underline{\theta}) &= \int_{\underline{\theta}}^{\theta_i} U_i'(\theta_i') \dd \theta_i' \\
+    U_i(\theta_i) &= U_i(\underline{\theta}) + \int_{\underline{\theta}}{\theta_i} \bar{q}_i(\theta_i') \dd \theta_i'
+\end{align*}
+The lowest-type utility can be obtained from the following:
+\begin{quote}
+    1. efficiency: $\bar{q}_i(\underline{\theta}) = F(\underline{\theta}) = 0$, which gives $U_i(\underline{\theta}) = -\bar{t}_i(\underline{\theta})$. \\
+    2. Bidder payment is $\bar{t}_i(\underline{\theta}) \ge 0$ and \impt{voluntary participation} gives $U_i \ge 0$.
+\end{quote}
+This means $U_i(\underline{\theta}) = -\bar{t}_i(\underline{\theta}) = 0$.
+\begin{proposition}
+    Any 2 auction formats with BNE satisfying:
+    \begin{quote}
+        1. An efficient BNE exists, and \\
+        2. Voluntary partication
+    \end{quote}
+    generates the same expected payoff $U_i(\theta_i)$ for each player and type.
+\end{proposition}
+The total surplus is defined to be the sum of payoff of player 1, payoff of player 2, and the revenue generated. If $q_i^*$ is efficient, the total surplus is maximized: $TS(\theta) = \max(\theta_1, \theta_2)$. Any 2 efficient auctions generate the same expected total surplus. Therefore,
+\begin{theorem}
+    Any 2 auction formats with BNE satisfying:
+    \begin{quote}
+        1. An efficient BNE exists, and \\
+        2. Lowest type has zero utility.
+    \end{quote}
+    generate the same \uimpt{expected revenue}.
+\end{theorem}
+This means, details of the auction format do not matter for expected revenue under efficiency. To increase revenue relative to a standard SPA, one must typically sacrifice efficiency (e.g. via reserve prices). \\
+Consider a SPA with reserve price $r > 0$:
+\begin{quote}
+    1. If all bids $< r$: good not sold (inefficient). \\
+    2. If exactly one bid $> r$: winner pays $r$. \\
+    3. If two or more bids $> r$: standard second-price rule.
+\end{quote}
+For two bidders with $b_i \sim U(0, 1)$, the optimal reserve is:
+$$r^* = \frac{1}{2}$$

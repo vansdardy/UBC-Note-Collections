@@ -58,7 +58,13 @@ Course Code (Course Name) (Credits)
     |FREN 202|Elementary French II|3|
     |FREN 301|Intermediate French I|3|
     |FREN 302|Intermediate French II|3|
-- Year 4 (TBD)
+- Year 4 (CIP: 4 courses, 12 credits)
+    |Course Code|Course Name|Credits|
+    |---|---|---|
+    |CPSC 317|Introduction to Computer Networking|3|
+    |CPSC 436Q|Quantum Computation|3|
+    |ECON 421|Introduction to Game Theory and Applications|3|
+    |ECON 425|Advanced Econometrics|3|
 
 In my 3rd school year, I had the opportunity to go on exchange to ETH Zürich for the first semester, hence the ECTS credits shown above. The German course was taken at the next door Universität Zürich. However, I did get into a very bad mental state during the stay in Switzerland and after I returned to UBC. Luckily, at the time of writing this, I am doing better already. Thus, you may notice a lack of organized notes for this year's content except for the quantum physics course. That one, I really put a lot of effort, and should be preserved here. I am, however, going to slowly (I mean probably years) put together the notes for my ETHZ exchange, because they really are good courses, but I have yet been unable to understand them to a level up to which I can organize the notes. So, wish me luck.
 

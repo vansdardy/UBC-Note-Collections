@@ -1,0 +1,247 @@
+\section{Linear Regression Model}
+A linear regression model is what we use to model correlation between economic objects of interest. Consider a univariate linear regression model to be:
+$$Y_i = \beta_0 + \beta_1 X_i + u_i$$
+where we observe iid random vectors $(X_i, Y_i)$ and we do not observe $\beta_0, \beta_1, u_i$. \\
+Given any model, we need to do the following things:
+\begin{quote}
+    1. Clarify the object of interest. \\
+    2. Be clear about the meaning or interpretation of the object of interest. \\
+    3. Be clear about the assumptions we makes.
+\end{quote}
+There are two kinds of uncertainty:
+\begin{quote}
+    1. Identification failure, and \\
+    2. Estimation error.
+\end{quote}
+
+\subsection{Identification}
+To identify the parameters, we usually make three assumptions:
+\begin{quote}
+    1. Exogeneity: $\Cov{X_i}{u_i} = 0$. \\
+    2. No multicollinearity: $\Var{X_i} > 0$. \\
+    3. Normalization of the error: $\expect{u_i} = 0$.
+\end{quote}
+We can identify $\beta_1$ under the exogeneity assumption and the no multicollinearity assumption, and get that:
+$$\beta_1 = \frac{\Cov{Y_i}{X_i}}{\Var{X_i}}$$
+Furthermore, we can identify $\beta_0$ under the normalization of error assumption where:
+$$\beta_0 = \expect{Y_i} - \beta_1\expect{X_i}$$
+after identifying $\beta_1$. \\
+There are situations where these assumptions may fail, and different kinds of failures may lead to failure of Identification. However, in certain cases, even if certain assumptions fail, it is still possible to identify some parameters. The process of analysis remains the same, that is, figuring out how $\Cov{X_i}{u_i}$ acts. Additionally, if we were to show there is a failure of identification, we need to propose an alternative model and demonstrate that altering the parameters will still satisfy the conditions that we already observe. \\
+The above assumptions discussed is used to identify the parameters of a univariate linear regression model. For multivariate linear regression model
+$$Y_i = \beta_0 + \Sum{j = 1}{n} \beta_j X_{ij} + u_i$$
+the identification assumptions are updated to be:
+\begin{quote}
+    1. Exogeneity: $\forall X_{ij}, \Cov{X_{ij}}{u_i} = 0$. \\
+    2. No multicollinearity: require $1$ and all $X_{ij}$ to be linearly independent. \\
+    3. Normalization of error: $\expect{u_i} = 0$.
+\end{quote}
+The identification of each $\beta_j$ comes from the system of equations:
+$$\begin{cases}
+    \Cov{X_{i1}}{u_i} = 0 \\
+    \Cov{X_{i2}}{u_i} = 0 \\
+    \vdots \\
+    \Cov{X_{in}}{u_i} = 0 \\
+\end{cases}$$
+where we write $u_i = Y_i - \beta_0 - \Sum{i = 1}{n} \beta_j X_{ij}$. \\
+The motivations for the linear regression model come from several sources. The first of which is the linear specification of non-parametric predictor, where we have $Y_i = m(X_i) + u_i$, $\expect{u_i \mid X_i} = 0$ and $u_i$ is \impt{forecasting error}. We specify $m(X_i) = \expect{Y_i \mid X_i}$. In this case, we assume $m(X_i) = \beta_0 + \beta_1X_i$ and the conditional expectation of $u_i$ given $X_i$ being $0$ implies the covariance between the forecasting error and $X_i$ is $0$. \\
+The second which is that the parameters obtained are the best linear prediction of $Y_i$ which is determined by minimizing $\expect{(Y_i - m(X_i))^2}$. For all linear $m$, the one that minimizes the expression is $m^*(X_i) = \beta_0 + \beta_1 X_i$, where the two parameters are in the form we specified above. \\
+The third one is that it is a \impt{structural causal model}, where $Y_i = g(X_i, u_i)$, and $u_i$ this time is unobserved factor determining $Y_i$, only in this case, we do not know if $\Cov{X_i}{u_i} = 0$. In this case, $X_i$ and $Y_i$ determines $g$ to be $g(x, u) = \beta_0 + \beta_1 x + u$.
+
+\subsection{Estimation}
+The previous section discusses identification of parameters. This section discusses that since we cannot observe the population but only a sample of the population, how we can estimate the identified parameters. Here, we give the method of \impt{estimators}. We can estimate a parameter in many ways, therefore, it is important to determine the quality of an estimator, that is, how well it estimates the parameter of interest.
+\begin{definition}
+    Given an estimator $\hat{\theta}$ for a parameter $\theta$, we say that this estimator is \uimpt{consistent} if
+    $$\forall \varepsilon > 0, n \to \infty \implies \prob(\abs{\hat{\theta} - \theta} > \varepsilon) \to 0$$
+    where $n$ represents the size of the sample.
+\end{definition}
+We want to develop an estimator $\hat{\beta}_1$ for $\beta_1$ that aligns with consistency. A straightforward way is the \impt{sample analogue estimation}, where we replace the population form into its corresponding sample form. For sample analogue estimation to properly stand, we introduce relevant asymptotic theories.
+\begin{definition}
+    Suppose $Y_n$ is a sequence of random variables, and $Y$ is a random variable, then we say
+    $$Y_n \pcvg Y$$
+    $Y_n$ converges in probability to $Y$, if $\forall \varepsilon > 0$,
+    $$\prob(\abs{Y_n - Y} > \varepsilon) \to 0$$ 
+    as $n \to \infty$. \\
+    We also say that $Y$ is the probability limit of $Y_i$ and write
+    $$\plim_{n \to \infty} Y_n = Y$$
+\end{definition}
+This also extends to random vectors, where we additionally require each element of the random vector to converge in probability to the corresponding element in the target random vector.
+\begin{proposition}
+    Suppose $X \pcvg c$ as $n \to \infty$, then for any $f \in C$ (continuous function), we have $f(X) \pcvg f(c)$.
+\end{proposition}
+\begin{lemma}
+    Several useful inequalities that can assist include: $\forall 1 \le p \le q < \infty$
+    \begin{quote}
+        1. Jensen's Inequality: $\expect{\abs{X}^q} < \infty \implies \expect{\abs{X}^p} < \infty$. \\
+        2. Cauchy-Schwarz Inequality: $\expect{\abs{XY}}^2 \le \sqrt{\expect{X^2}\expect{Y^2}}$.
+    \end{quote}
+\end{lemma}
+\begin{theorem}
+    The \uimpt{Law of Large Numbers} states that, suppose $X_1, X_2, \dots, X_n$ are iid random variables, and $\expect{\abs{X_i}} < \infty$, then
+    $$\bar{X}_n := \frac{1}{n}\Sum{i = 1}{n} X_i \pcvg \expect{X_i}$$
+\end{theorem}
+Then, the sample analogue estimator of $\beta_1$ is:
+$$\hat{\beta}_1 = \frac{\sCov{Y_i}{X_i}}{\sVar{X_i}}$$
+We can obtain that:
+$$\hat{\beta}_1 - \beta_1 = \frac{\sCov{X_i}{u_i}}{\sVar{X_i}}$$
+which is the endogeneity bias. \\
+If $\Cov{X_i}{u_i} = 0$, then the above will converge in probability to $0$, making $\hat{\beta}_1$ consistent. We also call this the estimation error, and we can use this to conduct hypothesis testing.
+
+\subsection{Hypothesis Testing}
+Before we go into hypothesis testing, we introduce a few more concepts.
+\begin{definition}
+    We say $X_n$ converges in distribution to $X$ (write as $X_n \dcvg X$) if $\forall t \in \R$ such that $F_X$ is continuous at $t$, we have:
+    $$F_{X_n}(t) \to F_X(t)$$
+    as $n \to \infty$.
+\end{definition}
+\begin{lemma}
+    \uimpt{General Slutsky's Lemma} states that suppose $X_n \pcvg c$ and $Y_n \dcvg Y$, then $\forall g \in C$, we have
+    $$g(X_n, Y_n) \dcvg g(c, Y)$$
+    If $X_n \pcvg X$, $X_n \dcvg X$.
+\end{lemma}
+\begin{theorem}
+    \uimpt{Central Limit Theorem} states that if $X_1, X_2, \dots, X_n$ are iid and $\expect{X_i^2} < \infty$, then
+    $$\frac{1}{\sqrt{n}} \Sum{i = 1}{n} (X_i - \expect{X_i}) \dcvg N(0, \sigma^2)$$
+    where
+    $$\sigma^2 = \Var{X_i}$$
+\end{theorem}
+We can estimate $\sigma^2$ with its sample analogue estimator $\hat{\sigma}^2 = \sVar{X_i}$. \\
+Hypothesis testing is asking a question while expecting a ``YES/NO'' answer. The statement we want to discover is the \impt{alternative hypothesis} $H_1$ and what we assume is the \impt{null hypothesis} $H_0$. Given a sequence of random variables $\{X_i\}_{i = 1}^n$, we use it to construct a test statistic $\tau$ and a critical value $c$ such that, if $\tau > c$, we reject $H_0$.
+\begin{definition}
+    A \uimpt{Type I error} is when $H_0$ is true, but we have rejected $H_0$. \\
+    A \uimpt{Type II error} is when $H_0$ is false, but we failed to reject $H_0$.
+\end{definition}
+The test statistic is usually constructed to be:
+$$\tau = \frac{\sqrt{n}(\hat{\theta} - \theta_{H_0})}{\hat{\sigma}}$$
+and the critical value is $c = z_{1 - \alpha}$ (this is a one-side test). Since we reject if $\tau > c$, so we care about $\prob_{H_0}(\tau > c)$ (Type I error, assuming $H_0$ is true, what is the probability that $\tau > c$). \\
+As for the estimator of $\beta_1$, $\hat{\beta}_1$, using the above theorems, we can show that:
+$$\frac{\sqrt{n}(\hat{\beta}_1 - \beta_1)}{\hat{\sigma}_\beta} \dcvg N(0, 1)$$
+where
+$$\sigma_\beta^2 = \frac{\Var{u_i(X_i - \expect{X_i})}}{\Var{X_i}^2}$$
+We define \impt{power} to be $1 - \text{Type II error} = \prob(\text{rejecting null when null is false})$. \\
+If we further assume \impt{conditional homoskedasticity}, where $\expect{u_i^2 \mid X_i} = \sigma^2$ for some $\sigma^2 > 0$, then the standard deviation we obtained above can be reduced to:
+$$\sigma_\beta^2 = \frac{\sigma^2}{\Var{X_i}}$$
+where the numerator is the ``noise'' and the denominator is the ``signal''. \\
+The \impt{standard error} is the square root of the asymptotic variance divided by $\sqrt{n}$. That is,
+$$SE = \frac{\hat{\sigma}_\beta}{\sqrt{n}}$$
+where $\hat{\sigma}_\beta^2 = \frac{\hat{\sigma}^2}{\sVar{X_i}}$ and $\hat{\sigma}^2 = \frac{1}{n}\Sumi{i} \hat{u}_i^2$, with $\hat{u}_i = Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i$.
+The \impt{confidence interval} of a 2-side test is thus:
+$$[\hat{\beta}_1 - z_{1 - \alpha/2} \cdot SE, \hat{\beta}_1 + z_{1 - \alpha/2} \cdot SE]$$
+where the test statistic is $\tau = \abs{\frac{\hat{\beta}_1}{SE}}$ and the critical value is $c = z_{1 - \alpha/2}$. \\
+This note will not go into the details, but it is good to mention the ``Eicker-White Heteroskedasticity-Robust Inference'' and the ``Hausman-Wu Test''.
+
+\subsection{Non-linear Regression Model}
+We digress briefly to discuss non-linear regression models. \\
+In general, a regression model is just $Y_i = g(X_i, u_i)$. If we define
+$$m(x_1, \dots, x_k) := \expect{Y_i \mid X_{i1} = x_1, \dots, X_{ik} = x_k}$$
+then
+\begin{definition}
+    The \uimpt{average partial effect} is defined to be:
+    $$APE_{x_j} := \expect{\pdv{x_j}m(X_{i1}, \dots, X_{ik})}$$
+\end{definition}
+Additionally, we can also consider it to be a ``structural equation model'', which is causal. Then, we define:
+\begin{definition}
+    The \uimpt{average structure function} is defined to be:
+    $$ASF(x) = \int g(x, u)f_U(u) \dd u = \expect{g(x, U)}$$
+\end{definition}
+\begin{lemma}
+    Suppose that $X$ and $Y$ are independent, for any function $g$,
+    $$\expect{g(Y, X) \mid X=x} = \expect{g(Y, x)}$$
+\end{lemma}
+Then, for a structural-causal model and $X_i, u_i$ are independent, we have:
+$$APE_x = \expect{\pdv{ASF(X_i)}{x}}$$
+For a regression model like:
+$$Y_i = \beta_0 + \beta_1 X_i + \beta_2 W_i + \beta_3 X_iW_i + u_i$$
+where $X_iW_i$ is the interaction term, if we assume $W_i \in \{0, 1\}$, then we can interpret $\beta_3$ to be:
+$$\beta_3 = \expect{\pdv{m(X, 1)}{x} - \pdv{m(X, 0)}{x}}$$
+
+\subsection{Endogeneity}
+We return to discussing the linear regression model. Recall that we require exogeneity assumption to identify $\beta_1$, here, we discuss different cases of endogeneity, and check if we can still identify the parameter of interest.
+\subsubsection{Omitted Variable Bias}
+The first common type of endogeneity comes from the omitted variable bias, where the real model is:
+$$Y_i = \beta_0 + \beta_1 X_i + \beta_2 W_i + u_i$$
+but we only observe
+$$Y_i = \beta_0 + \beta_1 X_i + v_i$$
+where $v_i = \beta_2 W_i + u_i$. Then, the endogeneity bias is:
+$$\plim_{n \to \infty} \hat{\beta}_1 - \beta_1 = \frac{\Cov{X_i}{v_i}}{\Var{X_i}} = \beta_2 \frac{\Cov{X_i}{W_i}}{\Var{X_i}}$$
+
+\subsubsection{Measurement Error}
+The second common type of endogeneity bias comes from measurement errors, where the real model is
+$$Y_i = \beta_0 + \beta_1 X_i + u_i$$
+but we observe $\tilde{X}_i = X_i + \varepsilon_i$, where the measurement error is pure (uncorrelated with anything). \\
+We use the model:
+$$Y_i = \beta_0 + \beta_1 \tilde{X}_i + v_i$$
+which gives $v_i = u_i - \beta_1 \varepsilon_i$
+the component of the endogeneity bias is thus:
+$$\Cov{\tilde{X}_i}{v_i} = -\beta_1 \Var{\varepsilon_i}$$
+The entire endogeneity bias is thus:
+$$\frac{\Cov{\tilde{X}_i}{v_i}}{\Var{\tilde{X}_i}} = -\beta_1 \times \frac{\Var{\varepsilon_i}}{\Var{X_i} + \Var{\varepsilon_i}}$$
+
+\subsubsection{Simultaneity}
+The third common type of endogeneity bias comes from simultaneity. One case is the simultaneous causality, where we have both
+$$Y_i = \beta_0 + \beta_1 X_i + u_i$$
+and
+$$X_i = \alpha_0 + \alpha_1 Y_i + v_i$$
+we can solve for $X_i$ and then calculate $\Cov{X_i}{u_i}$. \\
+Another case is market equilibrium, where we have both
+$$Q_i^D = \alpha_0 + \alpha_1 P_i^D + u_i^D$$
+and
+$$Q_i^S = \beta_0 + \beta_1 P_i^S + u_i^S$$
+At equilibrium, we have $Q_i^D = Q_i^S = Q_i$ and $P_i^D = P_i^S = P_i$. So we have solve for $P_i$ and it is endogenous as it contains both $u_i^D$ and $u_i^S$.
+
+\subsection{Instrumental Variables}
+Suppose we have the same univariate linear regression model, but we do not have exogeneity. We can consider another observed variable $Z_i$ where $\Cov{Z_i}{u_i} = 0$ but $\Cov{X_i}{Z_i} \ne 0$. Then, we can identify $\beta_1$ as the following:
+$$\beta_1 = \frac{\Cov{Y_i}{Z_i}}{\Cov{X_i}{Z_i}}$$
+The corresponding sample analogue estimator $\hat{\beta}_1$ is also a 2-series estimator, where:
+$$\hat{\beta}_1 = \frac{\sCov{Y_i}{Z_i}}{\sCov{X_i}{Z_i}}$$
+and $\sqrt{n}(\hat{\beta}_1 - \beta_1) \dcvg N(0, \sigma_\beta^2)$, with
+$$\sigma_\beta^2 = \frac{\Var{u_i(Z_i - \expect{Z_i})}}{\Cov{X_i}{Z_i}^2}$$
+The reason why we use 2SLS is the following. Consider
+\begin{align*}
+    Y_i &= \beta_0 + \beta_1 X_i + u_i \\
+    X_i &= \pi_0 + \pi_1 Z_i + v_i
+\end{align*}
+with four assumptions: $\Cov{Z_i}{v_i} = 0$ (best linear prediction), $\pi_1 \ne 0$ (IV relevance), $\Cov{u_i}{v_i} \ne 0$ (endogeneity of $X_i$), and $\Cov{Z_i}{u_i} = 0$ (IV exogeneity). We have $\pi_1$ identified like a ``normal'' $\beta_1$. \\
+Let $X_i(\pi) = \pi_0 + \pi_1 Z_i$, and regress $Y_i$ on $X_i(\pi)$, the coefficient is thus:
+$$\beta_1 = \frac{\Cov{Y_i}{X_i(\pi)}}{\Var{X_i(\pi)}}$$
+The \impt{first stage} is $X_i(\hat{\pi}) = \hat{\pi}_0 + \hat{\pi}_1Z_i$, and the \impt{second stage} is regressing $Y_i$ on $X_i(\hat{\pi})$. \\
+When you have more instrumental variables than the number of endogenous regressors, we say this is \impt{over-identification} (if the number is equal, it is \impt{just-identified}). This is a good thing, as we have more restrictions to identify. This is particularly useful when determining whether an IV is exogeneous or not.
+
+\subsubsection{IV Relevance}
+Say we have the model of:
+\begin{align*}
+    Y_i &= \beta_0 + \beta_1 X_i + \beta_2 W_i + u_i \\
+    X_i &= \pi_0 + \pi_1 Z_{i1} + \pi_2 Z_{i2} + \pi_3 W_i + v_i
+\end{align*}
+We have the pair of hypotheses to be:
+\begin{align*}
+    H_0: \pi_1 = \pi_2 = 0 \\
+    H_1: \pi_1 \ne 0 \lor \pi_2 \ne 0
+\end{align*}
+Say we conduct an F-test and the test statistic $F$ is way larger than the critical value and we reject $H_0$. This is a good thing, as otherwise, we run into the \impt{Weak Instrument Problem}. \\
+This is characterized to be $\Cov{X_i}{Z_i} \approx 0$. The endogeneity bias is thus:
+\begin{align*}
+    \hat{\beta}_1 - \beta_1 &= \frac{\sCov{u_i}{Z_i} = 0}{\sCov{X_i}{Z_i} \approx 0} \\
+    &= \frac{\sqrt{n}\sCov{u_i}{Z_i} \dcvg N(0, \sigma_1^2)}{\sqrt{n}\sCov{X_i}{Z_i} \dcvg N(0, \sigma_2^2)} \\
+    \hat{\beta}_1 &= \beta_1 + ???
+\end{align*}
+Meaning we cannot construct a test statistic, because the estimator is inconsistent.
+
+\subsubsection{IV Exogeneity}
+If we have a just-identified model, we cannot test $\Cov{Z_i}{u_i}$. The estimator will always be zero, as the estimator itself is obtained by assuming $\Cov{u_i}{Z_i} = 0$, and here we are testing whether this covariance is $0$ or not. \\
+However, if our model is over-identified, we can test this. Consider the model:
+\begin{align*}
+    Y_i &= \beta_0 + \beta_1 X_i + \beta_2 W_i + u_i \\
+    X_i &= \pi_0 + \pi_1 Z_{i1} + \pi_2 Z_{i2} + \pi_3 W_i + v_i
+\end{align*}
+We have the pair of hypotheses to be:
+\begin{align*}
+    H_0: \Cov{u_i}{Z_{i1}} = \Cov{u_i}{Z_{i2}} = 0 \\
+    H_1: H_0 \text{ not true}
+\end{align*}
+Then, we can construct:
+$$\hat{u}_i = \delta_0 + \delta_1 Z_{i1} + \delta_2 Z_{i2} + \varepsilon_i$$
+where $\hat{u}_i = Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i - \hat{\beta}_2 W_i$, and conduct a F-test of $H_0: \delta_1 = \delta_2 = 0$. \\
+The test statistic used here is $J = m \cdot F \dcvg \chi^2_{(m - k)}$, where $m$ is the number of IVs and $k$ is the number of endogenous regressors.
+
+
+\newpage

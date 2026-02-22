@@ -1,0 +1,78 @@
+\section{Panel Data}
+We start by observing what panel data look like. Consider the following table:
+\begin{center}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    & $t=1$ & $t=2$ & $\cdots$ & $t=T$ \\ \hline
+    $i=1$ & $Z_{11}$ & $Z_{12}$ & $\cdots$ & $Z_{1T}$ \\ \hline
+    $i=2$ & $Z_{21}$ & $Z_{22}$ & $\cdots$ & $Z_{2T}$ \\ \hline
+    $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ \\ \hline
+    $i=n$ & $Z_{n1}$ & $Z_{n2}$ & $\cdots$ & $Z_{nT}$ \\ \hline
+    \end{tabular}
+\end{center}
+where $Z_{it} = (Y_{it}, X_{it})$. A column is the cross-sectional dimension, a row is the time dimension. For all $i \in \{1, \dots, n\}$, $Z_{it}$ are independent. Note that panel data is not the same as repeated cross-section data (because it samples different individuals at each time period). \\
+A small $n$ and a small $T$ ``makes no sense''. A small $n$ and a large $T$ needs time-series analysis. A large $n$ and a small $T$ is a short panel, and a large $n$ and a large $T$ is a large panel.
+
+\subsection{Fixed Effects}
+Consider there is some \impt{unobserved individual heterogeneity}, that is, there exists some time-invariant term that affects $Y_{it}$, but unobserved for each $i$. The model we use is:
+$$Y_{it} = \alpha_i + \beta_1 X_{it} + u_{it}$$
+The first assumption for identification is:
+$$\expect{u_{it} \mid X_{i1}, \dots, X_{iT}} = 0$$
+The second assumption we make is that:
+$$\Sumi{T} \expect{(X_{it} - \bar{X}_i)^2} > 0$$
+where $\bar{X}_i = \frac{1}{T}\Sumi{T} X_{it}$ (\impt{within group transformation}). Then, by applying this transformation, we have:
+\begin{align*}
+    \bar{Y}_i &= \alpha_i + \beta_1 \bar{X}_i + \bar{u}_i \\
+    Y_{it} &= \alpha_i + \beta_1 X_{it} + u_{it}
+\end{align*}
+This gives that:
+$$Y_{it} - \bar{Y}_i = \beta_1 (X_it - \bar{X}_i) + (u_{it} - \bar{u}_i)$$
+equivalent to
+$$Y_{it}^* = \beta_1 X_{it}^* + u_{it}^*$$
+We can thus identify $\beta_1$ by
+$$\expect{Y_{it}^*X_{it}^*} = \beta_1\expect{X_{it}^{*2}} + \expect{u_{it}^*X_{it}^*}$$
+where $\expect{u_{it}^*X_{it}^*} = 0$ through the assumption made above.
+$$\beta_1 = \frac{\Sumi{T}\expect{Y_{it}^*X_{it}^*}}{\Sumi{T}\beta_1\expect{X_{it}^{*2}}}$$
+We can directly take the expectation on both sides without multiplying $X_{it}^*$, but that would lead to a larger variance when estimating $\beta_1$. \\
+The consistent sample analogue estimator is thus:
+$$\hat{\beta}_1 = \frac{\Sumi{T}\frac{1}{n}\Sumi{n}Y_{it}^*X_{it}^*}{\Sumi{T}\frac{1}{n}\Sumi{n}X_{it}^{*2}}$$
+This means:
+$$\hat{\beta}_1 = \beta_1 + \frac{\frac{1}{n}\Sumi{n}\Sumi{T}u_{it}^*X_{it}^*}{\frac{1}{n}\Sumi{n}\Sumi{T}(X_{it}^*)^2}$$
+Then $\sqrt{n}(\hat{\beta}_1 - \beta_1) \dcvg N(0, \sigma_\beta^2)$, where
+$$\sigma_\beta^2 = \frac{\Var{\Sumi{T} u_{it}X_{it}^*}}{(\Sumi{T}\expect{(X_{it}^*)^2})^2}$$
+if $\expect{\Sumi{T}u_{it}X_{it}^*} = 0$, we also have $\Var{\Sumi{T} u_{it}X_{it}^*} = \expect{(\Sumi{T}u_{it}X_{it}^*)^2}$. \\
+If we also give the \impt{conditional homoskedasticity assumption}, we have:
+\begin{align*}
+    \expect{u_{it}^2 \mid X_{i1}, \dots, X_{iT}} &= \sigma^2 \\
+    &= \Var{u_{it} \mid X_{i1}, \dots, X_{iT}}
+\end{align*}
+as $\expect{u_{it} \mid X_{i1}, \dots, X_{iT}} = 0$. \\
+Additional \impt{conditional serial uncorrelatedness} assumption gives that:
+$$\expect{u_{it}u_{is} \mid X_{i1}, \dots, X_{iT}} = 0$$
+if $t \ne s$. Then, we have:
+$$\sigma_\beta^2 = \frac{\sigma^2}{\Sumi{T}\expect{(X_{it}^*)^2}}$$
+Even if we have only two periods, we can still identify $\beta_1$ by subtraction between the two periods. \\
+\bigskip \\
+Another way of identifying $\beta_1$ is by \impt{first differencing}. That is, take:
+\begin{align*}
+    Y_{it} &= \alpha_i + \beta_1 X_{it} + u_{it} \\
+    Y_{i,t-1} &= \alpha_i + \beta_1 X_{i,t-1} + u_{i,t-1}
+\end{align*}
+and obtain:
+$$\Delta Y_{it} = \beta_1 \Delta X_{it} + \Delta u_{it}$$
+We then identify $\beta_1$ by
+$$\expect{\Delta Y_{it} \Delta X_{it}} = \beta_1 \expect{\Delta X_{it}^2}$$
+because $\expect{\Delta u_{it} \Delta X_{it}} = 0$.
+$$\beta_1 = \frac{\Sum{t = 2}{T} \expect{\Delta Y_{it} \Delta X_{it}}}{\Sum{t =2}{T} \expect{\Delta X_{it}^2}}$$
+This time, the estimation variance is
+$$\sigma_\beta^2 = \frac{\Var{\Sum{t = 2}{T} \Delta u_{it} \Delta X_{it}}}{(\Sum{t =2}{T} \expect{\Delta X_{it}^2})^2}$$
+In a multivariate case, while fulfilling the desired assumptions, after checking relevant values to be $0$, we can identify with a system of equations by taking the expected value of the product of $Y_{it}^*$ and each $X_{it, j}^*$. \\
+We can also introduce instrumental variables where we require:
+\begin{quote}
+    1. $\expect{u_{it} \mid Z_{i1}, \dots, Z_{iT}} = 0$, and \\
+    2. $\Sum{t = 1}{T} \expect{X_{it}^*Z_{it}^*} \ne 0$.
+\end{quote}
+We identify $\beta_1$ by:
+$$\beta_1 = \frac{\Sumi{T} \expect{Y_{it}^*Z_{it}^*}}{\Sumi{T} \expect{X_{it}^* Z_{it}^*}}$$
+
+\newpage

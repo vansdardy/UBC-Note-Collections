@@ -1,0 +1,79 @@
+\section{Reputation}
+The setup for this game involves two players, where they play the game repeatedly. Player 1 has multiple possible types, they can have different payoff types, different strategies (commitment type: choose pre-specified action or strategy), or normal type, who maximizes some baseline payoff. Player 2 decides what to do today based on beliefs about player 1's type, and updates belief based on player 1's past actions. It also knows that player 1 has the incentive to exploit reputation.
+
+\subsection{Chain-store Game}
+Consider two players, the first player being a firm who chooses to sell high-quality good (H) or low-quality good (L), the second player being a consumer who chooses to buy (B) or not buy (N). For the firm, producing low-quality goods is more profitable, and consumer only wants to buy high-quality goods. The payoff matrix is thus:
+\begin{center}
+    \begin{tabular}{|l|l|l|}
+    \hline
+    & B & N \\ \hline
+    H & (2, 3) & (0, 2) \\ \hline
+    L & (3, 0) & (1, 1) \\ \hline
+    \end{tabular}
+\end{center}
+Notice that L is strictly dominant for the firm, so the only Nash equilibrium is (L, N) with payoff of $(1, 1)$. So player 1 would like to convince player that it sells high-quality product. \\
+Let's say this game is twice-repeated. Then in the second period, both players must play the static Nash equilibrium, meaning that regardless of first period, players anticipate (L, N) in the second period. This means the firm convincing the consumer that it sells high-quality good in first period is not profitable. So in the first period, both players will also choose (L, N), meaning there is no room for reputation. \\
+However, let's consider a situation where with probability $\mu_0 \in (0, \frac{1}{4})$, player 1 always chooses H (it is commitment type), and with probability $1 - \mu_0$, it is normal type who maximizes payoff. \\
+Denote that $\mu(H)$ to be the probability assigned to type C after H is observed, and similar for $\mu(L)$. Now consider the action matrix:
+\begin{center}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    & C & N & P2 \\ \hline
+   $\varnothing$ & H & (1) & (2) \\ \hline
+   HB & H & L & (3) \\ \hline
+   HN & H & L & (4) \\ \hline
+   LB & H & L & N \\ \hline
+   LN & H & L & N \\ \hline
+    \end{tabular}
+\end{center}
+If player 2 believes the probability of player 1 playing H is $p$ in any period, the best response is computed by comparing the expected payoff from playing B vs playing N:
+$$(3p + 0(1-p)) - (2p + 1(1 - p)) = 2p-1$$
+This means,
+$$s_2^*(a_1) = \begin{cases}
+    B & p > \frac{1}{2} \\
+    N & p < \frac{1}{2} \\
+    \text{indifferent} & p = \frac{1}{2}
+\end{cases}$$
+Examine the pure PBE with $s_1(\varnothing \mid N) = L$. This means that $\mu(H) = 1$, then $s_2(HB \text{ or } HN) = B$. In period 1, $\prob(\text{P1 chooses H}) = \mu_0 < \frac{1}{2}$, $s_2(\varnothing) = N$. Then, examine type normal P1's rationality:
+\begin{quote}
+    1. By playing L: payoff after two rounds is $1 + 1 = 2$ from $(L, N)_1, (L, N)_2$. \\
+    2. By playing H: payoff after two rounds is $0 + 3 = 3$ from $(H, N)_1, (L, B)_2$. \\
+    Deviating is profitable, this is not a PBE.
+\end{quote}
+Examine the pure PBE with $s_1(\varnothing \mid N) = H$. This means that 
+$\mu(H) = \mu_0$, then $s_2(HB \text{ or } HN) = N$. In period 1, $\prob(\text{P1 chooses H}) = 0$ because P2 always chooses N, which means this is also not a PBE. This means there are no pure PBE. \\
+\bigskip \\
+Now consider a mixed strategy equilibrium where:
+$$s_1(\varnothing \mid N) = \begin{cases}
+    H & \sigma \\
+    L & 1 - \sigma
+\end{cases}, s_2(\text{HB or HN}) = \begin{cases}
+    B & \alpha \\
+    N & 1 - \alpha
+\end{cases}$$
+We want to find $\sigma$ and $\alpha$ and check all the equilibrium conditions hold. We first have:
+$$\mu(C \mid H) = \frac{\mu_0}{\mu_0 + \sigma(1-\mu_0)}$$
+To find $\sigma$, we need P2 to be indifferent following $s_1(\varnothing) = H$.
+\begin{align*}
+    U_2(s_2 = B) &= U_2(s_2 = N) \\
+    \prob(a_{1,2} = H \mid a_{1, 1} = H) &= \frac{1}{2} = \mu(H) \\
+    \mu_0 &= (1-\mu_0)\sigma \\
+    \sigma &= \frac{\mu_0}{1 - \mu_0}
+\end{align*}
+To find $\alpha$, we need P1 to be indifferent between H and L in period 1:
+\begin{align*}
+    \text{expected total payoff, L in period 1} &= \text{expected total payoff, H in period 1} \\
+    1 + 1 &= 0 + 3\alpha + 1(1 - \alpha) \\
+    \alpha &= \frac{1}{2}
+\end{align*}
+We check that it indeed is an equilibrium, that is it is optimal for P2 to choose N in first period:
+\begin{align*}
+    \text{Payoff from N} - \text{Payoff from B} &= 2\prob(\text{P1 chooses H}) + 1\prob(\text{P1 chooses L}) \\
+    &- [3\prob(\text{P1 chooses H}) + 0\prob(\text{P1 chooses L})] \\
+    &= 1 - 4\mu_0 > 0 \\
+    \mu_0 &< \frac{1}{4}
+\end{align*}
+The expected payoff can thus be calculated for P1 and P2.
+
+
+\newpage

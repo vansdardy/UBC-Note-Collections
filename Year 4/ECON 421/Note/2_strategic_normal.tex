@@ -1,0 +1,269 @@
+\section{Strategic Form and Normal Form}
+Strategic forms and normal forms are used to describe games where players \impt{move simultaneously}. To describe such a game, we need the participating players, their available actions, and their corresponding payoffs in each outcome.
+\begin{definition}
+    A \uimpt{strategic form} is a list
+    $$G = (N ; \{A_i\}_{i = 1}^n; \{u_i\}_{i = 1}^n)$$
+    where $N = \{1, 2, \dots, n\}$ represents the set of players, $A_i$ is the set of available actions for player $i$, and $u_i$ is the payoff function for player $i$ with the mapping $A_1 \times A_2 \times \cdots \times A_n \to \R$.
+\end{definition}
+We assume that $G$ is \impt{common knowledge} to all players.
+\begin{definition}
+    An \uimpt{action profile} is given by a vector
+    $$\mathbf{a} = \begin{pmatrix}
+        a_1 & a_2 & \cdots & a_n
+    \end{pmatrix}^\top$$
+    that is an element of $A := A_1 \times A_2 \times \cdots \times A_n$.
+\end{definition}
+We use the notation of ``$-i$'' to denote the set excluding player $i$, that is player $i$'s opponents decisions. For example, we can write an action profile as
+$$\mathbf{a} = \begin{pmatrix}
+    a_i & a_{-i}
+\end{pmatrix}^\top$$
+where
+$$a_{-i} = \begin{pmatrix}
+    a_1 & a_2 & \cdots & a_{i - 1} & a_{i + 1} & \cdots & a_n
+\end{pmatrix}$$
+\begin{definition}
+    A \uimpt{normal form} is a matrix that describes the payoff of each player given their respective actions.
+\end{definition}
+A $2$-player game can be described as a single matrix, and a $3$-player game can be described as two matrices. For example, the Prisoner's Dilemma game can be described by the following matrix:
+\begin{center}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        & Defect & Confess \\ \hline
+       Defect & (-1, -1) & (-3, 0) \\ \hline
+       Confess & (0, -3) & (-2, -2) \\ \hline
+    \end{tabular}
+\end{center}
+\begin{definition}
+    An action $a_i \in A_i$ is \uimpt{strictly dominated} by $a_i'$ if
+    $$u_i(a_i, a_{-i}) < u_i(a_i', a_{-i})$$
+    for all $a_{-i} \in A_{-i}$.
+\end{definition}
+A strictly dominated action should never be played by a rational player. If an action strictly dominates all other actions, it is a \uimpt{strictly dominant action}.
+\begin{definition}
+    An action $a_i \in A_i$ is \uimpt{weakly dominated} by $a_i'$ if
+    $$u_i(a_i, a_{-i}) \le u_i(a_i', a_{-i})$$
+    for all $a_{-i} \in A_{-i}$, \impt{and}
+    $$u_i(a_i, a_{-i}) < u_i(a_i', a_{-i})$$
+    for some $a_{-i} \in A_{-i}$
+\end{definition}
+If an action weakly dominates all other actions, it is a \uimpt{weakly dominant action}. \\
+A \impt{dominance solvable} game can be solved only be the players' dominant actions.
+
+\subsection{Second Price Auction}
+Consider $n$ bidders, where each bidder can bid $b_i \ge 0$ who values the good at $v_i > 0$. The winner is the highest bidder but only pays the price of the second-highest bid. Therefore, the payoff for player $i$ is
+$$u_i(\mathbf{b}) = \begin{cases}
+    v_i - \max_{j \ne i} b_j & b_i > \max_{j \ne i} b_j \\
+    \frac{1}{N(\mathbf{b})} (v_i - b_i) & b_i = \max_{j \ne i} b_j \\
+    0 & b_i < \max_{j \ne i} b_j
+\end{cases}$$
+where $N(\mathbf{b})$ is the number of tied winners.
+\begin{proposition}
+    The best course of action for each player is to \uimpt{bid their own value}, which is a \impt{weakly dominant action for all players}.
+\end{proposition}
+We can show that $b_i = v_i$ is optimal, regardless of $\oppoI{b}$. \\
+We first define the highest competing bid to be $\oppoI{\bar{b}} = \max_{j \ne i}b_j$, and divide the analysis into $3$ cases.
+\begin{quote}
+    1. Suppose $\oppoI{\bar{b}} > v_i$, in this case $u_i(v_i, \oppoI{\bar{b}}) = 0$.
+    \begin{quote}
+        1. If $b_i < \oppoI{\bar{b}}$, then $u_i(b_i, \oppoI{\bar{b}}) = 0$. \\
+        2. If $b_i = \oppoI{\bar{b}}$, then $u_i(b_i, \oppoI{\bar{b}}) = \frac{1}{N(\mathbf{b})}(v_i - b_i) < 0$. \\
+        3. If $b_i > \oppoI{\bar{b}}$, then $u_i(b_i, \oppoI{\bar{b}}) = v_i - b_i < 0$. \\
+        Hence, bidding $v_i$ is optimal.
+    \end{quote}
+    2. Suppose $\oppoI{\bar{b}} < v_i$, in this case $u_i(v_i, \oppoI{\bar{b}}) = v_i - \oppoI{\bar{b}} > 0$.
+    \begin{quote}
+        1. If $b_i < \oppoI{\bar{b}}$, then $u_i = 0$. \\
+        2. If $b_i = \oppoI{\bar{b}}$, then $u_i = \frac{1}{N(\mathbf{b})}(v_i - b_i) < v_i - \oppoI{\bar{b}}$. \\
+        3. If $b_i > \oppoI{\bar{b}}$, then $u_i = v_i - \oppoI{\bar{b}}$. \\
+        Hence, bidding $v_i$ is optimal.
+    \end{quote}
+    3. Suppose $v_i =\oppoI{\bar{b}}$, in this case $u_i(v_i, \oppoI{\bar{b}}) = \frac{1}{N(\mathbf{b})}(v_i - v_i) = 0$.
+    \begin{quote}
+        1. If $b_i < \oppoI{\bar{b}}$, then $u_i = 0$. \\
+        2. If $b_i = \oppoI{\bar{b}}$, then $u_i = \frac{1}{N(\mathbf{b})}(v_i - \oppoI{\bar{b}}) = 0$. \\
+        3. If $b_i > \oppoI{\bar{b}}$, then $u_i = v_i - \oppoI{\bar{b}} = 0$. \\
+        Hence, bidding $v_i$ is optimal.
+    \end{quote}
+\end{quote}
+For all other actions $b_i' \ne v_i$, player $i$ will either lose money if $v_i < \oppoI{\bar{b}} < b_i'$, or lose the auction if $b_i' < \oppoI{\bar{b}} < v_i$.
+
+\subsection{Iterated Elimination}
+This can be done based on the \impt{common knowledge of rationality}, where all players are rational, and all players know their opponents are rational. \\
+Additionally, no one should play strictly dominated actions and everyone knows other people will not do it. \\
+Therefore, in the following example game:
+\begin{center}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    & H & M & L \\ \hline
+    H & 4, 4 & 0, 6 & 0, 5 \\ \hline
+    M & 6, 0 & 3, 3 & 1, 4 \\ \hline
+    L & 5, 0 & 4, 1 & 2, 2 \\ \hline
+    \end{tabular}
+\end{center}
+We first eliminate the first row, because ``H'' is a strictly dominated action for player $1$. Then we eliminate the first column from the rest, because it is a strictly dominated actio for player $2$. We do the same for the second row and the second column. This leaves us with $(2, 2)$. This is a \impt{Nash equilibrium}. \\
+The concept of a Nash equilibrium lies within the best responses of players given ``belief'' (this will be discussed further) about their oppponents' actions. The notion is that players should \impt{simultaneously} play their best-responses.
+\begin{definition}
+    A (pure strategy) \uimpt{Nash equilibrium} is an action profile
+    $$\mathbf{a}^* = \begin{pmatrix}
+        a_1^* & a_2^* & \cdots & a_n^*
+    \end{pmatrix}^\top$$
+    such that
+    $$u_i(a_i^*, \oppoI{a}^*) \ge u_i(a_i, \oppoI{a}^*)$$
+    for all $a_i \in A_i$.
+\end{definition}
+The key of a Nash equilibrium is that \uimpt{no one wants to move away from it}, as moving away from it will not be ``profitable''. \\
+In the Prisoner's Dilemma game, the Nash equilibrium is $(\text{Confess}, \text{Confess})$, because if a player has a strictly dominant strategy, it must be played in a Nash equilibrium. Furthermore, if an action is weakly dominance for all players, the profile $\mathbf{a} = (a_i)_{i = 1}^n$ is a Nash equilibrium (like the second price auction).
+
+\subsection{Cournot Competition Model}
+Let us think of a more general example to illustrate Nash equilibrium. Consider $n$ firms, where each firm choose the amount to produce $q_i \ge 0$. The market price is determined by $P(Q) = 1 - Q = 1 - \Sum{i = 1}{n}q_i$. The marginal cost of production is $c_i \in (0, 1)$. The payoff for firm $i$ is $u_i(q_i, \oppoI{q}) = q_i(P(Q) - c_i)$. \\
+To find the best-response of firm $i$, we maximize the payoff (profits):
+$$\max_{q_i} u_i(q_i, \oppoI{q}) = q_i(1 - q_i - \oppoI{Q} - c_i)$$
+where $\oppoI{Q}$ is the total amount produced by its opponents. \\
+This is a quadratic optimization problem, and the best-response only depends on total opponent production. \\
+We already know that $u_i(0, \oppoI{q}) = 0$, $u_i(1, \oppoI{q}) < 0$, and $u_i''(q_i, \oppoI{q}) = -2 < 0$.
+\begin{quote}
+    1. $u_i'(0) = 1 - \oppoI{Q} - c_i \le 0$. This means $P(Q) - c_i = 1 - q_i - \oppoI{Q} - c_i < 0$. In this case, it is best for the firm to produce nothing. $BR_i(\oppoI{q}) = 0$. \\
+    2. $u_i'(0) = 1 - \oppoI{Q} - c_i > 0$, then we can maximize $u_i$ by taking $u_i'(q_i) = 0$.
+    \begin{align*}
+        1 - q_i - \oppoI{Q} - c_i - q_i &= 0 \\
+        q_i^* &= \frac{1 - \oppoI{Q} - c_i}{2}
+    \end{align*}
+    The best response is $BR_i(\oppoI{q}) = \frac{1 - \oppoI{Q} - c_i}{2}$.
+\end{quote}
+Therefore, we summarize it to be:
+$$BR_i(\oppoI{q}) = \begin{cases}
+    \frac{1}{2}(1 - \oppoI{Q} - c_i) & 1 - \oppoI{Q} - c_i > 0 \\
+    0 & 1 - \oppoI{Q} - c_i \le 0
+\end{cases}$$
+If we take $c_i = c$ for all firms, the simultaneous best-responses leads to an equilibrium. Here we are also finding a \impt{symmetric equilibrium} where identical players play the same action. This gives that:
+$$q^* = \frac{1}{2}(1 - (n-1)q^* - c) \to q^* = \frac{1 - c}{n + 1}$$
+and $P(Q) = 1 - nq^* = \frac{nc+1}{n+1}$. \\
+As $n \to \infty$, $P(Q) \to c$.
+
+\subsection{Lobbying}
+Suppose there are $l$ lobbyists, each of which makes a donation of $s_i \ge 0$, where the donation is spent regardless of the outcome. They only care about the their desired policy being enacted, and only one policy will be enacted. The value of the desired policy is $v > 0$, common to all lobbyists. The probability that lobbyist $i$ wins is:
+$$p_i(\mathbf{s}) = \frac{s_i}{\Sum{j = 1}{l} s_j}$$
+The payoff for the lobbyist will be:
+$$u_i(\mathbf{s}) = v \cdot p_i(\mathbf{s}) - s_i$$
+and we define $p_i(s) = \frac{1}{l}$ if $s_1 = s_2 = \cdots = s_l = 0$. \\
+The game is symmetric, so we only need to consider symmetric strategy where $s_i^* = s^*$. Notice that all lobbyists choosing $0$ is not a valid equilibrium, as any one of them making a donation will be profitable and they will deviate. Therefore, for each lobbyist, we need to maximize their payoff:
+$$\max_{s_i} \frac{s_i}{s_i  + \oppoI{s}} \cdot v - s_i$$
+This means:
+$$\dv{s_i} \frac{s_i}{s_i  + \oppoI{s}} \cdot v - s_i = 0$$
+which gives:
+$$s_i = \sqrt{v\oppoI{s}} - \oppoI{s} \to s^* = \frac{v(l - 1)}{l}$$
+From here, we can calculate the total donation, and the equilibrium payoff for each lobbyist.
+
+\subsection{All-pay auction}
+Consider a different form of auction, where $2$ bidders have value $v > 0$ for the good, and each places a bid of $b_i \ge 0$. Highest bidder wins the good (where ties are broken with $\frac{1}{2}$ chance for each side), but the this time, bids are paid regardless of winning or losing the auction. This means:
+$$u_i(b_1, b_2) = \begin{cases}
+    v - b_i & b_i > b_j \\
+    \frac{1}{2}v - b_i & b_i = b_j \\
+    -b_i & b_i < b_j
+\end{cases}$$
+Notice that there is not a \impt{pure strategy Nash equilibrium} here. This is where we introduce mixed strategies (the uncertainty about one's chosen action is modelled as a probability distribution).
+
+\subsection{Mixed Strategy}
+Let $\sigma_i \in \Delta(A_i)$, where $\sigma_i(a)$ represents the probability (density) of playing action $a$. This must satisfy that $\sigma_i(a) \in (0, 1)$ and $\Sumi{a \in A_i} \sigma_i(a) = 1$ (or an integrates to $1$ if the available actions are continuous). \\
+In this case, players make choices based on the expected payoff where:
+$$U_i(\sigma) = \Sumi{\mathbf{a} \in A} u_i(\mathbf{a})(\sigma_1(a_1)\cdots\sigma_n(a_n))$$
+where $\sigma$ is the mixed strategy profile.
+\begin{definition}
+    A (mixed strategy) profile $\sigma^*$ is a Nash equilibrium if
+    $$U_i(\sigma^*) \ge U_i(\sigma_i, \oppoI{\sigma}^*)$$
+    for all players and $\sigma_i \in \Delta(A_i)$
+\end{definition}
+We can interpret the mixed strategy equilibrium in different ways:
+\begin{quote}
+    1. Most frequent of different actions across multiple interactions. \\
+    2. Represents the beliefs about what opponents might do. \\
+    3. Population frequencies: the probability that represents shares of population that chooses certain action, or evolutionary game theory (frequency of action evolves based on how beneficial they are). \\
+    4. Represents unmodelled payoff uncertainty: purification -- mixed strategy equilibrium is similar to pure strategy equilibrium in games with slight payoff perturbations.
+\end{quote}
+There are some properties of a mixed strategy equilibrium that are useful.
+\begin{quote}
+    1. Indifference: if actions $a_i$ and $a_i'$ are played with \impt{positive probability}, then
+    $$u_i(a_i, \oppoI{\sigma}^*) = u_i(a_i', \oppoI{\sigma}^*) = u_i(\sigma_i^*, \oppoI{\sigma}^*)$$
+    2. No Pure Deviation: it should also satisfy
+    $$u_i(a_i', \oppoI{\sigma}^*) \ge u_i(a_i', \oppoI{\sigma}^*)$$
+    for all $a_i'$ that are not used (played with probability $0$).
+\end{quote}
+These two properties are \impt{equivalent to Nash optimality condition}, meaning that only when these two properties are satisfied, can there be a mixed strategy Nash equilibrium.
+
+\subsection{Crime Reporting}
+Consider $N$ players observe a crime, and they can choose to report (R) or not report (N). The cost of reporting the crime is $c \in (0, 1)$ and the benefit from one report is $v > 1$. We won't talk too much about why there is not a pure strategy symmetric equilibrium, we discuss directly about mixed strategy equilibrium (there exists asymmetric pure strategy equilibrium, where only one person reports and no other people reports). \\
+For each player, say the probability of reporting is $p \in (0, 1)$. The necessary condition is that:
+\begin{align*}
+    U_i(R, \oppoI{\sigma}^*) &= U_i(N, \oppoI{\sigma}^*) \\
+    v - c &= v \cdot \prob(\text{at least 1 player reports}) + 0 \cdot \prob(\text{no player reports}) \\
+    v - c &= v \cdot (1 - (1 - p)^{N - 1}) + 0 \cdot (1 - p)^{N - 1} \\
+    p &= 1 - (\frac{c}{v})^{\frac{1}{N - 1}}
+\end{align*}
+The expected payoff for each player is $U_i(\sigma^*) = v - c$, which is inefficient, as it is equal to as if each individual is the only witness. \\
+We can also analyze the effect of $c$, $v$ and $N$ on the probability that at least one player reports the crime, and we observe that as $c$ increases, the probability decreases; as $v$ increases, the probability increases; as $N$ increases, the probability decreases, which leads to ``free-riding problem''.
+
+\subsection{All-pay Auction (Mixed Strategy)}
+If we reconsider the all-pay auction through a mixed strategy lens, consider a symmetric mixed strategy such that the action of each player is chosen according to a CDF $F$ and its corresponding PDF $f$. The bids $b_i \in [0, v]$ are all reasonable, where $b_i > v$ bids are strictly dominated. The expected payoff of player $i$ when bidding $b$ is:
+\begin{align*}
+    U_i(b, F) &= (v - b)\prob(b_j < b) + (-b)\prob(b_j > b) + (\frac{v}{2} - b)\prob(b_j = b) \\
+    &= vF(b) - bF(b) - b(1 - F(b)) \\
+    &= vF(b) - b
+\end{align*}
+Since the indifference property must be satisfied across all $[0, v]$, this means $U_i$ must be constant for all $b \in [0, v]$:
+\begin{align*}
+    U_i(0, F) &= U_i(v, F) = 0 \\
+    vF(b) &= b \\
+    F(b) &= \frac{b}{v} = \Int{0}{b} f(x) \dd x \\
+    f(b) &= \frac{1}{v}
+\end{align*}
+Therefore, 
+$$F(b) = \begin{cases}
+    0 & b < 0 \\
+    \frac{b}{v} & b \in [0, v] \\
+    1 & b > v
+\end{cases}$$
+which gives
+$$U_i(b, F) = \begin{cases}
+    0 & b \in [0, v] \\
+    v - b & b > v
+\end{cases}$$
+The expected utility of each bidder is zero, and $(b_1, b_2) = (0, 0)$ is inefficient as Pareto dominates equilibrium. \\
+The expected payment of each agent is:
+$$\Int{0}{v} bf(b) \dd b = \frac{v}{2}$$
+The total revenue from all-pay auction is $v$, where the total revenue is equal to the total effort. This is bad for participants, as gains from prize are spent as effort, but good for effort generation.
+
+\subsection{War of Attrition}
+The above section naturally leads to the War of Attrition game. Players decide how much time to wait, wait till time $t_i \ge 0$. The longest waiter wins, and the value of win is thus $v > 0$. The payoff is:
+$$u_i(t_1, t_2) = \begin{cases}
+    v - t_j & t_i > t_j \\
+    \frac{v}{2} - t_i & t_i = t_j \\
+    -t_i
+\end{cases}$$
+The key thing here is that it is ``combination'' of all-pay auction and second price auction. You still need to wait, but only need to wait longer than your opponent. \\
+The pure strategy equilibrium is either $(t_1 = 0, t_2 \ge v)$ or $(t_1 \ge v, t_2 = 0)$. This is because the best-response function is:
+$$BR_i(t_j) = \begin{cases}
+    (t_j, \infty) & t_j < v \\
+    \{0\} \cup (v, \infty) & t_j = v \\
+    \{0\} & t_j > v
+\end{cases}$$
+In this case, we try to look for an equilibrium with symmetry, where players choose their action with CDF $G$ and PDF $g$, where possible choices are $t \ge 0$.
+\begin{theorem}
+    \uimpt{Leibniz Rule} states that
+    $$\dv{t}\int_{\alpha(t)}^{\beta(t)} f(x, t)\dd x = \beta'(t)f(\beta(t), t) - \alpha'(t)f(\alpha(t), t) + \int_{\alpha(t)}^{\beta(t)} \pdv{t} f(x, t)\dd x$$
+\end{theorem}
+Then, for player $i$, the expected payoff from choosing $t$ is:
+\begin{align*}
+    U_i(t, G) &= \int_{0}^{\infty} u_i(t_i, t_j) g(t_j) \dd t_j \\
+    &= \int_{0}^{t} (v - t_j)g(t_j) \dd t_j + \int_{t}^{\infty} (-t)g(t_j) \dd t_j
+\end{align*}
+The indifference condition states that $\dv{t} U_i(t, G) = 0$.
+\begin{align*}
+    \dv{t}U_i(t, G) &= \dv{t} (\int_{0}^{t} (v - t_j)g(t_j) \dd t_j + \int_{t}^{\infty} (-t)g(t_j) \dd t_j) \\
+    &= \dv{t} (\int_{0}^{t} (v - t_j)g(t_j) \dd t_j - t(1 - G(t))) \\
+    &= (v-t)g(t) - (1 - G(t) - tg(t)) = 0 \\
+    vg(t) &= 1 - G(t) \\
+    G(t) &= 1 - e^{-\frac{t}{v}}
+\end{align*}
+from $G(0) = 0$. This gives $g(t) = \frac{e^{-\frac{t}{v}}}{v}$.
+
+\newpage
