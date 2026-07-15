@@ -1,7 +1,5 @@
 # <center>CPSC 210</center>
 
-Personal Access Token: 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
-
 ## Sept. 6 - B1 Program Structure
 
 - Course Outline
